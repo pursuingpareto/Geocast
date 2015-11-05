@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3111BEC05D500A83FDB /* AppDelegate.swift */; };
+		A11FD3141BEC05D500A83FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3131BEC05D500A83FDB /* ViewController.swift */; };
+		A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3151BEC05D500A83FDB /* Main.storyboard */; };
+		A11FD3191BEC05D500A83FDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3181BEC05D500A83FDB /* Images.xcassets */; };
+		A11FD31C1BEC05D500A83FDB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11FD31A1BEC05D500A83FDB /* LaunchScreen.xib */; };
+		A11FD3281BEC05D500A83FDB /* GeocastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3271BEC05D500A83FDB /* GeocastTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A11FD3221BEC05D500A83FDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A11FD3041BEC05D500A83FDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A11FD30B1BEC05D500A83FDB;
+			remoteInfo = Geocast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A11FD30C1BEC05D500A83FDB /* Geocast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11FD3101BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A11FD3111BEC05D500A83FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A11FD3131BEC05D500A83FDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A11FD3161BEC05D500A83FDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A11FD3181BEC05D500A83FDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A11FD31B1BEC05D500A83FDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		A11FD3211BEC05D500A83FDB /* GeocastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11FD3261BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A11FD3271BEC05D500A83FDB /* GeocastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocastTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A11FD3091BEC05D500A83FDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A11FD31E1BEC05D500A83FDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A11FD3031BEC05D500A83FDB = {
+			isa = PBXGroup;
+			children = (
+				A11FD30E1BEC05D500A83FDB /* Geocast */,
+				A11FD3241BEC05D500A83FDB /* GeocastTests */,
+				A11FD30D1BEC05D500A83FDB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A11FD30D1BEC05D500A83FDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A11FD30C1BEC05D500A83FDB /* Geocast.app */,
+				A11FD3211BEC05D500A83FDB /* GeocastTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A11FD30E1BEC05D500A83FDB /* Geocast */ = {
+			isa = PBXGroup;
+			children = (
+				A11FD3111BEC05D500A83FDB /* AppDelegate.swift */,
+				A11FD3131BEC05D500A83FDB /* ViewController.swift */,
+				A11FD3151BEC05D500A83FDB /* Main.storyboard */,
+				A11FD3181BEC05D500A83FDB /* Images.xcassets */,
+				A11FD31A1BEC05D500A83FDB /* LaunchScreen.xib */,
+				A11FD30F1BEC05D500A83FDB /* Supporting Files */,
+			);
+			path = Geocast;
+			sourceTree = "<group>";
+		};
+		A11FD30F1BEC05D500A83FDB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A11FD3101BEC05D500A83FDB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A11FD3241BEC05D500A83FDB /* GeocastTests */ = {
+			isa = PBXGroup;
+			children = (
+				A11FD3271BEC05D500A83FDB /* GeocastTests.swift */,
+				A11FD3251BEC05D500A83FDB /* Supporting Files */,
+			);
+			path = GeocastTests;
+			sourceTree = "<group>";
+		};
+		A11FD3251BEC05D500A83FDB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A11FD3261BEC05D500A83FDB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A11FD30B1BEC05D500A83FDB /* Geocast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A11FD32B1BEC05D500A83FDB /* Build configuration list for PBXNativeTarget "Geocast" */;
+			buildPhases = (
+				A11FD3081BEC05D500A83FDB /* Sources */,
+				A11FD3091BEC05D500A83FDB /* Frameworks */,
+				A11FD30A1BEC05D500A83FDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Geocast;
+			productName = Geocast;
+			productReference = A11FD30C1BEC05D500A83FDB /* Geocast.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A11FD3201BEC05D500A83FDB /* GeocastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A11FD32E1BEC05D500A83FDB /* Build configuration list for PBXNativeTarget "GeocastTests" */;
+			buildPhases = (
+				A11FD31D1BEC05D500A83FDB /* Sources */,
+				A11FD31E1BEC05D500A83FDB /* Frameworks */,
+				A11FD31F1BEC05D500A83FDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A11FD3231BEC05D500A83FDB /* PBXTargetDependency */,
+			);
+			name = GeocastTests;
+			productName = GeocastTests;
+			productReference = A11FD3211BEC05D500A83FDB /* GeocastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A11FD3041BEC05D500A83FDB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Andrew Brown";
+				TargetAttributes = {
+					A11FD30B1BEC05D500A83FDB = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					A11FD3201BEC05D500A83FDB = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = A11FD30B1BEC05D500A83FDB;
+					};
+				};
+			};
+			buildConfigurationList = A11FD3071BEC05D500A83FDB /* Build configuration list for PBXProject "Geocast" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A11FD3031BEC05D500A83FDB;
+			productRefGroup = A11FD30D1BEC05D500A83FDB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A11FD30B1BEC05D500A83FDB /* Geocast */,
+				A11FD3201BEC05D500A83FDB /* GeocastTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A11FD30A1BEC05D500A83FDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */,
+				A11FD31C1BEC05D500A83FDB /* LaunchScreen.xib in Resources */,
+				A11FD3191BEC05D500A83FDB /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A11FD31F1BEC05D500A83FDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A11FD3081BEC05D500A83FDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A11FD3141BEC05D500A83FDB /* ViewController.swift in Sources */,
+				A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A11FD31D1BEC05D500A83FDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A11FD3281BEC05D500A83FDB /* GeocastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A11FD3231BEC05D500A83FDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A11FD30B1BEC05D500A83FDB /* Geocast */;
+			targetProxy = A11FD3221BEC05D500A83FDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A11FD3151BEC05D500A83FDB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A11FD3161BEC05D500A83FDB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A11FD31A1BEC05D500A83FDB /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A11FD31B1BEC05D500A83FDB /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A11FD3291BEC05D500A83FDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A11FD32A1BEC05D500A83FDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A11FD32C1BEC05D500A83FDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Geocast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A11FD32D1BEC05D500A83FDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Geocast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A11FD32F1BEC05D500A83FDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GeocastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Geocast.app/Geocast";
+			};
+			name = Debug;
+		};
+		A11FD3301BEC05D500A83FDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GeocastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Geocast.app/Geocast";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A11FD3071BEC05D500A83FDB /* Build configuration list for PBXProject "Geocast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A11FD3291BEC05D500A83FDB /* Debug */,
+				A11FD32A1BEC05D500A83FDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A11FD32B1BEC05D500A83FDB /* Build configuration list for PBXNativeTarget "Geocast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A11FD32C1BEC05D500A83FDB /* Debug */,
+				A11FD32D1BEC05D500A83FDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A11FD32E1BEC05D500A83FDB /* Build configuration list for PBXNativeTarget "GeocastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A11FD32F1BEC05D500A83FDB /* Debug */,
+				A11FD3301BEC05D500A83FDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A11FD3041BEC05D500A83FDB /* Project object */;
+}
