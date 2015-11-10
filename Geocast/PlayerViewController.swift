@@ -12,7 +12,7 @@ import AVFoundation
 class PlayerViewController: UIViewController {
     
     @IBOutlet weak var progressBar: UISlider!
-    var audioPlayer = AVPlayer()
+    var audioPlayer = PodcastPlayer.sharedInstance
     var isPlaying = false
     var timer: NSTimer!
     var episode: Episode!
@@ -78,7 +78,7 @@ class PlayerViewController: UIViewController {
 
         let url = NSURL(string: episode.mp3Url)
         let playerItem = AVPlayerItem(URL: url!)
-        audioPlayer = AVPlayer(playerItem: playerItem)
+        audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
 
     }
     
