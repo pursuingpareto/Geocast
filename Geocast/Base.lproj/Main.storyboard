@@ -177,7 +177,7 @@
                                     <action selector="playOrPause:" destination="yyZ-no-Vza" eventType="touchUpInside" id="4U3-yK-f1t"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V1-jm-Y9i">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V1-jm-Y9i">
                                 <rect key="frame" x="279" y="60" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -191,7 +191,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HJ4-H3-Tlz">
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HJ4-H3-Tlz">
                                 <rect key="frame" x="114" y="20" width="372" height="31"/>
                                 <animations/>
                                 <constraints>
@@ -213,7 +213,7 @@
                                 <animations/>
                                 <state key="normal" title="Tag with Location"/>
                                 <connections>
-                                    <segue destination="rbq-IY-jbQ" kind="presentation" id="Wco-VH-0EM"/>
+                                    <segue destination="rbq-IY-jbQ" kind="showDetail" id="Wco-VH-0EM"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -285,7 +285,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QLw-SZ-9nt">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Address or Location Name" translatesAutoresizingMaskIntoConstraints="NO" id="QLw-SZ-9nt">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <animations/>
                                 <textInputTraits key="textInputTraits"/>

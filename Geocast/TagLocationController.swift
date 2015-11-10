@@ -24,6 +24,8 @@ class TagLocationController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap: UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
@@ -36,6 +38,10 @@ class TagLocationController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         searchBar.becomeFirstResponder()
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     
