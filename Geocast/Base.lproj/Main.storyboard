@@ -243,7 +243,7 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Player" id="aDF-2t-nA4"/>
-                    <navigationItem key="navigationItem" id="5Mu-cD-wIR">
+                    <navigationItem key="navigationItem" title="Player" id="5Mu-cD-wIR">
                         <barButtonItem key="backBarButtonItem" title="Back" id="m1b-1z-DRO"/>
                     </navigationItem>
                     <connections>
@@ -279,7 +279,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" rowHeight="44" id="Sa3-La-eDf">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sa3-La-eDf" id="Mwx-b9-mWU">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
