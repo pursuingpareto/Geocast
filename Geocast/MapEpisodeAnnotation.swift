@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 class MapEpisodeAnnotation: NSObject, MKAnnotation {
-    let title: String
+    let title: String?
     let coordinate: CLLocationCoordinate2D
     var subtitle: String?
     init(episode: Episode, coordinate: CLLocationCoordinate2D) {

@@ -11,15 +11,16 @@ import UIKit
 class PodcastSearchViewController: UITableViewController {
     
     
-    @IBOutlet weak var resultsTableView: UITableView!
+//    @IBOutlet weak var resultsTableView: UITableView!
     var podcasts = [Podcast]()
     var filteredPodcasts = [Podcast]()
     var resultSearchController = UISearchController()
     lazy var iTunesAPI : APIController = APIController(delegate: self)
-    
+    var user = User.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
@@ -53,7 +54,7 @@ class PodcastSearchViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("podcastCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("podcastCell", forIndexPath: indexPath) 
         
         // 3
         if (self.resultSearchController.active) {
@@ -68,19 +69,27 @@ class PodcastSearchViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let podcastIndex = indexPath.row
+        let podcast = filteredPodcasts[podcastIndex]
+        print(podcast.title)
+        user.subscribe(podcast)
+        print("USER SUBSCRIPTIONS: \(user.getSubscriptions())")
+    }
+    
 }
 
 extension PodcastSearchViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         filteredPodcasts.removeAll(keepCapacity: false)
-        iTunesAPI.searchPodcastsFor(searchController.searchBar.text)
+        iTunesAPI.searchPodcastsFor(searchController.searchBar.text!)
     }
 }
 
 extension PodcastSearchViewController: APIControllerProtocol {
     func didReceiveAPIResults(results: NSDictionary) {
 
-        var resultsArray = results["results"] as! NSArray
+        let resultsArray = results["results"] as! NSArray
 
         dispatch_async(dispatch_get_main_queue(), {
             self.filteredPodcasts = Podcast.podcastsWithJSON(resultsArray)

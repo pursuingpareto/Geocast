@@ -22,7 +22,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var playedTime: UILabel!
     
     @IBAction func playOrPause(sender: AnyObject) {
-        println(audioPlayer)
+        print(audioPlayer)
         if isPlaying {
             audioPlayer.pause()
             isPlaying = false
@@ -34,15 +34,15 @@ class PlayerViewController: UIViewController {
     }
     
     func updateTime() {
-        var currentTime = Int(audioPlayer.currentTime().value) / Int(audioPlayer.currentTime().timescale)
-        var minutes = currentTime / 60
-        var seconds = currentTime - (minutes * 60)
-        var currentFloatTime = Float(currentTime)
+        let currentTime = Int(audioPlayer.currentTime().value) / Int(audioPlayer.currentTime().timescale)
+        let minutes = currentTime / 60
+        let seconds = currentTime - (minutes * 60)
+        let currentFloatTime = Float(currentTime)
         progress = currentFloatTime / totalSeconds
         progressBar.setValue(progress, animated: true)
         playedTime.text = NSString(format: "%02d:%02d", minutes, seconds) as String
         
-        println("totalSeconds: \(totalSeconds)\nprogress: \(progress)\ncurrentFloatTime: \(currentFloatTime)\n\n")
+        print("totalSeconds: \(totalSeconds)\nprogress: \(progress)\ncurrentFloatTime: \(currentFloatTime)\n\n")
     }
     
     
@@ -54,7 +54,7 @@ class PlayerViewController: UIViewController {
     
     @IBAction func progressBarChanged(sender: UISlider) {
         progress = sender.value
-        var seconds = Int64(progress * totalSeconds)
+        let seconds = Int64(progress * totalSeconds)
         
         audioPlayer.seekToTime(CMTimeMake(seconds, 1))
         if isPlaying {
@@ -68,15 +68,15 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
-        println("EPISODE DURATION IS \(episode.duration)")
-        var minsSecs = split(episode.duration) {$0 == ":"}
-        var mins = (minsSecs[0] as NSString).integerValue
-        var secs = (minsSecs[1] as NSString).integerValue
+        print("EPISODE DURATION IS \(episode.duration)")
+        var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
+        let mins = (minsSecs[0] as NSString).integerValue
+        let secs = (minsSecs[1] as NSString).integerValue
         totalSeconds = Float(60 * mins + secs)
         trackTitle.text = episode.title
         progressBar.value = 0
         
-        println(episode.description)
+        print(episode.description)
 
         let url = NSURL(string: episode.mp3Url)
         let playerItem = AVPlayerItem(URL: url!)

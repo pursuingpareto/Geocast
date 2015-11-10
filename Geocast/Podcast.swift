@@ -42,21 +42,28 @@ class Podcast {
                         if name == nil {
                             name = "Unknown"
                         }
-                        println(name)
+                        print(name)
                         let thumbnailURL = podcastInfo["artworkUrl60"] as? String ?? ""
                         let imageURL = podcastInfo["artworkUrl100"] as? String ?? ""
                         let feedUrl = podcastInfo["feedUrl"] as? String ?? ""
                         let episodeCount = podcastInfo["trackCount"] as? Int ?? 0
                         let collectionId = podcastInfo["collectionId"] as? Int ?? 0
                         
-                        var podcast = Podcast(title: name!, thumbnailImageURL: thumbnailURL, largeImageURL: imageURL, collectionId: collectionId, episodeCount: episodeCount, feedUrl: feedUrl)
+                        let podcast = Podcast(title: name!, thumbnailImageURL: thumbnailURL, largeImageURL: imageURL, collectionId: collectionId, episodeCount: episodeCount, feedUrl: feedUrl)
                         
                         podcasts.append(podcast)
                     }
                 }
             }
         }
-        println(podcasts)
+        print(podcasts)
         return podcasts
     }
+}
+
+extension Podcast: Equatable {}
+    
+func ==(_ lhs: Podcast, _ rhs: Podcast) -> Bool {
+    return lhs.collectionId == rhs.collectionId
+
 }

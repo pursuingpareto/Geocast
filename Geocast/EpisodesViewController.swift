@@ -52,16 +52,18 @@ class EpisodesViewController: UIViewController {
         
         episodesTableView.delegate = self
         episodesTableView.dataSource = self
-        var feedUrl = podcast.feedUrl
+        let feedUrl = podcast.feedUrl
         
-        var urlString = NSURL(string: feedUrl)
-        var rssUrlRequest:NSURLRequest = NSURLRequest(URL:urlString!)
+        let urlString = NSURL(string: feedUrl)
+        let rssUrlRequest:NSURLRequest = NSURLRequest(URL:urlString!)
         let queue:NSOperationQueue = NSOperationQueue()
         
         NSURLConnection.sendAsynchronousRequest(rssUrlRequest, queue: queue) {
             (response, data, error) -> Void in
             //3
-            self.xmlParser = NSXMLParser(data: data)
+            print("error is \(error)")
+            print("data is \(data)")
+            self.xmlParser = NSXMLParser(data: data!)
             
             self.xmlParser.delegate = self
             
@@ -73,8 +75,8 @@ class EpisodesViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let playerViewController = segue.destinationViewController as? PlayerViewController {
-            var episodeIndex = episodesTableView.indexPathForSelectedRow()!.row
-            var detailEpisode = self.episodes[episodeIndex]
+            let episodeIndex = episodesTableView.indexPathForSelectedRow!.row
+            let detailEpisode = self.episodes[episodeIndex]
             playerViewController.episode = detailEpisode
         }
     }
@@ -90,9 +92,7 @@ extension EpisodesViewController: NSXMLParserDelegate {
         didStartElement elementName: String,
         namespaceURI: String?,
         qualifiedName: String?,
-        attributes attributeDict: [NSObject : AnyObject]){
-            
-            println("elementName: \(elementName)\nqualifiedName: \(qualifiedName)\nattributes: \(attributeDict)")
+        attributes attributeDict: [String : String]){
             
             currentParsedElement = qualifiedName!
             if currentParsedElement == nil {
@@ -103,16 +103,18 @@ extension EpisodesViewController: NSXMLParserDelegate {
                 self.insideItem = true
             }
             if elementName == "content" {
-                if let url = attributeDict["url"] as? String {
+                var url = attributeDict["url"]
+                if url != nil {
                     entryDictionary["mp3Url"] = url
                 }
             }
             if elementName == "enclosure" {
-                if let url = attributeDict["url"] as? String {
+                var url = attributeDict["url"]
+                if url != nil {
                     entryDictionary["mp3Url"] = url
                 }
             }
-            if contains(interestingElementNames, elementName) {
+            if interestingElementNames.contains(elementName) {
                 if insideItem {
                     shouldParseCurrentElement = true
                 } else {
@@ -162,7 +164,7 @@ extension EpisodesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             
-            var cell:UITableViewCell! = tableView.dequeueReusableCellWithIdentifier("episodeCell")as? UITableViewCell
+            var cell:UITableViewCell! = tableView.dequeueReusableCellWithIdentifier("episodeCell")! as UITableViewCell
             
             if (nil == cell){
                 cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "episodeCell")

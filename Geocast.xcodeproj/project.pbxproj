@@ -24,6 +24,7 @@
 		A11FD3461BF10E8C00A83FDB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */; };
 		A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3471BF12DF500A83FDB /* MapViewController.swift */; };
 		A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */; };
+		A18035881BF17363003BC7F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18035871BF17363003BC7F5 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A11FD3471BF12DF500A83FDB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapEpisodeAnnotation.swift; sourceTree = "<group>"; };
+		A18035871BF17363003BC7F5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				A11FD3431BF0154D00A83FDB /* PodcastCell.swift */,
 				A11FD33D1BEC39EA00A83FDB /* EpisodesViewController.swift */,
 				A11FD3391BEC317E00A83FDB /* APIController.swift */,
+				A18035871BF17363003BC7F5 /* User.swift */,
 				A11FD33B1BEC330600A83FDB /* Podcast.swift */,
 				A11FD33F1BEFEB9600A83FDB /* Episode.swift */,
 				A11FD3351BEC070800A83FDB /* PlayerViewController.swift */,
@@ -190,6 +193,7 @@
 		A11FD3041BEC05D500A83FDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Andrew Brown";
@@ -247,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A18035881BF17363003BC7F5 /* User.swift in Sources */,
 				A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */,
 				A11FD33C1BEC330600A83FDB /* Podcast.swift in Sources */,
 				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,

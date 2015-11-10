@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        var initialLocation = CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude)
+        let initialLocation = CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude)
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
@@ -54,7 +54,7 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         episodesWithCoordinates += [(testEpisode, testCoordinate)]
         for (ep, coord) in episodesWithCoordinates {
-            var mapEppAnnotation = MapEpisodeAnnotation(episode: ep, coordinate: coord)
+            let mapEppAnnotation = MapEpisodeAnnotation(episode: ep, coordinate: coord)
             annotations.append(mapEppAnnotation)
             mapView.addAnnotation(mapEppAnnotation)
         }
@@ -65,15 +65,15 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        var locValue : CLLocationCoordinate2D = manager.location.coordinate
-        centerMapOnLocation(manager.location)
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        var locValue : CLLocationCoordinate2D = manager.location!.coordinate
+        centerMapOnLocation(manager.location!)
     }
 }
 
 extension MapViewController: MKMapViewDelegate {
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        println("Calling viewForAnnotation")
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+        print("Calling viewForAnnotation")
         if let annotation = annotation as? MapEpisodeAnnotation {
             let identifier = "pin"
             var view: MKPinAnnotationView
@@ -86,7 +86,7 @@ extension MapViewController: MKMapViewDelegate {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIView
+                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
             }
             return view
         }
