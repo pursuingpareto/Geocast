@@ -8,11 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3111BEC05D500A83FDB /* AppDelegate.swift */; };
-		A11FD3141BEC05D500A83FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3131BEC05D500A83FDB /* ViewController.swift */; };
 		A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3151BEC05D500A83FDB /* Main.storyboard */; };
 		A11FD3191BEC05D500A83FDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3181BEC05D500A83FDB /* Images.xcassets */; };
 		A11FD31C1BEC05D500A83FDB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11FD31A1BEC05D500A83FDB /* LaunchScreen.xib */; };
 		A11FD3281BEC05D500A83FDB /* GeocastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3271BEC05D500A83FDB /* GeocastTests.swift */; };
+		A11FD3341BEC068900A83FDB /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3331BEC068900A83FDB /* MainTabController.swift */; };
+		A11FD3361BEC070800A83FDB /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3351BEC070800A83FDB /* PlayerViewController.swift */; };
+		A11FD3381BEC077500A83FDB /* PodcastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3371BEC077500A83FDB /* PodcastsViewController.swift */; };
+		A11FD33A1BEC317E00A83FDB /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3391BEC317E00A83FDB /* APIController.swift */; };
+		A11FD33C1BEC330600A83FDB /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD33B1BEC330600A83FDB /* Podcast.swift */; };
+		A11FD33E1BEC39EA00A83FDB /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD33D1BEC39EA00A83FDB /* EpisodesViewController.swift */; };
+		A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD33F1BEFEB9600A83FDB /* Episode.swift */; };
+		A11FD3421BF0032500A83FDB /* PodcastSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */; };
+		A11FD3441BF0154D00A83FDB /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3431BF0154D00A83FDB /* PodcastCell.swift */; };
+		A11FD3461BF10E8C00A83FDB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */; };
+		A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3471BF12DF500A83FDB /* MapViewController.swift */; };
+		A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +40,24 @@
 		A11FD30C1BEC05D500A83FDB /* Geocast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11FD3101BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11FD3111BEC05D500A83FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A11FD3131BEC05D500A83FDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A11FD3161BEC05D500A83FDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A11FD3181BEC05D500A83FDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A11FD31B1BEC05D500A83FDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A11FD3211BEC05D500A83FDB /* GeocastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeocastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11FD3261BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11FD3271BEC05D500A83FDB /* GeocastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocastTests.swift; sourceTree = "<group>"; };
+		A11FD3331BEC068900A83FDB /* MainTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
+		A11FD3351BEC070800A83FDB /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		A11FD3371BEC077500A83FDB /* PodcastsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastsViewController.swift; sourceTree = "<group>"; };
+		A11FD3391BEC317E00A83FDB /* APIController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
+		A11FD33B1BEC330600A83FDB /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
+		A11FD33D1BEC39EA00A83FDB /* EpisodesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
+		A11FD33F1BEFEB9600A83FDB /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSearchViewController.swift; sourceTree = "<group>"; };
+		A11FD3431BF0154D00A83FDB /* PodcastCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
+		A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		A11FD3471BF12DF500A83FDB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapEpisodeAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11FD3461BF10E8C00A83FDB /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +82,7 @@
 		A11FD3031BEC05D500A83FDB = {
 			isa = PBXGroup;
 			children = (
+				A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */,
 				A11FD30E1BEC05D500A83FDB /* Geocast */,
 				A11FD3241BEC05D500A83FDB /* GeocastTests */,
 				A11FD30D1BEC05D500A83FDB /* Products */,
@@ -78,8 +102,18 @@
 			isa = PBXGroup;
 			children = (
 				A11FD3111BEC05D500A83FDB /* AppDelegate.swift */,
-				A11FD3131BEC05D500A83FDB /* ViewController.swift */,
+				A11FD3331BEC068900A83FDB /* MainTabController.swift */,
 				A11FD3151BEC05D500A83FDB /* Main.storyboard */,
+				A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */,
+				A11FD3471BF12DF500A83FDB /* MapViewController.swift */,
+				A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */,
+				A11FD3431BF0154D00A83FDB /* PodcastCell.swift */,
+				A11FD33D1BEC39EA00A83FDB /* EpisodesViewController.swift */,
+				A11FD3391BEC317E00A83FDB /* APIController.swift */,
+				A11FD33B1BEC330600A83FDB /* Podcast.swift */,
+				A11FD33F1BEFEB9600A83FDB /* Episode.swift */,
+				A11FD3351BEC070800A83FDB /* PlayerViewController.swift */,
+				A11FD3371BEC077500A83FDB /* PodcastsViewController.swift */,
 				A11FD3181BEC05D500A83FDB /* Images.xcassets */,
 				A11FD31A1BEC05D500A83FDB /* LaunchScreen.xib */,
 				A11FD30F1BEC05D500A83FDB /* Supporting Files */,
@@ -156,6 +190,7 @@
 		A11FD3041BEC05D500A83FDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Andrew Brown";
 				TargetAttributes = {
@@ -212,8 +247,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A11FD3141BEC05D500A83FDB /* ViewController.swift in Sources */,
+				A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */,
+				A11FD33C1BEC330600A83FDB /* Podcast.swift in Sources */,
+				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,
+				A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */,
+				A11FD3441BF0154D00A83FDB /* PodcastCell.swift in Sources */,
+				A11FD33E1BEC39EA00A83FDB /* EpisodesViewController.swift in Sources */,
+				A11FD3421BF0032500A83FDB /* PodcastSearchViewController.swift in Sources */,
+				A11FD3361BEC070800A83FDB /* PlayerViewController.swift in Sources */,
+				A11FD33A1BEC317E00A83FDB /* APIController.swift in Sources */,
 				A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */,
+				A11FD3381BEC077500A83FDB /* PodcastsViewController.swift in Sources */,
+				A11FD3341BEC068900A83FDB /* MainTabController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +454,7 @@
 				A11FD32D1BEC05D500A83FDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A11FD32E1BEC05D500A83FDB /* Build configuration list for PBXNativeTarget "GeocastTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +463,7 @@
 				A11FD3301BEC05D500A83FDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
