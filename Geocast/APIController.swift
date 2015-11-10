@@ -75,7 +75,7 @@ class APIController {
     }
     
     func lookupPodcast(collectionId: Int) {
-        print(collectionId)
+
         getFromITunes("https://itunes.apple.com/lookup?media=podcast&id=\(collectionId)")
     }
     

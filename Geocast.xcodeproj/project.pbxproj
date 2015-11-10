@@ -25,6 +25,8 @@
 		A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3471BF12DF500A83FDB /* MapViewController.swift */; };
 		A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */; };
 		A18035881BF17363003BC7F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18035871BF17363003BC7F5 /* User.swift */; };
+		A180358A1BF27BC1003BC7F5 /* TagLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18035891BF27BC1003BC7F5 /* TagLocationController.swift */; };
+		A180358C1BF29F22003BC7F5 /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180358B1BF29F22003BC7F5 /* TagManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		A11FD3471BF12DF500A83FDB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapEpisodeAnnotation.swift; sourceTree = "<group>"; };
 		A18035871BF17363003BC7F5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A18035891BF27BC1003BC7F5 /* TagLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLocationController.swift; sourceTree = "<group>"; };
+		A180358B1BF29F22003BC7F5 /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				A11FD3111BEC05D500A83FDB /* AppDelegate.swift */,
 				A11FD3331BEC068900A83FDB /* MainTabController.swift */,
 				A11FD3151BEC05D500A83FDB /* Main.storyboard */,
+				A180358B1BF29F22003BC7F5 /* TagManager.swift */,
+				A18035891BF27BC1003BC7F5 /* TagLocationController.swift */,
 				A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */,
 				A11FD3471BF12DF500A83FDB /* MapViewController.swift */,
 				A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */,
@@ -258,10 +264,12 @@
 				A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */,
 				A11FD3441BF0154D00A83FDB /* PodcastCell.swift in Sources */,
 				A11FD33E1BEC39EA00A83FDB /* EpisodesViewController.swift in Sources */,
+				A180358C1BF29F22003BC7F5 /* TagManager.swift in Sources */,
 				A11FD3421BF0032500A83FDB /* PodcastSearchViewController.swift in Sources */,
 				A11FD3361BEC070800A83FDB /* PlayerViewController.swift in Sources */,
 				A11FD33A1BEC317E00A83FDB /* APIController.swift in Sources */,
 				A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */,
+				A180358A1BF27BC1003BC7F5 /* TagLocationController.swift in Sources */,
 				A11FD3381BEC077500A83FDB /* PodcastsViewController.swift in Sources */,
 				A11FD3341BEC068900A83FDB /* MainTabController.swift in Sources */,
 			);

@@ -19,13 +19,18 @@ class PodcastsViewController: UIViewController {
     var podcasts : [Podcast] = [Podcast]()
     var imageCache = [String : UIImage]()
     
+    var testPodcast = Podcast(title: "Radiolab", thumbnailImageURL: "", largeImageURL: "", collectionId: 152249110, episodeCount: 144, feedUrl: "http://feeds.wnyc.org/radiolab")
+    
     lazy var iTunesAPI : APIController = APIController(delegate: self)
     
     override func viewDidLoad() {
         let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addPodcast:")
         self.navigationItem.rightBarButtonItem = addButton
         super.viewDidLoad()
+        user.subscribe(testPodcast)
         podcasts = user.getSubscriptions()
+        
+        
         iTunesAPI.delegate = self
         //1
         self.podcastsTableView.dataSource = self
@@ -44,9 +49,9 @@ class PodcastsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("VIEW WILL APPEAR")
+
         podcasts = user.getSubscriptions()
-        print("PODCASTS: \(podcasts)")
+
         self.podcastsTableView.reloadData()
     }
     
@@ -72,7 +77,7 @@ class PodcastsViewController: UIViewController {
     }
     
     func assignImage(toCellAtIndexPath indexPath: NSIndexPath, withUrl url:String) {
-        print("URL for THUMBNAIL: \(url)")
+
         var imgURL: NSURL = NSURL(string: url)!
         var image = self.imageCache[url]
         if image == nil {

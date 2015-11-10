@@ -42,7 +42,7 @@ class Podcast {
                         if name == nil {
                             name = "Unknown"
                         }
-                        print(name)
+
                         let thumbnailURL = podcastInfo["artworkUrl60"] as? String ?? ""
                         let imageURL = podcastInfo["artworkUrl100"] as? String ?? ""
                         let feedUrl = podcastInfo["feedUrl"] as? String ?? ""
@@ -56,7 +56,7 @@ class Podcast {
                 }
             }
         }
-        print(podcasts)
+
         return podcasts
     }
 }

@@ -22,7 +22,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var playedTime: UILabel!
     
     @IBAction func playOrPause(sender: AnyObject) {
-        print(audioPlayer)
+
         if isPlaying {
             audioPlayer.pause()
             isPlaying = false
@@ -42,7 +42,6 @@ class PlayerViewController: UIViewController {
         progressBar.setValue(progress, animated: true)
         playedTime.text = NSString(format: "%02d:%02d", minutes, seconds) as String
         
-        print("totalSeconds: \(totalSeconds)\nprogress: \(progress)\ncurrentFloatTime: \(currentFloatTime)\n\n")
     }
     
     
@@ -68,7 +67,7 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
-        print("EPISODE DURATION IS \(episode.duration)")
+
         var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
         let mins = (minsSecs[0] as NSString).integerValue
         let secs = (minsSecs[1] as NSString).integerValue
@@ -76,7 +75,6 @@ class PlayerViewController: UIViewController {
         trackTitle.text = episode.title
         progressBar.value = 0
         
-        print(episode.description)
 
         let url = NSURL(string: episode.mp3Url)
         let playerItem = AVPlayerItem(URL: url!)
@@ -87,6 +85,20 @@ class PlayerViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let destinationVC = segue.destinationViewController as? TagLocationController else {
+            super.prepareForSegue(segue, sender: sender)
+            return
+        }
+        destinationVC.episode = episode
+        super.prepareForSegue(segue, sender: sender)
+        
+    }
+    
+    @IBAction func cancelPlayerViewController(segue: UIStoryboardSegue) {
+        segue.sourceViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

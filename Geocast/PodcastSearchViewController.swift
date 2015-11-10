@@ -72,9 +72,7 @@ class PodcastSearchViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let podcastIndex = indexPath.row
         let podcast = filteredPodcasts[podcastIndex]
-        print(podcast.title)
         user.subscribe(podcast)
-        print("USER SUBSCRIPTIONS: \(user.getSubscriptions())")
     }
     
 }

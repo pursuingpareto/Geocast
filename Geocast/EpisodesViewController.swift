@@ -61,8 +61,7 @@ class EpisodesViewController: UIViewController {
         NSURLConnection.sendAsynchronousRequest(rssUrlRequest, queue: queue) {
             (response, data, error) -> Void in
             //3
-            print("error is \(error)")
-            print("data is \(data)")
+
             self.xmlParser = NSXMLParser(data: data!)
             
             self.xmlParser.delegate = self

@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
     var episodesWithCoordinates: [(Episode!, CLLocationCoordinate2D)] = []
     
     var annotations: [MapEpisodeAnnotation] = []
+    var tagManager = TagManager.sharedInstance
     
     var testPodcast: Podcast = Podcast(title: "99% Invisible", thumbnailImageURL: "", largeImageURL: "", collectionId: 45, episodeCount: 150, feedUrl: "http://feeds.99percentinvisible.org/99percentinvisible")
     
@@ -52,13 +53,10 @@ class MapViewController: UIViewController {
             ], podcast: testPodcast)
 
         mapView.delegate = self
-        episodesWithCoordinates += [(testEpisode, testCoordinate)]
-        for (ep, coord) in episodesWithCoordinates {
-            let mapEppAnnotation = MapEpisodeAnnotation(episode: ep, coordinate: coord)
-            annotations.append(mapEppAnnotation)
-            mapView.addAnnotation(mapEppAnnotation)
-        }
-        
+        let testAnnotation = MapEpisodeAnnotation(episode: testEpisode, coordinate: testCoordinate)
+        tagManager.addTag(forEpisode: testEpisode, atCoordinate: testCoordinate)
+        annotations = tagManager.getTags()
+        mapView.addAnnotations(annotations)
         centerMapOnLocation(initialLocation)
         
     }
