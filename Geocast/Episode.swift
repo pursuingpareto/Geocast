@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 class Episode {
 //    var podcast : Podcast!
@@ -32,6 +33,20 @@ class Episode {
         self.summary = dataDict["description"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         self.itunesSummary = dataDict["itunes:summary"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         self.itunesSubtitle = dataDict["itunes:subtitle"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    }
+    
+    func saveToParse(withPFPodcast pfPodcast: PFObject) -> PFObject {
+        let pfEpisode = PFObject(className: "Episode")
+        pfEpisode["title"] = title
+        pfEpisode["mp3Url"] = mp3Url
+        pfEpisode["duration"] = duration
+        pfEpisode["pubDate"] = pubDate
+        pfEpisode["summary"] = summary
+        pfEpisode["itunesSummary"] = itunesSummary
+        pfEpisode["itunesSubtitle"] = itunesSubtitle
+        pfEpisode["podcast"] = pfPodcast
+        pfEpisode.saveInBackground()
+        return pfEpisode
     }
     
     var description : String {

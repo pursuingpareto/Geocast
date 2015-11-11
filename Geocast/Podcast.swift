@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 class Podcast {
     var title: String
@@ -24,6 +25,18 @@ class Podcast {
         self.collectionId = collectionId
         self.episodeCount = episodeCount
         self.feedUrl = feedUrl
+//        self.saveToParse()
+    }
+    
+    func saveToParse() -> PFObject {
+        let pfPodcast = PFObject(className: "Podcast")
+        pfPodcast["title"] = title
+        pfPodcast["thumbnailImageURL"] = thumbnailImageURL
+        pfPodcast["largeImageURL"] = largeImageURL
+        pfPodcast["collectionId"]  = collectionId
+        pfPodcast["feedUrl"] = feedUrl
+        pfPodcast.saveInBackground()
+        return pfPodcast
     }
     
     class func podcastsWithJSON(allResults: NSArray) -> [Podcast] {

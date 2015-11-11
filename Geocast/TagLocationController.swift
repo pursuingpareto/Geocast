@@ -25,7 +25,7 @@ class TagLocationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap: UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-        view.addGestureRecognizer(tap)
+//        view.addGestureRecognizer(tap)
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
@@ -88,10 +88,12 @@ extension TagLocationController: UISearchBarDelegate {
 extension TagLocationController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let location = locations[indexPath.row]
-        guard let coordinate = location.placemark.location?.coordinate else {
+        guard let loc = location.placemark.location else {
+            print("No location for that...")
             return
         }
-        tagManager.addTag(forEpisode: episode, atCoordinate: coordinate)
+        print("about to add tag")
+        tagManager.addTag(forEpisode: episode, atLocation: loc)
         performSegueWithIdentifier("unwindToPlayer", sender: self)
     }
 }

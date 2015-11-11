@@ -54,7 +54,7 @@ class MapViewController: UIViewController {
 
         mapView.delegate = self
         let testAnnotation = MapEpisodeAnnotation(episode: testEpisode, coordinate: testCoordinate)
-        tagManager.addTag(forEpisode: testEpisode, atCoordinate: testCoordinate)
+        tagManager.addTag(forEpisode: testEpisode, atLocation: CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude))
         annotations = tagManager.getTags()
         mapView.addAnnotations(annotations)
         centerMapOnLocation(initialLocation)

@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import Parse
 
 class TagManager : NSObject {
     
@@ -20,8 +21,54 @@ class TagManager : NSObject {
         return Singleton.instance
     }
     
-    func addTag(forEpisode episode: Episode, atCoordinate coordinate: CLLocationCoordinate2D) {
-        let annotation = MapEpisodeAnnotation(episode: episode, coordinate: coordinate)
+    func addTag(forEpisode episode: Episode, atLocation location: CLLocation) {
+        let annotation = MapEpisodeAnnotation(episode: episode, coordinate: location.coordinate)
+        
+        // try to get Podcast associated with annotation
+        var query = PFQuery(className: "Podcast")
+        query.whereKey("collectionId", equalTo: episode.podcast.collectionId)
+        query.findObjectsInBackgroundWithBlock({
+            (objects: [PFObject]?, error: NSError?) -> Void in
+            var pfPodcast: PFObject!
+            
+            if error == nil && objects?.count > 0 {
+                // podcast exists
+                
+                print("PODCAST EXISTS")
+                
+                pfPodcast = objects![0]
+                
+                print(pfPodcast)
+            } else {
+                
+                print("CREATING PODCAST IN PARSE")
+                pfPodcast = episode.podcast.saveToParse()
+            }
+            
+            // try to get Episode associated with annotation
+            query = PFQuery(className: "Episode")
+            query.whereKey("mp3Url", equalTo: episode.mp3Url)
+            query.findObjectsInBackgroundWithBlock({
+                (objects: [PFObject]?, error: NSError?) -> Void in
+                var pfEpisode: PFObject!
+                if error == nil && objects?.count > 0{
+                    pfEpisode = objects![0]
+                } else {
+                    pfEpisode = episode.saveToParse(withPFPodcast: pfPodcast)
+                }
+                
+                // add geotag
+                print("ADDING GEOTAG")
+                let pfTag = PFObject(className: "Tag")
+                pfTag["podcast"] = pfPodcast
+                pfTag["episode"] = pfEpisode
+                pfTag["user"] = PFUser.currentUser()!
+                let point = PFGeoPoint(location: location)
+                pfTag["location"] = point
+                pfTag.saveInBackground()
+            })
+        })
+        
         tags.append(annotation)
     }
     

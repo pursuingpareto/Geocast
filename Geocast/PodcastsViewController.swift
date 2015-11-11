@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class PodcastsViewController: UIViewController {
     
@@ -24,6 +25,13 @@ class PodcastsViewController: UIViewController {
     lazy var iTunesAPI : APIController = APIController(delegate: self)
     
     override func viewDidLoad() {
+        
+//        let testObject = PFObject(className: "TestObject")
+//        testObject["foo"] = "bar"
+//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+//            print("Object has been saved.")
+//        }
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addPodcast:")
         self.navigationItem.rightBarButtonItem = addButton
         super.viewDidLoad()

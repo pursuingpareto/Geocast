@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        PFUser.enableAutomaticUser()
+        PFUser.currentUser()!.incrementKey("runCount")
+        PFUser.currentUser()!.saveInBackground()
+        
         return true
     }
 
