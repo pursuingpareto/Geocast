@@ -146,7 +146,7 @@ extension PodcastsViewController: UITableViewDataSource {
             
             let podcast = podcasts[indexPath.row]
             cell.titleLabel.text = podcast.title
-            cell.detailLabel.text = "\(podcast.episodeCount) Episodes"
+            cell.detailLabel.text = "\(podcast.episodeCount!) Episodes"
             assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
             
             cell!.textLabel?.numberOfLines = 0

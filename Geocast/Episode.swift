@@ -35,6 +35,17 @@ class Episode {
         self.itunesSubtitle = dataDict["itunes:subtitle"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
+    init(pfEpisode: PFObject){
+        self.podcast = Podcast(pfPodcast: pfEpisode["podcast"] as! PFObject)
+        self.title = pfEpisode["title"] as! String
+        self.mp3Url = pfEpisode["mp3Url"] as! String
+        self.duration = pfEpisode["duration"] as! String
+        self.pubDate = pfEpisode["pubDate"] as! String
+        self.summary = pfEpisode["summary"] as? String
+        self.itunesSummary = pfEpisode["itunesSummary"] as? String
+        self.itunesSubtitle = pfEpisode["itunesSubtitle"] as? String
+    }
+    
     func saveToParse(withPFPodcast pfPodcast: PFObject) -> PFObject {
         let pfEpisode = PFObject(className: "Episode")
         pfEpisode["title"] = title

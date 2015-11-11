@@ -62,6 +62,11 @@ class MapViewController: UIViewController {
         })
     }
     
+//    func calloutButtonClicked(sender: UIButton!) {
+//        print("Callout Clicked!")
+//        
+//    }
+    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -75,21 +80,56 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         print("Calling viewForAnnotation")
         if let annotation = annotation as? MapEpisodeAnnotation {
-            let identifier = "pin"
+            let identifier = "tag"
             var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-                as? MKPinAnnotationView { // 2
-                    dequeuedView.annotation = annotation
-                    view = dequeuedView
+//            view.reuseIdentifier = identifier
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView { // 2
+                print("  is a tag")
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+                view.image = annotation.image
+                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
+//                button.addTarget(self, action: "calloutButtonClicked:", forControlEvents: .TouchUpInside)
+                
+                view.rightCalloutAccessoryView = button
             } else {
                 // 3
+                print("  not a tag")
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
+                view.image = annotation.image
+                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
+                
+                print(view.image?.size)
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+                
+                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
+//                button.addTarget(self, action: "calloutButtonClicked:", forControlEvents: .TouchUpInside)
+                
+                view.rightCalloutAccessoryView = button
             }
             return view
         }
         return nil
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation as? MapEpisodeAnnotation {
+            performSegueWithIdentifier("showPlayerFromMap", sender: annotation)
+            print("Performing segue to player from map... sender is \(annotation)")
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let annotation = sender as? MapEpisodeAnnotation {
+            if let destinationVC = segue.destinationViewController as? PlayerViewController {
+                print("setting episode for destination VC")
+                destinationVC.episode = annotation.episode!
+                print("...episode set to \(annotation.episode?.description)")
+            }
+        }
+        super.prepareForSegue(segue, sender: sender)
     }
 }

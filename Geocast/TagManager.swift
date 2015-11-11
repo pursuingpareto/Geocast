@@ -90,7 +90,8 @@ class TagManager : NSObject {
                 let pfPodcast = tagObject["podcast"] as! PFObject
                 let pfEpisode = tagObject["episode"] as! PFObject
                 let pfLocation = tagObject["location"] as! PFGeoPoint
-                let tag = MapEpisodeAnnotation(title: pfPodcast["title"] as! String, subtitle: pfEpisode["title"] as! String, coordinate: CLLocationCoordinate2DMake(pfLocation.latitude, pfLocation.longitude))
+                let episode = Episode(pfEpisode: pfEpisode)
+                let tag = MapEpisodeAnnotation(title: pfPodcast["title"] as! String, subtitle: pfEpisode["title"] as! String, coordinate: CLLocationCoordinate2DMake(pfLocation.latitude, pfLocation.longitude), imageURL: pfPodcast["thumbnailImageURL"] as? String, episode: episode)
                 tags.append(tag)
             }
             self.tags = tags

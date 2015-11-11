@@ -38,14 +38,14 @@
                                                     <rect key="frame" x="96" y="6" width="343" height="40"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82q-b9-LzG">
                                                     <rect key="frame" x="96" y="46" width="343" height="40"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -181,14 +181,14 @@
                                 <rect key="frame" x="279" y="60" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1b-um-7d6">
                                 <rect key="frame" x="279" y="120" width="50" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HJ4-H3-Tlz">
@@ -351,6 +351,7 @@
                     <tabBarItem key="tabBarItem" title="Near Me" id="CT9-8F-uDE"/>
                     <connections>
                         <outlet property="mapView" destination="UlV-64-5bq" id="rbr-IA-OSY"/>
+                        <segue destination="yyZ-no-Vza" kind="show" identifier="showPlayerFromMap" action="showDetailViewController:sender:" id="lUm-5A-jva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ipf-BQ-a1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -378,4 +379,7 @@
             <point key="canvasLocation" x="1060" y="706"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="lUm-5A-jva"/>
+    </inferredMetricsTieBreakers>
 </document>

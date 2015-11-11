@@ -14,11 +14,11 @@ class Podcast {
     var thumbnailImageURL: String
     var largeImageURL: String
     var collectionId: Int
-    var episodeCount: Int
+    var episodeCount: Int?
     var feedUrl: String
     var episodes = [Episode]()
     
-    init(title: String, thumbnailImageURL: String, largeImageURL: String, collectionId: Int, episodeCount: Int, feedUrl: String)  {
+    init(title: String, thumbnailImageURL: String, largeImageURL: String, collectionId: Int, episodeCount: Int?, feedUrl: String)  {
         self.title = title
         self.thumbnailImageURL = thumbnailImageURL
         self.largeImageURL = largeImageURL
@@ -37,6 +37,15 @@ class Podcast {
         pfPodcast["feedUrl"] = feedUrl
         pfPodcast.saveInBackground()
         return pfPodcast
+    }
+    
+    init(pfPodcast: PFObject) {
+        self.title = pfPodcast["title"] as! String
+        self.thumbnailImageURL = pfPodcast["thumbnailImageURL"] as! String
+        self.largeImageURL = pfPodcast["largeImageURL"] as! String
+        self.collectionId = pfPodcast["collectionId"] as! Int
+        self.episodeCount = nil
+        self.feedUrl = pfPodcast["feedUrl"] as! String
     }
     
     class func podcastsWithJSON(allResults: NSArray) -> [Podcast] {
