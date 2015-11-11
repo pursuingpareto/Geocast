@@ -74,6 +74,20 @@ class TagLocationController: UIViewController {
         })
     }
     
+    func getAddress(fromPlacemark pm: MKPlacemark) -> String {
+        var address: String = ""
+        if let addressLines = pm.addressDictionary!["FormattedAddressLines"] as? [String]{
+            for line in addressLines {
+                address += "\(line) "
+            }
+            return address
+        } else if pm.name != nil {
+            return pm.name!
+        } else {
+            return ""
+        }
+    }
+    
 }
 
 extension TagLocationController: UISearchBarDelegate {
@@ -87,15 +101,37 @@ extension TagLocationController: UISearchBarDelegate {
 }
 
 extension TagLocationController: UITableViewDelegate {
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let location = locations[indexPath.row]
         guard let loc = location.placemark.location else {
             print("No location for that...")
             return
         }
-        print("about to add tag")
-        tagManager.addTag(forEpisode: episode, atLocation: loc)
-        performSegueWithIdentifier("unwindToPlayer", sender: self)
+        let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(getAddress(fromPlacemark: location.placemark))"
+        let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert) in
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            print("Cancelled")
+        })
+        alertController.addAction(cancelAction)
+        
+        let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
+            (alert) in
+            self.tagManager.addTag(forEpisode: self.episode, atLocation: loc)
+            self.performSegueWithIdentifier("unwindToPlayer", sender: self)
+        })
+        alertController.addAction(confirmAction)
+        
+        
+        self.presentViewController(alertController, animated: true, completion: {
+            print("Presented!")
+        })
+        
+//        print("about to add tag")
+        
+        
     }
 }
 
@@ -125,17 +161,10 @@ extension TagLocationController: UITableViewDataSource {
         let pm = location.placemark
         
         // get address
-        var address: String = ""
-        if let addressLines = pm.addressDictionary!["FormattedAddressLines"] as? [String]{
-            for line in addressLines {
-                address += "\(line) "
-            }
-            cell.addressLabel.text = address
-        } else {
-            cell.addressLabel.text = pm.name
-        }
+        let address = getAddress(fromPlacemark: pm)
+        cell.addressLabel.text = address
         
-        if let areaOfInterest = pm.areasOfInterest!.first {
+        if let areaOfInterest = pm.areasOfInterest?.first {
             cell.nameLabel.text = areaOfInterest
         } else {
             cell.nameLabel.text = pm.name
