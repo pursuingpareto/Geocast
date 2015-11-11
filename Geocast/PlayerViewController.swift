@@ -21,6 +21,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var playedTime: UILabel!
     
+    @IBOutlet weak var subscribeButton: UIButton!
+    
     @IBAction func playOrPause(sender: AnyObject) {
 
         if isPlaying {
