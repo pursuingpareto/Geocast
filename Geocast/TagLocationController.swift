@@ -82,6 +82,7 @@ extension TagLocationController: UISearchBarDelegate {
             return
         }
         search(searchText)
+        dismissKeyboard()
     }
 }
 
@@ -109,8 +110,8 @@ extension TagLocationController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("locationCell")
-        let location = locations[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("locationCell") as! LocationCell
+        let location: MKMapItem = locations[indexPath.row]
         print("\nname is \(location.placemark.name)")
         print("addressDictionary is \(location.placemark.addressDictionary)")
         print("areasOfInterest is \(location.placemark.areasOfInterest)")
@@ -121,45 +122,66 @@ extension TagLocationController: UITableViewDataSource {
         print("administrativeArea is \(location.placemark.administrativeArea)")
         print("country is \(location.placemark.country)")
         print("description is \(location.placemark.description)\n")
-        cell?.textLabel?.numberOfLines = 4
         let pm = location.placemark
         
-        var name = ""
-        var addressNum = ""
-        var street = ""
-        var city = ""
-        var state = ""
-        var countryCode = ""
-        
-        if  pm.name != nil {
-            name = pm.name! + "\n"
-        }
-        
-        if  pm.subThoroughfare != nil {
-            addressNum = pm.subThoroughfare! + " "
-        }
-        
-        if pm.thoroughfare != nil {
-            street = pm.thoroughfare! + "\n"
-        }
-        
-        if pm.locality != nil {
-            city = pm.locality! + ", "
-        }
-        
-        if pm.administrativeArea != nil {
-            state = pm.administrativeArea! + ", "
+        // get address
+        var address: String = ""
+        if let addressLines = pm.addressDictionary!["FormattedAddressLines"] as? [String]{
+            for line in addressLines {
+                address += "\(line) "
+            }
+            cell.addressLabel.text = address
         } else {
-            var state = ""
+            cell.addressLabel.text = pm.name
         }
         
-        if pm.countryCode != nil {
-            countryCode = pm.countryCode!
+        if let areaOfInterest = pm.areasOfInterest!.first {
+            cell.nameLabel.text = areaOfInterest
+        } else {
+            cell.nameLabel.text = pm.name
         }
         
+        cell.addressLabel.sizeToFit()
         
-        let text = "\(name)\(addressNum)\(street)\(city)\(state)\(countryCode)"
-        cell?.textLabel?.text = text
-        return cell!
+//        cell?.textLabel?.numberOfLines = 4
+//        
+//        
+//        var name = ""
+//        var addressNum = ""
+//        var street = ""
+//        var city = ""
+//        var state = ""
+//        var countryCode = ""
+//        
+//        if  pm.name != nil {
+//            name = pm.name! + "\n"
+//        }
+//        
+//        if  pm.subThoroughfare != nil {
+//            addressNum = pm.subThoroughfare! + " "
+//        }
+//        
+//        if pm.thoroughfare != nil {
+//            street = pm.thoroughfare! + "\n"
+//        }
+//        
+//        if pm.locality != nil {
+//            city = pm.locality! + ", "
+//        }
+//        
+//        if pm.administrativeArea != nil {
+//            state = pm.administrativeArea! + ", "
+//        } else {
+//            var state = ""
+//        }
+//        
+//        if pm.countryCode != nil {
+//            countryCode = pm.countryCode!
+//        }
+//        
+//        
+//        let text = "\(name)\(addressNum)\(street)\(city)\(state)\(countryCode)"
+//        cell?.textLabel?.text = text
+        return cell
     }
 }
