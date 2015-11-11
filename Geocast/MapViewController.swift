@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let regionRadius: CLLocationDistance = 2000
+    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
@@ -40,6 +41,7 @@ class MapViewController: UIViewController {
         }
         super.viewDidLoad()
         mapView.delegate = self
+        mapView.showsUserLocation = true
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
