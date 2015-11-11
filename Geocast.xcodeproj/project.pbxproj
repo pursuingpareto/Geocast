@@ -28,8 +28,6 @@
 		A180358A1BF27BC1003BC7F5 /* TagLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18035891BF27BC1003BC7F5 /* TagLocationController.swift */; };
 		A180358C1BF29F22003BC7F5 /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180358B1BF29F22003BC7F5 /* TagManager.swift */; };
 		A180358E1BF2AE0F003BC7F5 /* PodcastPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */; };
-		A18035901BF2B585003BC7F5 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A180358F1BF2B585003BC7F5 /* Parse.framework */; };
-		A18035921BF2B591003BC7F5 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035911BF2B591003BC7F5 /* Bolts.framework */; };
 		A18035941BF2B677003BC7F5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035931BF2B677003BC7F5 /* AudioToolbox.framework */; };
 		A18035961BF2B67F003BC7F5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035951BF2B67F003BC7F5 /* CFNetwork.framework */; };
 		A18035981BF2B685003BC7F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035971BF2B685003BC7F5 /* CoreGraphics.framework */; };
@@ -41,6 +39,7 @@
 		A18035A41BF2B6AE003BC7F5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A31BF2B6AE003BC7F5 /* libz.tbd */; };
 		A18035A61BF2B6B6003BC7F5 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */; };
 		A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */; };
+		D326565350FA11D3EEF9E566 /* Pods_Geocast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +78,6 @@
 		A18035891BF27BC1003BC7F5 /* TagLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLocationController.swift; sourceTree = "<group>"; };
 		A180358B1BF29F22003BC7F5 /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
 		A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastPlayer.swift; sourceTree = "<group>"; };
-		A180358F1BF2B585003BC7F5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		A18035911BF2B591003BC7F5 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		A18035931BF2B677003BC7F5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A18035951BF2B67F003BC7F5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A18035971BF2B685003BC7F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,6 +89,9 @@
 		A18035A31BF2B6AE003BC7F5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Geocast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3D9CDE51A8A2C656824AFD3 /* Pods-Geocast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.release.xcconfig"; sourceTree = "<group>"; };
+		FB4F89D4D9007C899528F0E1 /* Pods-Geocast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +109,8 @@
 				A18035981BF2B685003BC7F5 /* CoreGraphics.framework in Frameworks */,
 				A18035961BF2B67F003BC7F5 /* CFNetwork.framework in Frameworks */,
 				A18035941BF2B677003BC7F5 /* AudioToolbox.framework in Frameworks */,
-				A18035921BF2B591003BC7F5 /* Bolts.framework in Frameworks */,
-				A18035901BF2B585003BC7F5 /* Parse.framework in Frameworks */,
 				A11FD3461BF10E8C00A83FDB /* MediaPlayer.framework in Frameworks */,
+				D326565350FA11D3EEF9E566 /* Pods_Geocast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +124,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		027D15922392A8C5071EDCE0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FB4F89D4D9007C899528F0E1 /* Pods-Geocast.debug.xcconfig */,
+				F3D9CDE51A8A2C656824AFD3 /* Pods-Geocast.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7AC4AA4BA793B673FF7E2034 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A11FD3031BEC05D500A83FDB = {
 			isa = PBXGroup;
 			children = (
@@ -138,12 +154,12 @@
 				A18035971BF2B685003BC7F5 /* CoreGraphics.framework */,
 				A18035951BF2B67F003BC7F5 /* CFNetwork.framework */,
 				A18035931BF2B677003BC7F5 /* AudioToolbox.framework */,
-				A18035911BF2B591003BC7F5 /* Bolts.framework */,
-				A180358F1BF2B585003BC7F5 /* Parse.framework */,
 				A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */,
 				A11FD30E1BEC05D500A83FDB /* Geocast */,
 				A11FD3241BEC05D500A83FDB /* GeocastTests */,
 				A11FD30D1BEC05D500A83FDB /* Products */,
+				027D15922392A8C5071EDCE0 /* Pods */,
+				7AC4AA4BA793B673FF7E2034 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -216,9 +232,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A11FD32B1BEC05D500A83FDB /* Build configuration list for PBXNativeTarget "Geocast" */;
 			buildPhases = (
+				B5EEC55CF01DF47D04336AB9 /* Check Pods Manifest.lock */,
 				A11FD3081BEC05D500A83FDB /* Sources */,
 				A11FD3091BEC05D500A83FDB /* Frameworks */,
 				A11FD30A1BEC05D500A83FDB /* Resources */,
+				EDB075D178DEB07CEE6F5A67 /* Embed Pods Frameworks */,
+				18DFC0D9FFAAD50913D41248 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -305,6 +324,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18DFC0D9FFAAD50913D41248 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocast/Pods-Geocast-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5EEC55CF01DF47D04336AB9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EDB075D178DEB07CEE6F5A67 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocast/Pods-Geocast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A11FD3081BEC05D500A83FDB /* Sources */ = {
@@ -452,6 +519,7 @@
 		};
 		A11FD32C1BEC05D500A83FDB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB4F89D4D9007C899528F0E1 /* Pods-Geocast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -466,6 +534,7 @@
 		};
 		A11FD32D1BEC05D500A83FDB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3D9CDE51A8A2C656824AFD3 /* Pods-Geocast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
