@@ -26,7 +26,6 @@ class PodcastsViewController: UIViewController {
     override func viewDidLoad() {
         let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addPodcast:")
         self.navigationItem.rightBarButtonItem = addButton
-        navigationItem.leftBarButtonItem = editButtonItem()
         super.viewDidLoad()
         user.subscribe(testPodcast)
         podcasts = user.getSubscriptions()
@@ -151,23 +150,8 @@ extension PodcastsViewController: UITableViewDataSource {
         numberOfRowsInSection section: Int) -> Int{
             return podcasts.count
     }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        }
-        else if editingStyle == .Insert {
-            
-        }
-    }
-    
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-
 }
 
 extension PodcastsViewController: UITableViewDelegate {
-    
+
 }
