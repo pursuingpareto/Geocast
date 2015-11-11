@@ -16,10 +16,7 @@ class MapViewController: UIViewController {
     
     var annotations: [MapEpisodeAnnotation] = []
     var tagManager = TagManager.sharedInstance
-    
-    var testPodcast: Podcast = Podcast(title: "99% Invisible", thumbnailImageURL: "", largeImageURL: "", collectionId: 45, episodeCount: 150, feedUrl: "http://feeds.99percentinvisible.org/99percentinvisible")
-    
-    var testEpisode: Episode!
+
     var testCoordinate = CLLocationCoordinate2DMake(34.1561, -118.1319)
     let locationManager = CLLocationManager()
     
@@ -42,23 +39,14 @@ class MapViewController: UIViewController {
 //            initialLocation = locationManager.location
         }
         super.viewDidLoad()
-        
-        testEpisode = Episode(parsedFeedData: [
-            "title":"Bubble Houses",
-            "mp3Url": "http://www.podtrac.com/pts/redirect.mp3/media.blubrry.com/99percentinvisible/cdn.99percentinvisible.org/wp-content/uploads/89-Bubble-Houses.mp3",
-            "itunes:duration":"25:55",
-            "pubDate":" Tue, 17 Sep 2013 07:17:49 +0000",
-            "description":"description stuff",
-            "itunes:summary":"summary stuff",
-            "itunes:subtitle":"subtitle stuff"
-            ], podcast: testPodcast)
-
         mapView.delegate = self
-//        let testAnnotation = MapEpisodeAnnotation(episode: testEpisode, coordinate: testCoordinate)
-//        tagManager.addTag(forEpisode: testEpisode, atLocation: CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude))
-//        annotations = tagManager.getTags()
-//        mapView.addAnnotations(annotations)
-        
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        updateView()
+    }
+    
+    func updateView() {
         PFGeoPoint.geoPointForCurrentLocationInBackground({
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
             if error == nil && geoPoint != nil {
@@ -70,9 +58,8 @@ class MapViewController: UIViewController {
                 }
             }
         })
-        
-        
     }
+    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
