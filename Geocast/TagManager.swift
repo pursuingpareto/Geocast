@@ -72,7 +72,32 @@ class TagManager : NSObject {
         tags.append(annotation)
     }
     
-    func getTags() -> [MapEpisodeAnnotation]{
+    private func getTags() -> [MapEpisodeAnnotation]{
         return tags
+    }
+    
+    func getTagsFromParse(nearGeoPoint geoPoint: PFGeoPoint) -> [MapEpisodeAnnotation]? {
+        let query = PFQuery(className: "Tag")
+        query.whereKey("location", nearGeoPoint: geoPoint)
+        query.includeKey("podcast")
+        query.includeKey("episode")
+        do {
+            let tagObjects = try query.findObjects() as [PFObject]
+            var tags: [MapEpisodeAnnotation] = []
+            
+            for tagObject in tagObjects {
+                print("tagObject is \(tagObject)")
+                let pfPodcast = tagObject["podcast"] as! PFObject
+                let pfEpisode = tagObject["episode"] as! PFObject
+                let pfLocation = tagObject["location"] as! PFGeoPoint
+                let tag = MapEpisodeAnnotation(title: pfPodcast["title"] as! String, subtitle: pfEpisode["title"] as! String, coordinate: CLLocationCoordinate2DMake(pfLocation.latitude, pfLocation.longitude))
+                tags.append(tag)
+            }
+            self.tags = tags
+            
+        } catch {
+            print("errror caught")
+        }
+        return getTags()
     }
 }

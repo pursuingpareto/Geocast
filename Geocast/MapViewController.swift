@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class MapViewController: UIViewController {
     
@@ -53,11 +54,23 @@ class MapViewController: UIViewController {
             ], podcast: testPodcast)
 
         mapView.delegate = self
-        let testAnnotation = MapEpisodeAnnotation(episode: testEpisode, coordinate: testCoordinate)
-        tagManager.addTag(forEpisode: testEpisode, atLocation: CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude))
-        annotations = tagManager.getTags()
-        mapView.addAnnotations(annotations)
-        centerMapOnLocation(initialLocation)
+//        let testAnnotation = MapEpisodeAnnotation(episode: testEpisode, coordinate: testCoordinate)
+//        tagManager.addTag(forEpisode: testEpisode, atLocation: CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude))
+//        annotations = tagManager.getTags()
+//        mapView.addAnnotations(annotations)
+        
+        PFGeoPoint.geoPointForCurrentLocationInBackground({
+            (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil && geoPoint != nil {
+                let currentLocation = CLLocation(latitude: geoPoint!.latitude, longitude: geoPoint!.longitude)
+                self.centerMapOnLocation(currentLocation)
+                if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint!) {
+                    self.annotations = annotations
+                    self.mapView.addAnnotations(self.annotations)
+                }
+            }
+        })
+        
         
     }
 }
