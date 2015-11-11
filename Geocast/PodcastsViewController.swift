@@ -9,9 +9,10 @@
 import UIKit
 import Parse
 
-class PodcastsViewController: UIViewController {
+class PodcastsViewController: UITableViewController {
     
-    @IBOutlet weak var podcastsTableView: UITableView!
+    
+    @IBOutlet var podcastsTableView: UITableView!
     
     var feedUrls : [String]!
 //    var podcastIds : [Int] = [152249110, 394775318]
@@ -133,9 +134,9 @@ extension PodcastsViewController: APIControllerProtocol {
     }
 }
 
-extension PodcastsViewController: UITableViewDataSource {
+extension PodcastsViewController {
     
-    func tableView(tableView: UITableView,
+    override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
             var cell:PodcastCell! = tableView.dequeueReusableCellWithIdentifier("podcastCell")! as! PodcastCell
@@ -154,12 +155,8 @@ extension PodcastsViewController: UITableViewDataSource {
             cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             return cell
     }
-    func tableView(tableView: UITableView,
+    override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int{
             return podcasts.count
     }
-}
-
-extension PodcastsViewController: UITableViewDelegate {
-
 }
