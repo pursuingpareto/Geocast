@@ -46,7 +46,7 @@ class TagLocationController: UIViewController {
     
     
     func search(string: String) {
-        print("Searching for \(string)")
+
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = searchBar.text
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
@@ -64,11 +64,11 @@ class TagLocationController: UIViewController {
                 return
             }
             
-            for item in ((response.mapItems) as [MKMapItem]) {
-                print("Item name = \(item.name)")
-                print("Latitude = \(item.placemark.location!.coordinate.latitude)")
-                print("Longitude = \(item.placemark.location!.coordinate.longitude)")
-            }
+//            for item in ((response.mapItems) as [MKMapItem]) {
+//                print("Item name = \(item.name)")
+//                print("Latitude = \(item.placemark.location!.coordinate.latitude)")
+//                print("Longitude = \(item.placemark.location!.coordinate.longitude)")
+//            }
             self.locations = response.mapItems
             self.tableView.reloadData()
         })
@@ -86,6 +86,13 @@ class TagLocationController: UIViewController {
         } else {
             return ""
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destinationVC = segue.destinationViewController as? PlayerViewController {
+            destinationVC.popupText = "Tag Added!"
+        }
+        super.prepareForSegue(segue, sender: sender)
     }
     
 }
@@ -113,20 +120,20 @@ extension TagLocationController: UITableViewDelegate {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
             (alert) in
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            print("Cancelled")
         })
         alertController.addAction(cancelAction)
         
         let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
             (alert) in
             self.tagManager.addTag(forEpisode: self.episode, atLocation: loc)
+
             self.performSegueWithIdentifier("unwindToPlayer", sender: self)
         })
         alertController.addAction(confirmAction)
         
         
         self.presentViewController(alertController, animated: true, completion: {
-            print("Presented!")
+
         })
         
 //        print("about to add tag")
@@ -148,16 +155,16 @@ extension TagLocationController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("locationCell") as! LocationCell
         let location: MKMapItem = locations[indexPath.row]
-        print("\nname is \(location.placemark.name)")
-        print("addressDictionary is \(location.placemark.addressDictionary)")
-        print("areasOfInterest is \(location.placemark.areasOfInterest)")
-        print("locality is \(location.placemark.locality)")
-        print("region is \(location.placemark.region)")
-        print("thoroughfare is \(location.placemark.thoroughfare)")
-        print("subthoroughfare is \(location.placemark.subThoroughfare)")
-        print("administrativeArea is \(location.placemark.administrativeArea)")
-        print("country is \(location.placemark.country)")
-        print("description is \(location.placemark.description)\n")
+//        print("\nname is \(location.placemark.name)")
+//        print("addressDictionary is \(location.placemark.addressDictionary)")
+//        print("areasOfInterest is \(location.placemark.areasOfInterest)")
+//        print("locality is \(location.placemark.locality)")
+//        print("region is \(location.placemark.region)")
+//        print("thoroughfare is \(location.placemark.thoroughfare)")
+//        print("subthoroughfare is \(location.placemark.subThoroughfare)")
+//        print("administrativeArea is \(location.placemark.administrativeArea)")
+//        print("country is \(location.placemark.country)")
+//        print("description is \(location.placemark.description)\n")
         let pm = location.placemark
         
         // get address

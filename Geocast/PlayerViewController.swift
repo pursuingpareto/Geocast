@@ -18,6 +18,8 @@ class PlayerViewController: UIViewController {
     var episode: Episode!
     var progress: Float = 0.0
     var totalSeconds : Float = 0.0
+    var popupText: String? = nil
+    
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var playedTime: UILabel!
     
@@ -64,6 +66,15 @@ class PlayerViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if popupText != nil {
+            displaySuccessfulTagPopup()
+            popupText = nil
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
@@ -80,6 +91,40 @@ class PlayerViewController: UIViewController {
         let playerItem = AVPlayerItem(URL: url!)
         audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
 
+    }
+    
+    func displaySuccessfulTagPopup() {
+        let width = self.view.bounds.width / 2
+        let height = width
+        let center = self.view.center
+        let origin = CGPoint(x: center.x - width/2, y: center.y - height/2)
+        let size = CGSize(width: width, height: height)
+        let frame = CGRect(origin: origin, size: size)
+        print("frame is \(frame)")
+        let popup = UILabel(frame: frame)
+        popup.backgroundColor = UIColor.blackColor()
+        popup.alpha = 0
+        popup.text = popupText!
+        popup.textColor = UIColor.whiteColor()
+        popup.numberOfLines = 0
+        popup.font = UIFont(name: (popup.font?.fontName)!, size: 20)
+        popup.textAlignment = .Center
+        popup.layer.cornerRadius = width / 10
+        view.addSubview(popup)
+        
+        UIView.animateWithDuration(1.0, animations: {
+            popup.alpha = 0.8
+            }, completion: {
+                (complete) in
+                UIView.animateWithDuration(1.0, delay: 1.5, options: .CurveEaseInOut, animations: {
+                    popup.alpha = 0
+                    }, completion: {
+                        (success) in
+                        popup.removeFromSuperview()
+                        self.popupText = nil
+                })
+        })
+        
     }
     
     override func didReceiveMemoryWarning() {
