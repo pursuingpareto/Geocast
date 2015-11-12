@@ -38,6 +38,7 @@ class MapViewController: UIViewController {
         tableView.hidden = true
         tableView.dataSource = self
         tableView.frame = mapView.frame
+        tableView.delegate = self
         let initialLocation = CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude)
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -199,5 +200,12 @@ extension MapViewController: UITableViewDataSource {
         cell.textLabel!.text = "\(episode!.title): \(distance)"
         print(cell.textLabel!.text)
         return cell
+    }
+}
+
+extension MapViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let annotation = annotations[indexPath.row]
+        performSegueWithIdentifier("showPlayerFromMap", sender: annotation)
     }
 }
