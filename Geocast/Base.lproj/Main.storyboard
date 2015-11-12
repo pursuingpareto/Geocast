@@ -207,23 +207,39 @@
                                     <segue destination="rbq-IY-jbQ" kind="show" id="Hno-j7-EAM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDf-bj-vZ3">
+                                <rect key="frame" x="265" y="355" width="70" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Subscribe"/>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please select a podcast episode to begin playing." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soj-gi-hhh">
+                                <rect key="frame" x="112" y="231" width="377" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TFU-Sj-HXv" firstAttribute="leading" secondItem="BY9-e9-Tvg" secondAttribute="leadingMargin" constant="33" id="0zm-0m-ply"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DeQ-Ut-L35" secondAttribute="trailing" constant="147" id="19R-Rd-N9P"/>
+                            <constraint firstItem="IDf-bj-vZ3" firstAttribute="centerX" secondItem="BY9-e9-Tvg" secondAttribute="centerX" id="AWN-Z4-cqr"/>
                             <constraint firstItem="TFU-Sj-HXv" firstAttribute="leading" secondItem="BY9-e9-Tvg" secondAttribute="leadingMargin" constant="143" id="Faf-Sm-ntI"/>
                             <constraint firstAttribute="centerY" secondItem="DeQ-Ut-L35" secondAttribute="centerY" id="Ljb-Sr-eZi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DeQ-Ut-L35" secondAttribute="trailing" constant="42" id="O1F-Mb-frg"/>
                             <constraint firstItem="PGu-4K-elB" firstAttribute="centerX" secondItem="BY9-e9-Tvg" secondAttribute="centerX" constant="4" id="OXx-OS-2WE"/>
                             <constraint firstAttribute="centerX" secondItem="8V1-jm-Y9i" secondAttribute="centerX" id="SNG-g7-iWZ"/>
                             <constraint firstAttribute="centerY" secondItem="TFU-Sj-HXv" secondAttribute="centerY" id="Sxa-dR-gCy"/>
+                            <constraint firstItem="Soj-gi-hhh" firstAttribute="centerY" secondItem="BY9-e9-Tvg" secondAttribute="centerY" id="Tsb-oj-b1j"/>
                             <constraint firstItem="P1b-um-7d6" firstAttribute="top" secondItem="8V1-jm-Y9i" secondAttribute="bottom" constant="39" id="Z4R-Sh-rs9"/>
+                            <constraint firstItem="Soj-gi-hhh" firstAttribute="centerX" secondItem="BY9-e9-Tvg" secondAttribute="centerX" id="beM-pm-tui"/>
                             <constraint firstItem="HJ4-H3-Tlz" firstAttribute="top" secondItem="1j3-9m-FQb" secondAttribute="bottom" id="jDF-ol-dys"/>
                             <constraint firstAttribute="centerX" secondItem="P1b-um-7d6" secondAttribute="centerX" id="nkv-KN-fm9"/>
                             <constraint firstAttribute="centerX" secondItem="HJ4-H3-Tlz" secondAttribute="centerX" id="paC-U8-WEd"/>
                             <constraint firstItem="8V1-jm-Y9i" firstAttribute="top" secondItem="1j3-9m-FQb" secondAttribute="bottom" constant="40" id="sh0-fV-4Sm"/>
+                            <constraint firstItem="IDf-bj-vZ3" firstAttribute="top" secondItem="PGu-4K-elB" secondAttribute="bottom" constant="40" id="vyd-qb-S4Z"/>
                             <constraint firstItem="PGu-4K-elB" firstAttribute="centerY" secondItem="BY9-e9-Tvg" secondAttribute="centerY" id="xXP-nB-5uU"/>
                         </constraints>
                         <variation key="default">
@@ -238,14 +254,19 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="m1b-1z-DRO"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="locationTagButton" destination="PGu-4K-elB" id="YTb-cO-F4X"/>
+                        <outlet property="noEpisodeLabel" destination="Soj-gi-hhh" id="T3d-wh-uv6"/>
+                        <outlet property="playButton" destination="TFU-Sj-HXv" id="NTO-3d-rR0"/>
                         <outlet property="playedTime" destination="P1b-um-7d6" id="1Fq-kx-LKJ"/>
                         <outlet property="progressBar" destination="HJ4-H3-Tlz" id="pCT-jA-WV9"/>
+                        <outlet property="stopButton" destination="DeQ-Ut-L35" id="xak-VG-R0b"/>
+                        <outlet property="subscribeButton" destination="IDf-bj-vZ3" id="fKj-0P-MIm"/>
                         <outlet property="trackTitle" destination="8V1-jm-Y9i" id="3Sg-Ep-VvS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CmW-YI-IBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3127" y="716"/>
+            <point key="canvasLocation" x="3201" y="716"/>
         </scene>
         <!--Add Tag-->
         <scene sceneID="bqK-7E-XTy">
@@ -333,6 +354,7 @@
                     <connections>
                         <segue destination="v5j-En-6Ik" kind="relationship" relationship="viewControllers" id="ab0-Rh-1RC"/>
                         <segue destination="y98-n2-Zw8" kind="relationship" relationship="viewControllers" id="xbt-vf-onk"/>
+                        <segue destination="yyZ-no-Vza" kind="relationship" relationship="viewControllers" id="q7L-fl-EGb"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7iv-V7-RFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -367,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ipf-BQ-a1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="-76"/>
+            <point key="canvasLocation" x="1044" y="-91"/>
         </scene>
         <!--Podcasts-->
         <scene sceneID="miy-YG-tXE">
@@ -391,6 +413,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lUm-5A-jva"/>
+        <segue reference="zk8-Rb-VWd"/>
     </inferredMetricsTieBreakers>
 </document>

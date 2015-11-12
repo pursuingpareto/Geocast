@@ -128,6 +128,8 @@ extension MapViewController: MKMapViewDelegate {
                 print("setting episode for destination VC")
                 destinationVC.episode = annotation.episode!
                 print("...episode set to \(annotation.episode?.description)")
+                let navPlayerViewController = self.tabBarController?.viewControllers?[2] as! PlayerViewController
+                navPlayerViewController.episode = annotation.episode!
             }
         }
         super.prepareForSegue(segue, sender: sender)

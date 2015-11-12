@@ -77,6 +77,8 @@ class EpisodesViewController: UIViewController {
             let episodeIndex = episodesTableView.indexPathForSelectedRow!.row
             let detailEpisode = self.episodes[episodeIndex]
             playerViewController.episode = detailEpisode
+            let navPlayerViewController = self.tabBarController?.viewControllers?[2] as! PlayerViewController
+            navPlayerViewController.episode = detailEpisode
         }
     }
     

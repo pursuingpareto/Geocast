@@ -15,13 +15,20 @@ class PlayerViewController: UIViewController {
     var audioPlayer = PodcastPlayer.sharedInstance
     var isPlaying = false
     var timer: NSTimer!
-    var episode: Episode!
+    var episode: Episode?
     var progress: Float = 0.0
     var totalSeconds : Float = 0.0
     var popupText: String? = nil
     
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var playedTime: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var locationTagButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var subscribeButton: UIButton!
+    @IBOutlet weak var noEpisodeLabel: UILabel!
+    
+    
     
     @IBAction func playOrPause(sender: AnyObject) {
 
@@ -79,17 +86,30 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
 
-        var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
-        let mins = (minsSecs[0] as NSString).integerValue
-        let secs = (minsSecs[1] as NSString).integerValue
-        totalSeconds = Float(60 * mins + secs)
-        trackTitle.text = episode.title
-        progressBar.value = 0
-        
-
-        let url = NSURL(string: episode.mp3Url)
-        let playerItem = AVPlayerItem(URL: url!)
-        audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
+        if let episode = episode {
+            var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
+            let mins = (minsSecs[0] as NSString).integerValue
+            let secs = (minsSecs[1] as NSString).integerValue
+            totalSeconds = Float(60 * mins + secs)
+            trackTitle.text = episode.title
+            progressBar.value = 0
+            
+            
+            let url = NSURL(string: episode.mp3Url)
+            let playerItem = AVPlayerItem(URL: url!)
+            audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
+            
+        }
+        else {
+            progressBar.hidden = true
+            trackTitle.hidden = true
+            playedTime.hidden = true
+            playButton.hidden = true
+            locationTagButton.hidden = true
+            stopButton.hidden = true
+            subscribeButton.hidden = true
+            noEpisodeLabel.hidden = false
+        }
 
     }
     
@@ -137,8 +157,12 @@ class PlayerViewController: UIViewController {
             super.prepareForSegue(segue, sender: sender)
             return
         }
-        destinationVC.episode = episode
-        super.prepareForSegue(segue, sender: sender)
+        
+        if let episode = episode {
+            destinationVC.episode = episode
+            super.prepareForSegue(segue, sender: sender)
+            
+        }
         
     }
     
