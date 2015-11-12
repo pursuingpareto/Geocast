@@ -12,7 +12,7 @@ import Bolts
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
 
 
@@ -31,6 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFUser.enableAutomaticUser()
         PFUser.currentUser()!.incrementKey("runCount")
         PFUser.currentUser()!.saveInBackground()
+        
+//        User.sharedInstance.updateSubscriptions()
         
         return true
     }

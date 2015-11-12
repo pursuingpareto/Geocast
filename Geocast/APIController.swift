@@ -42,7 +42,6 @@ class APIController {
         task.resume()
     }
     
-    
     func searchItunesFor(searchTerm: String) {
         
         // The iTunes API wants multiple terms separated by + symbols, so replace spaces with + signs
@@ -72,6 +71,13 @@ class APIController {
         let id_string = collectionIds.map {($0.description)}.joinWithSeparator("," )
         print("Looking up \(id_string)")
         getFromITunes("https://itunes.apple.com/lookup?media=podcast&id=\(id_string)")
+    }
+    
+    func lookupMultiplePodcasts(collectionIds: [Int], withCompletion completion: ([Podcast] -> Void)) {
+        let id_string = collectionIds.map {($0.description)}.joinWithSeparator("," )
+        print("Looking up \(id_string)")
+        getFromITunes("https://itunes.apple.com/lookup?media=podcast&id=\(id_string)")
+
     }
     
     func lookupPodcast(collectionId: Int) {

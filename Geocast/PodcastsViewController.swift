@@ -15,7 +15,6 @@ class PodcastsViewController: UITableViewController {
     @IBOutlet var podcastsTableView: UITableView!
     
     var feedUrls : [String]!
-//    var podcastIds : [Int] = [152249110, 394775318]
     var podcastIds: [Int] = []
     var user : User = User.sharedInstance
     var podcasts : [Podcast] = [Podcast]()
@@ -27,6 +26,8 @@ class PodcastsViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userSubscriptionsUpdated", name: User.subscriptionUpdateKey, object: nil)
+//        user.updateSubscriptions()
 //        let testObject = PFObject(className: "TestObject")
 //        testObject["foo"] = "bar"
 //        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
@@ -38,7 +39,7 @@ class PodcastsViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = editButtonItem()
 
         super.viewDidLoad()
-        user.subscribe(testPodcast)
+//        user.subscribe(testPodcast)
         podcasts = user.getSubscriptions()
         
         
@@ -58,9 +59,15 @@ class PodcastsViewController: UITableViewController {
         }
     }
     
+    func userSubscriptionsUpdated() {
+        print("I heard the notification")
+        self.podcasts = User.sharedInstance.getSubscriptions()
+        self.tableView.reloadData()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        user.updateSubscriptions()
         podcasts = user.getSubscriptions()
 
         self.podcastsTableView.reloadData()
@@ -68,12 +75,6 @@ class PodcastsViewController: UITableViewController {
     
     func addPodcast(sender: AnyObject) {
         performSegueWithIdentifier("searchSegue", sender: self)
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

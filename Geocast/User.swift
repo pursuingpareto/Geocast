@@ -14,6 +14,7 @@ class User : NSObject {
     private var subscriptions: [Podcast] = []
     private lazy var iTunesAPI : APIController = APIController(delegate: self)
     
+    static var subscriptionUpdateKey = "subscriptionsWereUpdated!"
     
     class var sharedInstance: User {
         struct Singleton {
@@ -93,14 +94,34 @@ class User : NSObject {
         return subscriptions
     }
     
+    func updateSubscriptionsInBackgroundWithTarget(target: AnyObject, selector: Selector) {
+        
+    }
+    
     func updateSubscriptions() {
-        let pfPodcasts : [PFObject] = PFUser.currentUser()!["subscriptions"] as! [PFObject]
-        var podcastIDs : [Int] = []
-        for pfPodcast in pfPodcasts {
-            let id = pfPodcast["collectionId"] as! Int
-            podcastIDs.append(id)
-        }
-        iTunesAPI.lookupMultiplePodcasts(podcastIDs)
+        
+        print("Updating subscriptions...")
+        
+        let query = PFQuery(className: "_User")
+        query.includeKey("subscriptions")
+        let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
+            (result, error) in
+            print("InsideBlock")
+            let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
+            print(pfPodcasts)
+            var podcastIDs : [Int] = []
+            for pfPodcast in pfPodcasts {
+                print(pfPodcast)
+                print("\n")
+                var pcID = pfPodcast["collectionId"]
+                
+                print("id is \(pcID)")
+                podcastIDs.append(pcID as! Int)
+            }
+            print(podcastIDs)
+            self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
+
+        })
     }
     
     func isSubscribedTo(podcast: Podcast) -> Bool {
@@ -115,6 +136,8 @@ extension User: APIControllerProtocol {
         dispatch_async(dispatch_get_main_queue(), {
             self.subscriptions = Podcast.podcastsWithJSON(resultsArray)
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            print("about to post notification")
+            NSNotificationCenter.defaultCenter().postNotificationName(User.subscriptionUpdateKey, object: self)
         })
     }
 }
