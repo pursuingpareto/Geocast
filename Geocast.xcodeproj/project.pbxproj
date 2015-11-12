@@ -40,6 +40,7 @@
 		A18035A41BF2B6AE003BC7F5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A31BF2B6AE003BC7F5 /* libz.tbd */; };
 		A18035A61BF2B6B6003BC7F5 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */; };
 		A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */; };
+		A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D97F1BF537BA002FE51D /* Subscription.swift */; };
 		D326565350FA11D3EEF9E566 /* Pods_Geocast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		A18035A31BF2B6AE003BC7F5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		A1D3D97F1BF537BA002FE51D /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Geocast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9CDE51A8A2C656824AFD3 /* Pods-Geocast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.release.xcconfig"; sourceTree = "<group>"; };
 		FB4F89D4D9007C899528F0E1 /* Pods-Geocast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				A11FD33D1BEC39EA00A83FDB /* EpisodesViewController.swift */,
 				A11FD3391BEC317E00A83FDB /* APIController.swift */,
 				A18035871BF17363003BC7F5 /* User.swift */,
+				A1D3D97F1BF537BA002FE51D /* Subscription.swift */,
 				A11FD33B1BEC330600A83FDB /* Podcast.swift */,
 				A11FD33F1BEFEB9600A83FDB /* Episode.swift */,
 				A11FD3351BEC070800A83FDB /* PlayerViewController.swift */,
@@ -385,6 +388,7 @@
 				A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */,
 				A11FD33C1BEC330600A83FDB /* Podcast.swift in Sources */,
 				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,
+				A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */,
 				A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */,
 				A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */,
 				A11FD3441BF0154D00A83FDB /* PodcastCell.swift in Sources */,

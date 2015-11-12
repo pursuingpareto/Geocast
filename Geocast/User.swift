@@ -134,7 +134,7 @@ extension User: APIControllerProtocol {
     func didReceiveAPIResults(results: NSDictionary) {
         let resultsArray = results["results"] as! NSArray
         dispatch_async(dispatch_get_main_queue(), {
-            self.subscriptions = Podcast.podcastsWithJSON(resultsArray)
+            self.subscriptions = Podcast.podcastsWithJSON(resultsArray).reverse()
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             print("about to post notification")
             NSNotificationCenter.defaultCenter().postNotificationName(User.subscriptionUpdateKey, object: self)
