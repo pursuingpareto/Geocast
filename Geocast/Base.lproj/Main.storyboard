@@ -296,7 +296,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFU-Sj-HXv">
-                                <rect key="frame" x="49" y="287" width="97" height="28"/>
+                                <rect key="frame" x="49" y="404" width="97" height="28"/>
                                 <animations/>
                                 <state key="normal" title="Play / Pause">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -305,29 +305,36 @@
                                     <action selector="playOrPause:" destination="yyZ-no-Vza" eventType="touchUpInside" id="4U3-yK-f1t"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V1-jm-Y9i">
-                                <rect key="frame" x="279" y="60" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="trackTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V1-jm-Y9i">
+                                <rect key="frame" x="41" y="211" width="72" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1b-um-7d6">
-                                <rect key="frame" x="279" y="120" width="50" height="21"/>
+                                <rect key="frame" x="116" y="157" width="50" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJX-4R-Zbn">
+                                <rect key="frame" x="434" y="156" width="50" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HJ4-H3-Tlz">
-                                <rect key="frame" x="114" y="20" width="372" height="31"/>
+                                <rect key="frame" x="114" y="100" width="372" height="31"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="368" id="m6C-Yn-RJ7"/>
                                 </constraints>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeQ-Ut-L35">
-                                <rect key="frame" x="496" y="287" width="46" height="30"/>
+                                <rect key="frame" x="496" y="404" width="46" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -337,50 +344,83 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGu-4K-elB">
-                                <rect key="frame" x="236" y="286" width="136" height="29"/>
+                                <rect key="frame" x="236" y="403" width="136" height="29"/>
                                 <animations/>
                                 <state key="normal" title="Tag with Location"/>
                                 <connections>
                                     <segue destination="rbq-IY-jbQ" kind="show" id="Hno-j7-EAM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDf-bj-vZ3">
-                                <rect key="frame" x="265" y="355" width="70" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDf-bj-vZ3">
+                                <rect key="frame" x="265" y="472" width="70" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Subscribe"/>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Please select a podcast episode to begin playing." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soj-gi-hhh">
-                                <rect key="frame" x="112" y="231" width="377" height="21"/>
+                                <rect key="frame" x="112" y="348" width="377" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="podcastTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSx-Wz-DsD">
+                                <rect key="frame" x="41" y="240" width="95" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Ov-Rx-fhx">
+                                <rect key="frame" x="41" y="274" width="529" height="65"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="N72-9E-hYY"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TFU-Sj-HXv" firstAttribute="leading" secondItem="BY9-e9-Tvg" secondAttribute="leadingMargin" constant="33" id="0zm-0m-ply"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DeQ-Ut-L35" secondAttribute="trailing" constant="147" id="19R-Rd-N9P"/>
+                            <constraint firstItem="2Ov-Rx-fhx" firstAttribute="top" secondItem="CSx-Wz-DsD" secondAttribute="bottom" constant="14" id="2Sg-hP-h0i"/>
+                            <constraint firstItem="LJX-4R-Zbn" firstAttribute="trailing" secondItem="HJ4-H3-Tlz" secondAttribute="trailing" id="2Yq-tg-g9q"/>
                             <constraint firstItem="IDf-bj-vZ3" firstAttribute="centerX" secondItem="BY9-e9-Tvg" secondAttribute="centerX" id="AWN-Z4-cqr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Ov-Rx-fhx" secondAttribute="trailing" constant="10" id="CHB-7S-X6G"/>
                             <constraint firstItem="TFU-Sj-HXv" firstAttribute="leading" secondItem="BY9-e9-Tvg" secondAttribute="leadingMargin" constant="143" id="Faf-Sm-ntI"/>
                             <constraint firstAttribute="centerY" secondItem="DeQ-Ut-L35" secondAttribute="centerY" id="Ljb-Sr-eZi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DeQ-Ut-L35" secondAttribute="trailing" constant="42" id="O1F-Mb-frg"/>
+                            <constraint firstItem="2Ov-Rx-fhx" firstAttribute="leading" secondItem="CSx-Wz-DsD" secondAttribute="leading" id="OO4-Gq-ICF"/>
                             <constraint firstItem="PGu-4K-elB" firstAttribute="centerX" secondItem="BY9-e9-Tvg" secondAttribute="centerX" constant="4" id="OXx-OS-2WE"/>
+                            <constraint firstItem="CSx-Wz-DsD" firstAttribute="top" secondItem="8V1-jm-Y9i" secondAttribute="bottom" constant="8" id="SHg-tO-LQB"/>
                             <constraint firstAttribute="centerX" secondItem="8V1-jm-Y9i" secondAttribute="centerX" id="SNG-g7-iWZ"/>
                             <constraint firstAttribute="centerY" secondItem="TFU-Sj-HXv" secondAttribute="centerY" id="Sxa-dR-gCy"/>
                             <constraint firstItem="Soj-gi-hhh" firstAttribute="centerY" secondItem="BY9-e9-Tvg" secondAttribute="centerY" id="Tsb-oj-b1j"/>
+                            <constraint firstItem="LJX-4R-Zbn" firstAttribute="top" secondItem="P1b-um-7d6" secondAttribute="top" id="Ulr-fP-gI9"/>
                             <constraint firstItem="P1b-um-7d6" firstAttribute="top" secondItem="8V1-jm-Y9i" secondAttribute="bottom" constant="39" id="Z4R-Sh-rs9"/>
                             <constraint firstItem="Soj-gi-hhh" firstAttribute="centerX" secondItem="BY9-e9-Tvg" secondAttribute="centerX" id="beM-pm-tui"/>
+                            <constraint firstItem="8V1-jm-Y9i" firstAttribute="leading" secondItem="BY9-e9-Tvg" secondAttribute="leadingMargin" constant="21" id="dog-VL-hTa"/>
+                            <constraint firstItem="P1b-um-7d6" firstAttribute="leading" secondItem="HJ4-H3-Tlz" secondAttribute="leading" id="eEx-rK-GOb"/>
+                            <constraint firstItem="CSx-Wz-DsD" firstAttribute="leading" secondItem="8V1-jm-Y9i" secondAttribute="leading" id="eIn-tj-bx3"/>
                             <constraint firstItem="HJ4-H3-Tlz" firstAttribute="top" secondItem="1j3-9m-FQb" secondAttribute="bottom" id="jDF-ol-dys"/>
+                            <constraint firstItem="P1b-um-7d6" firstAttribute="top" secondItem="HJ4-H3-Tlz" secondAttribute="bottom" constant="27" id="lsZ-id-Ej6"/>
                             <constraint firstAttribute="centerX" secondItem="P1b-um-7d6" secondAttribute="centerX" id="nkv-KN-fm9"/>
                             <constraint firstAttribute="centerX" secondItem="HJ4-H3-Tlz" secondAttribute="centerX" id="paC-U8-WEd"/>
                             <constraint firstItem="8V1-jm-Y9i" firstAttribute="top" secondItem="1j3-9m-FQb" secondAttribute="bottom" constant="40" id="sh0-fV-4Sm"/>
                             <constraint firstItem="IDf-bj-vZ3" firstAttribute="top" secondItem="PGu-4K-elB" secondAttribute="bottom" constant="40" id="vyd-qb-S4Z"/>
                             <constraint firstItem="PGu-4K-elB" firstAttribute="centerY" secondItem="BY9-e9-Tvg" secondAttribute="centerY" id="xXP-nB-5uU"/>
+                            <constraint firstItem="8V1-jm-Y9i" firstAttribute="top" secondItem="P1b-um-7d6" secondAttribute="bottom" constant="33" id="yNA-p0-feF"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Z4R-Sh-rs9"/>
+                                <exclude reference="nkv-KN-fm9"/>
+                                <exclude reference="SNG-g7-iWZ"/>
+                                <exclude reference="sh0-fV-4Sm"/>
                                 <exclude reference="Faf-Sm-ntI"/>
                                 <exclude reference="19R-Rd-N9P"/>
                             </mask>
@@ -391,11 +431,14 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="m1b-1z-DRO"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="episodeSummary" destination="2Ov-Rx-fhx" id="IlD-2b-Suf"/>
                         <outlet property="locationTagButton" destination="PGu-4K-elB" id="YTb-cO-F4X"/>
                         <outlet property="noEpisodeLabel" destination="Soj-gi-hhh" id="T3d-wh-uv6"/>
                         <outlet property="playButton" destination="TFU-Sj-HXv" id="NTO-3d-rR0"/>
                         <outlet property="playedTime" destination="P1b-um-7d6" id="1Fq-kx-LKJ"/>
+                        <outlet property="podcastTitle" destination="CSx-Wz-DsD" id="QWC-3Q-02A"/>
                         <outlet property="progressBar" destination="HJ4-H3-Tlz" id="pCT-jA-WV9"/>
+                        <outlet property="remainingTime" destination="LJX-4R-Zbn" id="5gE-0n-M1N"/>
                         <outlet property="stopButton" destination="DeQ-Ut-L35" id="xak-VG-R0b"/>
                         <outlet property="subscribeButton" destination="IDf-bj-vZ3" id="fKj-0P-MIm"/>
                         <outlet property="trackTitle" destination="8V1-jm-Y9i" id="3Sg-Ep-VvS"/>

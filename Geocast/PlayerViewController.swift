@@ -21,7 +21,10 @@ class PlayerViewController: UIViewController {
     var popupText: String? = nil
     
     @IBOutlet weak var trackTitle: UILabel!
+    @IBOutlet weak var podcastTitle: UILabel!
+    @IBOutlet weak var episodeSummary: UITextView!
     @IBOutlet weak var playedTime: UILabel!
+    @IBOutlet weak var remainingTime: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var locationTagButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
@@ -47,10 +50,15 @@ class PlayerViewController: UIViewController {
         let minutes = currentTime / 60
         let seconds = currentTime - (minutes * 60)
         let currentFloatTime = Float(currentTime)
+        
+        let remainingIntTime = Int(totalSeconds) - currentTime
+        let remainingMinutes = Int(remainingIntTime) / 60
+        let remainingSeconds = remainingIntTime - (remainingMinutes * 60)
+        
         progress = currentFloatTime / totalSeconds
         progressBar.setValue(progress, animated: true)
         playedTime.text = NSString(format: "%02d:%02d", minutes, seconds) as String
-        
+        remainingTime.text = NSString(format: "%02d:%02d", remainingMinutes, remainingSeconds) as String
     }
     
     
@@ -90,8 +98,11 @@ class PlayerViewController: UIViewController {
             var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
             let mins = (minsSecs[0] as NSString).integerValue
             let secs = (minsSecs[1] as NSString).integerValue
+            remainingTime.text = NSString(format: "%02d:%02d", mins, secs) as String
             totalSeconds = Float(60 * mins + secs)
             trackTitle.text = episode.title
+            podcastTitle.text = episode.podcast.title
+            episodeSummary.text = episode.itunesSubtitle
             progressBar.value = 0
             
             
@@ -103,6 +114,9 @@ class PlayerViewController: UIViewController {
         else {
             progressBar.hidden = true
             trackTitle.hidden = true
+            podcastTitle.hidden = true
+            episodeSummary.hidden = true
+            remainingTime.hidden = true
             playedTime.hidden = true
             playButton.hidden = true
             locationTagButton.hidden = true

@@ -210,7 +210,6 @@ extension EpisodesViewController: UITableViewDataSource {
 
             cell.episodeTitle.text = episodes[indexPath.row].title
             cell.duration.text = episodes[indexPath.row].duration
-            print(episodes[indexPath.row].pubDate)
             
             let publicationDate = episodes[indexPath.row].pubDate
             

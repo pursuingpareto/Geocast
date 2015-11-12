@@ -57,7 +57,6 @@ class Podcast {
         var podcasts = [Podcast]()
         if allResults.count>0 {
             for podcastInfo in allResults {
-                print(podcastInfo["releaseDate"])
                 
                 if let kind = podcastInfo["kind"] as? String {
 
