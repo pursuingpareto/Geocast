@@ -78,6 +78,11 @@ class EpisodesViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setTextForSubscribeButton() 
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let playerViewController = segue.destinationViewController as? PlayerViewController {
             let episodeIndex = episodesTableView.indexPathForSelectedRow!.row
@@ -91,6 +96,41 @@ class EpisodesViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setTextForSubscribeButton() {
+        if User.sharedInstance.isSubscribedTo((podcast)!) {
+            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+        } else {
+            subscribeButton.setTitle("Subscribe", forState: .Normal)
+        }
+    }
+    
+    @IBAction func subscribeButtonClicked(sender: UIButton) {
+        if User.sharedInstance.isSubscribedTo((podcast)!) {
+            // TODO add confirmation popup?
+            
+            let message = "Are you sure you want to unsubscribe from \(podcast.title)?"
+            let alertController = UIAlertController(title: "Confirm Unsubscribe", message: message, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+                (alert) in
+            })
+            alertController.addAction(cancelAction)
+            
+            let confirmAction = UIAlertAction(title: "Unsubscribe", style: .Default, handler: {
+                (alert) in
+                print("Confirming unsubscribe...")
+                User.sharedInstance.unsubscribe((self.podcast)!)
+            })
+            alertController.addAction(confirmAction)
+            self.presentViewController(alertController, animated: true, completion: {
+                
+            })
+        } else {
+            print("subscribe button pressed, attempting to subscribe...")
+            User.sharedInstance.subscribe((podcast)!)
+        }
+        setTextForSubscribeButton()
     }
     
     func assignImage(url:String) {

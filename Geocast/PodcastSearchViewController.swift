@@ -20,7 +20,7 @@ class PodcastSearchViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        definesPresentationContext = true
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
@@ -69,10 +69,25 @@ class PodcastSearchViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let podcastIndex = indexPath.row
-        let podcast = filteredPodcasts[podcastIndex]
-        user.subscribe(podcast)
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let podcastIndex = indexPath.row
+//        let podcast = filteredPodcasts[podcastIndex]
+//        user.subscribe(podcast)
+//    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let episodesViewController = segue.destinationViewController as? EpisodesViewController {
+            let podcast: Podcast!
+            let indexPath = tableView.indexPathForSelectedRow!
+            if (self.resultSearchController.active) {
+                podcast = filteredPodcasts[indexPath.row]
+            }
+            else {
+                podcast = podcasts[indexPath.row]
+            }
+            episodesViewController.podcast = podcast
+        }
+        super.prepareForSegue(segue, sender: sender)
     }
     
 }

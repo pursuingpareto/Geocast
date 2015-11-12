@@ -27,13 +27,6 @@
                                             <rect key="frame" x="14" y="8" width="80" height="80"/>
                                             <animations/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-YR-ek2">
-                                            <rect key="frame" x="102" y="8" width="343" height="40"/>
-                                            <animations/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naU-1n-KTG">
                                             <rect key="frame" x="102" y="48" width="343" height="40"/>
                                             <animations/>
@@ -46,6 +39,13 @@
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-YR-ek2">
+                                            <rect key="frame" x="102" y="8" width="343" height="40"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -98,6 +98,9 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <segue destination="xPN-7V-iby" kind="show" id="Irc-O4-UqK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -130,19 +133,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gmH-xI-Mvl">
-                                <rect key="frame" x="26" y="81" width="87" height="85"/>
+                                <rect key="frame" x="26" y="81" width="87" height="60"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="87" id="15Y-Dm-dDe"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cX-Mt-mQp">
-                                <rect key="frame" x="34" y="179" width="70" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Subscribe"/>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="y6Q-vw-tyJ">
-                                <rect key="frame" x="0.0" y="191" width="600" height="298"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="y6Q-vw-tyJ">
+                                <rect key="frame" x="0.0" y="217" width="600" height="298"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -208,6 +206,14 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cX-Mt-mQp">
+                                <rect key="frame" x="34" y="154" width="70" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Subscribe"/>
+                                <connections>
+                                    <action selector="subscribeButtonClicked:" destination="xPN-7V-iby" eventType="touchUpInside" id="o3u-iz-Pks"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -240,7 +246,7 @@
                             <constraint firstItem="gmH-xI-Mvl" firstAttribute="top" secondItem="luT-4g-zaP" secondAttribute="bottom" constant="17" id="jcX-Ew-AVY"/>
                             <constraint firstItem="1cX-Mt-mQp" firstAttribute="leading" secondItem="WYw-Vf-Zcn" secondAttribute="trailing" constant="176" id="lUI-kh-qtK"/>
                             <constraint firstItem="WYw-Vf-Zcn" firstAttribute="leading" secondItem="gmH-xI-Mvl" secondAttribute="trailing" constant="43" id="psi-Sf-sFY"/>
-                            <constraint firstItem="y6Q-vw-tyJ" firstAttribute="top" secondItem="gmH-xI-Mvl" secondAttribute="bottom" constant="25" id="ry3-xs-Edy"/>
+                            <constraint firstItem="y6Q-vw-tyJ" firstAttribute="top" secondItem="gmH-xI-Mvl" secondAttribute="bottom" constant="50" id="ry3-xs-Edy"/>
                             <constraint firstItem="gmH-xI-Mvl" firstAttribute="leading" secondItem="sNf-mi-if7" secondAttribute="leadingMargin" constant="6" id="uMB-9R-aVh"/>
                             <constraint firstItem="y6Q-vw-tyJ" firstAttribute="top" secondItem="gmH-xI-Mvl" secondAttribute="bottom" constant="25" id="zcT-MO-tPt"/>
                         </constraints>
@@ -596,6 +602,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Irc-O4-UqK"/>
         <segue reference="zk8-Rb-VWd"/>
     </inferredMetricsTieBreakers>
 </document>
