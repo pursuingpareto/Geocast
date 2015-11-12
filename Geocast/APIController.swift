@@ -36,7 +36,6 @@ class APIController {
                 print("JSON Error \(err!.localizedDescription)")
             }
             let results: NSArray = jsonResult["results"] as! NSArray
-            print(results)
 
             self.delegate.didReceiveAPIResults(jsonResult) // THIS IS THE NEW LINE!!
         })

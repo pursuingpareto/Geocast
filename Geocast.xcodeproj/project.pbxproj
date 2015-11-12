@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33DAD8321BF42AAE000BB581 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD8311BF42AAE000BB581 /* EpisodeCell.swift */; };
 		A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3111BEC05D500A83FDB /* AppDelegate.swift */; };
 		A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3151BEC05D500A83FDB /* Main.storyboard */; };
 		A11FD3191BEC05D500A83FDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3181BEC05D500A83FDB /* Images.xcassets */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		33DAD8311BF42AAE000BB581 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		A11FD30C1BEC05D500A83FDB /* Geocast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11FD3101BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11FD3111BEC05D500A83FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				A11FD3471BF12DF500A83FDB /* MapViewController.swift */,
 				A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */,
 				A11FD3431BF0154D00A83FDB /* PodcastCell.swift */,
+				33DAD8311BF42AAE000BB581 /* EpisodeCell.swift */,
 				A11FD33D1BEC39EA00A83FDB /* EpisodesViewController.swift */,
 				A11FD3391BEC317E00A83FDB /* APIController.swift */,
 				A18035871BF17363003BC7F5 /* User.swift */,
@@ -395,6 +398,7 @@
 				A180358A1BF27BC1003BC7F5 /* TagLocationController.swift in Sources */,
 				A11FD3381BEC077500A83FDB /* PodcastsViewController.swift in Sources */,
 				A11FD3341BEC068900A83FDB /* MainTabController.swift in Sources */,
+				33DAD8321BF42AAE000BB581 /* EpisodeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

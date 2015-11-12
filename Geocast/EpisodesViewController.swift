@@ -202,15 +202,20 @@ extension EpisodesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             
-            var cell:UITableViewCell! = tableView.dequeueReusableCellWithIdentifier("episodeCell")! as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("episodeCell")! as! EpisodeCell
             
-            if (nil == cell){
-                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "episodeCell")
-            }
-            cell!.textLabel?.text = episodes[indexPath.row].title
-            cell!.textLabel?.numberOfLines = 0
-            cell!.detailTextLabel?.text = episodes[indexPath.row].itunesSubtitle
-            cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+//            if (nil == cell){
+//                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "episodeCell")
+//            }
+
+            cell.episodeTitle.text = episodes[indexPath.row].title
+            cell.duration.text = episodes[indexPath.row].duration
+            print(episodes[indexPath.row].pubDate)
+            
+            let publicationDate = episodes[indexPath.row].pubDate
+            
+            cell.publicationDate.text = publicationDate.substringToIndex(publicationDate.startIndex.advancedBy(17))
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             return cell
     }
     func tableView(tableView: UITableView,
