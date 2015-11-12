@@ -61,6 +61,40 @@ class PlayerViewController: UIViewController {
         remainingTime.text = NSString(format: "%02d:%02d", remainingMinutes, remainingSeconds) as String
     }
     
+    func setTextForSubscribeButton() {
+        if User.sharedInstance.isSubscribedTo((episode?.podcast)!) {
+            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+        } else {
+            subscribeButton.setTitle("Subscribe", forState: .Normal)
+        }
+    }
+    
+    @IBAction func subscribeButtonPressed(sender: UIButton) {
+        if User.sharedInstance.isSubscribedTo((episode?.podcast)!) {
+            // TODO add confirmation popup?
+            
+            let message = "Are you sure you want to unsubscribe from \(episode?.podcast.title)?"
+            let alertController = UIAlertController(title: "Confirm Unsubscribe", message: message, preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+                (alert) in
+            })
+            alertController.addAction(cancelAction)
+            
+            let confirmAction = UIAlertAction(title: "Unsubscribe", style: .Default, handler: {
+                (alert) in
+                print("Confirming unsubscribe...")
+                User.sharedInstance.unsubscribe((self.episode?.podcast)!)
+            })
+            alertController.addAction(confirmAction)
+            self.presentViewController(alertController, animated: true, completion: {
+                
+            })
+        } else {
+            print("subscribe button pressed, attempting to subscribe...")
+            User.sharedInstance.subscribe((episode?.podcast)!)
+        }
+        setTextForSubscribeButton()
+    }
     
     @IBAction func stop(sender: AnyObject) {
         audioPlayer.pause()
@@ -83,6 +117,9 @@ class PlayerViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        setTextForSubscribeButton()
+        
+            
         if popupText != nil {
             displaySuccessfulTagPopup()
             popupText = nil
@@ -96,8 +133,18 @@ class PlayerViewController: UIViewController {
 
         if let episode = episode {
             var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
-            let mins = (minsSecs[0] as NSString).integerValue
-            let secs = (minsSecs[1] as NSString).integerValue
+            
+            let mins: Int!
+            let secs: Int!
+            if minsSecs.count == 2 {
+                mins = (minsSecs[0] as NSString).integerValue
+                secs = (minsSecs[1] as NSString).integerValue
+            } else {
+                // TODO - fix this hacky solution to some poorly formatted durations.
+                mins = 10
+                secs = 10
+            }
+            
             remainingTime.text = NSString(format: "%02d:%02d", mins, secs) as String
             totalSeconds = Float(60 * mins + secs)
             trackTitle.text = episode.title

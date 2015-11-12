@@ -49,11 +49,10 @@ class User : NSObject {
                     print("CREATING PODCAST IN PARSE")
                     pfPodcast = podcast.saveToParse()
                 }
-                print("addUnique")
+
                 PFUser.currentUser()!.addUniqueObject(pfPodcast, forKey: "subscriptions")
-                print(PFUser.currentUser()?.isAuthenticated())
                 PFUser.currentUser()!.saveInBackground()
-                print("addedUnique")
+
             })
             return true
         }
@@ -61,8 +60,10 @@ class User : NSObject {
     
     func unsubscribe(podcast: Podcast) -> Bool {
         if subscriptions.contains(podcast) {
+            print("subscriptions has length \(subscriptions.count)")
             let index = subscriptions.indexOf(podcast)
             subscriptions.removeAtIndex(index!)
+            print("subscriptions has length \(subscriptions.count)")
             var query = PFQuery(className: "Podcast")
             query.whereKey("collectionId", equalTo: podcast.collectionId)
             query.findObjectsInBackgroundWithBlock({
@@ -71,8 +72,10 @@ class User : NSObject {
                 
                 if error == nil && objects?.count > 0 {
                     // podcast exists
-                    
+                    print("Removing PFPodcast...")
                     PFUser.currentUser()!.removeObjectsInArray(objects!, forKey: "subscriptions")
+                    PFUser.currentUser()!.saveInBackground()
+                    
 
                 } else {
                     
@@ -100,18 +103,17 @@ class User : NSObject {
         iTunesAPI.lookupMultiplePodcasts(podcastIDs)
     }
     
-    func updateSubscriptions(withCompletion completion: ([Podcast]) -> Void ) {
-        
+    func isSubscribedTo(podcast: Podcast) -> Bool {
+        return subscriptions.contains(podcast)
     }
 }
+
 
 extension User: APIControllerProtocol {
     func didReceiveAPIResults(results: NSDictionary) {
         let resultsArray = results["results"] as! NSArray
-        
         dispatch_async(dispatch_get_main_queue(), {
             self.subscriptions = Podcast.podcastsWithJSON(resultsArray)
-            
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         })
     }
