@@ -566,14 +566,6 @@
                                 <rect key="frame" x="0.0" y="30" width="600" height="570"/>
                                 <animations/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3j5-8x-7aC">
-                                <rect key="frame" x="139" y="46" width="322" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Redo Search in this Area"/>
-                                <connections>
-                                    <action selector="redoSearchInArea:" destination="y98-n2-Zw8" eventType="touchUpInside" id="JfY-Yp-JDf"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2sn-8D-4L7">
                                 <rect key="frame" x="459" y="46" width="121" height="29"/>
                                 <animations/>
@@ -582,6 +574,14 @@
                                     <segment title="List"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3j5-8x-7aC">
+                                <rect key="frame" x="211" y="46" width="179" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Redo Search in this Area"/>
+                                <connections>
+                                    <action selector="redoSearchInArea:" destination="y98-n2-Zw8" eventType="touchUpInside" id="JfY-Yp-JDf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -590,7 +590,13 @@
                             <constraint firstItem="3j5-8x-7aC" firstAttribute="centerX" secondItem="UlV-64-5bq" secondAttribute="centerX" id="FDc-K8-Xki"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2sn-8D-4L7" secondAttribute="trailing" id="UOH-20-dZ2"/>
                             <constraint firstItem="3j5-8x-7aC" firstAttribute="top" secondItem="phM-4U-lWk" secondAttribute="bottom" constant="29" id="Uyu-6E-KD9"/>
+                            <constraint firstItem="3j5-8x-7aC" firstAttribute="centerX" secondItem="TEV-3e-bGW" secondAttribute="centerX" id="cHN-kJ-pAn"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FDc-K8-Xki"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Near Me" id="CT9-8F-uDE"/>
                     <connections>

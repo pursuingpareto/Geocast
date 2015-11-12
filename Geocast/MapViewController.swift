@@ -94,13 +94,13 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
-        print("Calling viewForAnnotation")
+
         if let annotation = annotation as? MapEpisodeAnnotation {
             let identifier = "tag"
             var view: MKPinAnnotationView
 //            view.reuseIdentifier = identifier
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView { // 2
-                print("  is a tag")
+
                 dequeuedView.annotation = annotation
                 view = dequeuedView
                 view.image = annotation.image
@@ -112,7 +112,7 @@ extension MapViewController: MKMapViewDelegate {
                 view.rightCalloutAccessoryView = button
             } else {
                 // 3
-                print("  not a tag")
+
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.image = annotation.image
