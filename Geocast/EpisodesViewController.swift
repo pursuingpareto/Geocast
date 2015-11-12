@@ -11,10 +11,16 @@ import UIKit
 class EpisodesViewController: UIViewController {
 
     
+    @IBOutlet weak var podcastTitle: UILabel!
+    
+    @IBOutlet weak var subscribeButton: UIButton!
+    @IBOutlet weak var podcastImageView: UIImageView!
+    
     @IBOutlet weak var episodesTableView: UITableView!
     
     var podcast: Podcast!
     var episodes: [Episode]! = Array()
+    var imageCache = [String : UIImage]()
     
     var xmlParser: NSXMLParser!
     var entryTitle: String!
@@ -86,6 +92,35 @@ class EpisodesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func assignImage(url:String) {
+        
+        var imgURL: NSURL = NSURL(string: url)!
+        var image = self.imageCache[url]
+        if image == nil {
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                if error == nil {
+                    image = UIImage(data: data!)
+                    
+                    // Store the image in to our cache
+                    self.imageCache[url] = image
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.podcastImageView.image = image
+                    })
+                } else {
+                    print("Error: \(error!.localizedDescription)")
+                }
+            })
+        } else {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.podcastImageView.image = image
+            })
+        }
+        
+        // Download an NSData representation of the image at the URL
+        
+    }
 }
 
 extension EpisodesViewController: NSXMLParserDelegate {
@@ -156,6 +191,8 @@ extension EpisodesViewController: NSXMLParserDelegate {
             }
 
             self.episodesTableView.reloadData()
+            self.podcastTitle.text = self.podcast.title
+            self.assignImage(self.podcast.thumbnailImageURL)
         })
     }
 }
@@ -165,15 +202,19 @@ extension EpisodesViewController: UITableViewDataSource {
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             
-            var cell:UITableViewCell! = tableView.dequeueReusableCellWithIdentifier("episodeCell")! as UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("episodeCell")! as! EpisodeCell
             
-            if (nil == cell){
-                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "episodeCell")
-            }
-            cell!.textLabel?.text = episodes[indexPath.row].title
-            cell!.textLabel?.numberOfLines = 0
-            cell!.detailTextLabel?.text = episodes[indexPath.row].itunesSubtitle
-            cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+//            if (nil == cell){
+//                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "episodeCell")
+//            }
+
+            cell.episodeTitle.text = episodes[indexPath.row].title
+            cell.duration.text = episodes[indexPath.row].duration
+            
+            let publicationDate = episodes[indexPath.row].pubDate
+            
+            cell.publicationDate.text = publicationDate.substringToIndex(publicationDate.startIndex.advancedBy(17))
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             return cell
     }
     func tableView(tableView: UITableView,
