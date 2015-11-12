@@ -352,11 +352,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDf-bj-vZ3">
-<<<<<<< HEAD
                                 <rect key="frame" x="265" y="355" width="70" height="30"/>
-=======
-                                <rect key="frame" x="265" y="472" width="70" height="30"/>
->>>>>>> 9bf727019012b60269bcf2f965db035cc909dcc8
                                 <animations/>
                                 <state key="normal" title="Subscribe"/>
                             </button>
