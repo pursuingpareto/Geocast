@@ -18,6 +18,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var redoSearchButton: UIButton!
     var annotations: [MapEpisodeAnnotation] = []
     var tagManager = TagManager.sharedInstance
+    
+    @IBOutlet weak var tableView: UITableView!
 
     var testCoordinate = CLLocationCoordinate2DMake(34.1561, -118.1319)
     let locationManager = CLLocationManager()
@@ -33,6 +35,9 @@ class MapViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        tableView.hidden = true
+        tableView.dataSource = self
+        tableView.frame = mapView.frame
         let initialLocation = CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude)
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -49,6 +54,29 @@ class MapViewController: UIViewController {
         super.viewWillAppear(animated)
         updateView()
     }
+    
+    @IBAction func segmentedControlValueChanged(sender: AnyObject) {
+        switch segmentedControl.selectedSegmentIndex
+        {
+        case 0:
+            tableView.hidden = true
+            mapView.hidden = false
+        case 1:
+            tableView.reloadData()
+            tableView.hidden  = false
+            mapView.hidden = true
+        default:
+            break; 
+        }
+        
+    }
+
+    
+//    func createTableView() -> UITableView {
+//        let tv = UITableView(frame: mapView.frame)
+//        tv.dataSource = self
+//        return tv
+//    }
     
     @IBAction func redoSearchInArea(sender: UIButton) {
         let location = mapView.region.center
@@ -149,5 +177,27 @@ extension MapViewController: MKMapViewDelegate {
             }
         }
         super.prepareForSegue(segue, sender: sender)
+    }
+}
+
+extension MapViewController: UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return annotations.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let annotation = annotations[indexPath.row]
+        let episode = annotation.episode
+        let coordinate = annotation.coordinate
+        let currentPosition = locationManager.location
+        let distance = currentPosition?.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath)
+        cell.textLabel!.text = "\(episode!.title): \(distance)"
+        print(cell.textLabel!.text)
+        return cell
     }
 }
