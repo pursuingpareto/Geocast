@@ -13,4 +13,8 @@ class PodcastCell: UITableViewCell {
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var podcastImageView: UIImageView!
+    @IBOutlet weak var lastUpdated: UILabel!
+    
+    
+    
 }

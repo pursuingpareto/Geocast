@@ -21,7 +21,7 @@ class PodcastsViewController: UITableViewController {
     var podcasts : [Podcast] = [Podcast]()
     var imageCache = [String : UIImage]()
     
-    var testPodcast = Podcast(title: "Radiolab", thumbnailImageURL: "", largeImageURL: "", collectionId: 152249110, episodeCount: 144, feedUrl: "http://feeds.wnyc.org/radiolab")
+    var testPodcast = Podcast(title: "Radiolab", thumbnailImageURL: "", largeImageURL: "", collectionId: 152249110, episodeCount: 144, feedUrl: "http://feeds.wnyc.org/radiolab", lastUpdated: "")
     
     lazy var iTunesAPI : APIController = APIController(delegate: self)
     
@@ -150,6 +150,7 @@ extension PodcastsViewController {
             let podcast = podcasts[indexPath.row]
             cell.titleLabel.text = podcast.title
             cell.detailLabel.text = "\(podcast.episodeCount!) Episodes"
+            cell.lastUpdated.text = podcast.lastUpdated
             assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
             
             cell!.textLabel?.numberOfLines = 0

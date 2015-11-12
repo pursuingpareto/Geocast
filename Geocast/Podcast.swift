@@ -16,15 +16,17 @@ class Podcast {
     var collectionId: Int
     var episodeCount: Int?
     var feedUrl: String
+    var lastUpdated: String
     var episodes = [Episode]()
     
-    init(title: String, thumbnailImageURL: String, largeImageURL: String, collectionId: Int, episodeCount: Int?, feedUrl: String)  {
+    init(title: String, thumbnailImageURL: String, largeImageURL: String, collectionId: Int, episodeCount: Int?, feedUrl: String, lastUpdated: String)  {
         self.title = title
         self.thumbnailImageURL = thumbnailImageURL
         self.largeImageURL = largeImageURL
         self.collectionId = collectionId
         self.episodeCount = episodeCount
         self.feedUrl = feedUrl
+        self.lastUpdated = lastUpdated
 //        self.saveToParse()
     }
     
@@ -35,6 +37,7 @@ class Podcast {
         pfPodcast["largeImageURL"] = largeImageURL
         pfPodcast["collectionId"]  = collectionId
         pfPodcast["feedUrl"] = feedUrl
+        pfPodcast["lastUpdated"] = lastUpdated
         pfPodcast.saveInBackground()
         return pfPodcast
     }
@@ -46,6 +49,7 @@ class Podcast {
         self.collectionId = pfPodcast["collectionId"] as! Int
         self.episodeCount = nil
         self.feedUrl = pfPodcast["feedUrl"] as! String
+        self.lastUpdated = pfPodcast["lastUpdated"] as! String
     }
     
     class func podcastsWithJSON(allResults: NSArray) -> [Podcast] {
@@ -53,6 +57,7 @@ class Podcast {
         var podcasts = [Podcast]()
         if allResults.count>0 {
             for podcastInfo in allResults {
+                print(podcastInfo["releaseDate"])
                 
                 if let kind = podcastInfo["kind"] as? String {
 
@@ -70,8 +75,10 @@ class Podcast {
                         let feedUrl = podcastInfo["feedUrl"] as? String ?? ""
                         let episodeCount = podcastInfo["trackCount"] as? Int ?? 0
                         let collectionId = podcastInfo["collectionId"] as? Int ?? 0
+                        let releaseDate = podcastInfo["releaseDate"] as? String ?? ""
+                        let lastUpdated = releaseDate.substringToIndex(releaseDate.startIndex.advancedBy(10))
                         
-                        let podcast = Podcast(title: name!, thumbnailImageURL: thumbnailURL, largeImageURL: imageURL, collectionId: collectionId, episodeCount: episodeCount, feedUrl: feedUrl)
+                        let podcast = Podcast(title: name!, thumbnailImageURL: thumbnailURL, largeImageURL: imageURL, collectionId: collectionId, episodeCount: episodeCount, feedUrl: feedUrl, lastUpdated: lastUpdated)
                         
                         podcasts.append(podcast)
                     }
