@@ -12,6 +12,8 @@ import Parse
 class User : NSObject {
     
     private var subscriptions: [Podcast] = []
+    private lazy var iTunesAPI : APIController = APIController(delegate: self)
+    
     
     class var sharedInstance: User {
         struct Singleton {
@@ -84,7 +86,33 @@ class User : NSObject {
         }
     }
     
-    func getSubscriptions() -> [Podcast]{
+    func getSubscriptions() -> [Podcast] {
         return subscriptions
+    }
+    
+    func updateSubscriptions() {
+        let pfPodcasts : [PFObject] = PFUser.currentUser()!["subscriptions"] as! [PFObject]
+        var podcastIDs : [Int] = []
+        for pfPodcast in pfPodcasts {
+            let id = pfPodcast["collectionId"] as! Int
+            podcastIDs.append(id)
+        }
+        iTunesAPI.lookupMultiplePodcasts(podcastIDs)
+    }
+    
+    func updateSubscriptions(withCompletion completion: ([Podcast]) -> Void ) {
+        
+    }
+}
+
+extension User: APIControllerProtocol {
+    func didReceiveAPIResults(results: NSDictionary) {
+        let resultsArray = results["results"] as! NSArray
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            self.subscriptions = Podcast.podcastsWithJSON(resultsArray)
+            
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        })
     }
 }
