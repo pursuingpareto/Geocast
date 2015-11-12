@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFUser.enableAutomaticUser()
         PFUser.currentUser()!.incrementKey("runCount")
+        PFUser.currentUser()!["subscriptions"] = []
         PFUser.currentUser()!.saveInBackground()
         
 //        User.sharedInstance.updateSubscriptions()

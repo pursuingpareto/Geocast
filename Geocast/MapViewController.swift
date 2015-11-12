@@ -14,6 +14,8 @@ class MapViewController: UIViewController {
     
     var episodesWithCoordinates: [(Episode!, CLLocationCoordinate2D)] = []
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var redoSearchButton: UIButton!
     var annotations: [MapEpisodeAnnotation] = []
     var tagManager = TagManager.sharedInstance
 
@@ -48,14 +50,28 @@ class MapViewController: UIViewController {
         updateView()
     }
     
+    @IBAction func redoSearchInArea(sender: UIButton) {
+        let location = mapView.region.center
+        let geoPoint: PFGeoPoint = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
+        if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint) {
+            self.annotations = annotations
+            self.mapView.addAnnotations(self.annotations)
+        }
+        
+    }
     func updateView() {
+        print("Updating view")
         PFGeoPoint.geoPointForCurrentLocationInBackground({
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
-            if error == nil && geoPoint != nil {
+            print(geoPoint)
+            print("error is \(error)")
+            if geoPoint != nil {
                 let currentLocation = CLLocation(latitude: geoPoint!.latitude, longitude: geoPoint!.longitude)
                 self.centerMapOnLocation(currentLocation)
+                print("attempting to get annotations")
                 if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint!) {
                     self.annotations = annotations
+                    print("annotations are \(annotations)")
                     self.mapView.addAnnotations(self.annotations)
                 }
             }

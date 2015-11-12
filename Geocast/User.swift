@@ -99,29 +99,39 @@ class User : NSObject {
     }
     
     func updateSubscriptions() {
-        
-        print("Updating subscriptions...")
-        
         let query = PFQuery(className: "_User")
         query.includeKey("subscriptions")
-        let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
-            (result, error) in
-            print("InsideBlock")
-            let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
-            print(pfPodcasts)
-            var podcastIDs : [Int] = []
-            for pfPodcast in pfPodcasts {
-                print(pfPodcast)
-                print("\n")
-                var pcID = pfPodcast["collectionId"]
+        
+        if PFUser.currentUser()!.objectId == nil {
+            PFUser.currentUser()!.saveInBackgroundWithBlock({
+                (success, error) in
+                let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
+                    (result, error) in
+                    print(result)
+                    let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
+                    var podcastIDs : [Int] = []
+                    for pfPodcast in pfPodcasts {
+                        var pcID = pfPodcast["collectionId"]
+                        podcastIDs.append(pcID as! Int)
+                    }
+                    self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
+                })
+            })
+        } else {
+            let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
+                (result, error) in
+                print(result)
+                let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
+                var podcastIDs : [Int] = []
+                for pfPodcast in pfPodcasts {
+                    var pcID = pfPodcast["collectionId"]
+                    podcastIDs.append(pcID as! Int)
+                }
+                self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
                 
-                print("id is \(pcID)")
-                podcastIDs.append(pcID as! Int)
-            }
-            print(podcastIDs)
-            self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
+            })
 
-        })
+        }
     }
     
     func isSubscribedTo(podcast: Podcast) -> Bool {
