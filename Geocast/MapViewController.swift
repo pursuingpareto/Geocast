@@ -19,12 +19,12 @@ class MapViewController: UIViewController {
     var annotations: [MapEpisodeAnnotation] = []
     var tagManager = TagManager.sharedInstance
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
 
     var testCoordinate = CLLocationCoordinate2DMake(34.1561, -118.1319)
     let locationManager = CLLocationManager()
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     
     let regionRadius: CLLocationDistance = 2000
     
@@ -35,19 +35,29 @@ class MapViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.hidden = true
         tableView.dataSource = self
         tableView.frame = mapView.frame
         tableView.delegate = self
+        
+        tableView.removeFromSuperview()
+        
+        view.bringSubviewToFront(mapView)
+        view.sendSubviewToBack(tableView)
+        
         let initialLocation = CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude)
         self.locationManager.requestWhenInUseAuthorization()
+        
+        print("mapView subViews are: \(mapView.subviews)")
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startMonitoringSignificantLocationChanges()
 //            initialLocation = locationManager.location
         }
-        super.viewDidLoad()
+        
         mapView.delegate = self
         mapView.showsUserLocation = true
     }
@@ -62,10 +72,24 @@ class MapViewController: UIViewController {
         case 0:
             tableView.hidden = true
             mapView.hidden = false
+            tableView.removeFromSuperview()
+            view.addSubview(mapView)
+            tableView.userInteractionEnabled = false
+            mapView.userInteractionEnabled = true
+            view.sendSubviewToBack(tableView)
+            view.bringSubviewToFront(mapView)
         case 1:
+            view.addSubview(tableView)
+            mapView.removeFromSuperview()
             tableView.reloadData()
             tableView.hidden  = false
             mapView.hidden = true
+            
+            tableView.userInteractionEnabled = true
+            mapView.userInteractionEnabled = false
+            view.sendSubviewToBack(mapView)
+            view.bringSubviewToFront(tableView)
+            tableView.delegate = self
         default:
             break; 
         }
@@ -80,7 +104,10 @@ class MapViewController: UIViewController {
 //    }
     
     @IBAction func redoSearchInArea(sender: UIButton) {
+        print("mapView is \(mapView)")
+        print("region is \(mapView.region)")
         let location = mapView.region.center
+        print("Location of mapView center is \(location)")
         let geoPoint: PFGeoPoint = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
         if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint) {
             self.annotations = annotations
@@ -123,6 +150,8 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+        
+        print("About to show view for annotation")
 
         if let annotation = annotation as? MapEpisodeAnnotation {
             let identifier = "tag"
@@ -132,6 +161,7 @@ extension MapViewController: MKMapViewDelegate {
 
                 dequeuedView.annotation = annotation
                 view = dequeuedView
+                view.canShowCallout = true
                 view.image = annotation.image
                 view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
                 view.calloutOffset = CGPoint(x: -5, y: 5)
@@ -155,9 +185,24 @@ extension MapViewController: MKMapViewDelegate {
                 
                 view.rightCalloutAccessoryView = button
             }
+            print("about to return view for annotation")
             return view
         }
         return nil
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("mapView center is \(mapView.region.center)")
+        print("SELECTED ANNOTATION VIEW")
+        let annotation = view.annotation as! MapEpisodeAnnotation
+        
+        print(annotation.episode)
+        
+    }
+    
+    func mapView(mapView: MKMapView, viewForOverlay overlay: MKOverlay) -> MKOverlayView {
+        print("viewForOverlay for: \(overlay)")
+        return MKOverlayView()
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -168,6 +213,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("Preparing for Segue!")
         if let annotation = sender as? MapEpisodeAnnotation {
             if let destinationVC = segue.destinationViewController as? PlayerViewController {
                 print("setting episode for destination VC")
