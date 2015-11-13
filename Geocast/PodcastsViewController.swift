@@ -156,8 +156,7 @@ extension PodcastsViewController {
             
             let podcast = podcasts[indexPath.row]
             cell.titleLabel.text = podcast.title
-            cell.detailLabel.text = "\(podcast.episodeCount!) Episodes"
-            cell.lastUpdated.text = podcast.lastUpdated
+            cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(podcast.lastUpdated!)"
             assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
             
             cell!.textLabel?.numberOfLines = 0
