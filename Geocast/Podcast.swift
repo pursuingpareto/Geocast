@@ -9,7 +9,23 @@
 import Foundation
 import Parse
 
-class Podcast {
+
+
+class Podcast: NSObject, NSCoding {
+    
+    struct PropertyKey {
+        static let titleKey = "title"
+        static let thumbnailImageURLKey = "thumbnailImageURL"
+        static let largeImageURLKey = "largeImageURL"
+        static let collectionIdKey = "collectionId"
+        static let episodeCountKey = "episodeCount"
+        static let feedUrlKey = "feedUrl"
+        static let lastUpdatedKey = "lastUpdated"
+    }
+    
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("podcasts")
+    
     var title: String
     var thumbnailImageURL: String
     var largeImageURL: String
@@ -28,6 +44,27 @@ class Podcast {
         self.feedUrl = feedUrl
         self.lastUpdated = lastUpdated
 //        self.saveToParse()
+    }
+    
+    @objc func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(title, forKey:  PropertyKey.titleKey)
+        aCoder.encodeObject(thumbnailImageURL, forKey:  PropertyKey.thumbnailImageURLKey)
+        aCoder.encodeObject(largeImageURL, forKey:  PropertyKey.largeImageURLKey)
+        aCoder.encodeObject(collectionId, forKey:  PropertyKey.collectionIdKey)
+        aCoder.encodeObject(episodeCount, forKey:  PropertyKey.episodeCountKey)
+        aCoder.encodeObject(feedUrl, forKey:  PropertyKey.feedUrlKey)
+        aCoder.encodeObject(lastUpdated, forKey:  PropertyKey.lastUpdatedKey)
+    }
+    
+    @objc required convenience init?(coder aDecoder: NSCoder) {
+        let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
+        let thumbnailImageURL = aDecoder.decodeObjectForKey(PropertyKey.thumbnailImageURLKey) as! String
+        let largeImageURL = aDecoder.decodeObjectForKey(PropertyKey.largeImageURLKey) as! String
+        let collectionId = aDecoder.decodeObjectForKey(PropertyKey.collectionIdKey) as! Int
+        let episodeCount = aDecoder.decodeObjectForKey(PropertyKey.episodeCountKey) as? Int
+        let feedUrl = aDecoder.decodeObjectForKey(PropertyKey.feedUrlKey) as! String
+        let lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lastUpdatedKey) as? String
+        self.init(title: title, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL, collectionId: collectionId, episodeCount: episodeCount, feedUrl: feedUrl, lastUpdated: lastUpdated!)
     }
     
     func asPFObject() -> PFObject {
@@ -97,9 +134,9 @@ class Podcast {
     }
 }
 
-extension Podcast: Equatable {}
-    
-func ==(_ lhs: Podcast, _ rhs: Podcast) -> Bool {
-    return lhs.collectionId == rhs.collectionId
-
-}
+//extension Podcast: Equatable {}
+//    
+//func ==(_ lhs: Podcast, _ rhs: Podcast) -> Bool {
+//    return lhs.collectionId == rhs.collectionId
+//
+//}

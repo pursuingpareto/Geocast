@@ -29,32 +29,35 @@ class User : NSObject {
             return false
         } else {
             subscriptions.append(podcast)
+            saveSubscriptionsLocally()
             
             // try to get Podcast associated with annotation
-            var query = PFQuery(className: "Podcast")
-            query.whereKey("collectionId", equalTo: podcast.collectionId)
-            query.findObjectsInBackgroundWithBlock({
-                (objects: [PFObject]?, error: NSError?) -> Void in
-                var pfPodcast: PFObject!
-                
-                if error == nil && objects?.count > 0 {
-                    // podcast exists
-                    
-                    print("PODCAST EXISTS")
-                    
-                    pfPodcast = objects![0]
-                    
-                    print(pfPodcast)
-                } else {
-                    
-                    print("CREATING PODCAST IN PARSE")
-                    pfPodcast = podcast.saveToParse()
-                }
-
-                PFUser.currentUser()!.addUniqueObject(pfPodcast, forKey: "subscriptions")
-                PFUser.currentUser()!.saveInBackground()
-
-            })
+//            var query = PFQuery(className: "Podcast")
+//            query.whereKey("collectionId", equalTo: podcast.collectionId)
+//            query.findObjectsInBackgroundWithBlock({
+//                (objects: [PFObject]?, error: NSError?) -> Void in
+//                var pfPodcast: PFObject!
+//                
+//                if error == nil && objects?.count > 0 {
+//                    // podcast exists
+//                    
+//                    print("PODCAST EXISTS")
+//                    
+//                    pfPodcast = objects![0]
+//                    
+//                    print(pfPodcast)
+//                } else {
+//                    
+//                    print("CREATING PODCAST IN PARSE")
+//                    pfPodcast = podcast.saveToParse()
+//                }
+//
+//                PFUser.currentUser()!.addUniqueObject(pfPodcast, forKey: "subscriptions")
+//                PFUser.currentUser()!.saveInBackgroundWithBlock({
+//                    (success, error) in
+//                    self.saveSubscriptionsLocally()
+//                })
+//            })
             return true
         }
     }
@@ -65,25 +68,29 @@ class User : NSObject {
             let index = subscriptions.indexOf(podcast)
             subscriptions.removeAtIndex(index!)
             print("subscriptions has length \(subscriptions.count)")
-            var query = PFQuery(className: "Podcast")
-            query.whereKey("collectionId", equalTo: podcast.collectionId)
-            query.findObjectsInBackgroundWithBlock({
-                (objects: [PFObject]?, error: NSError?) -> Void in
-                var pfPodcast: PFObject!
-                
-                if error == nil && objects?.count > 0 {
-                    // podcast exists
-                    print("Removing PFPodcast...")
-                    PFUser.currentUser()!.removeObjectsInArray(objects!, forKey: "subscriptions")
-                    PFUser.currentUser()!.saveInBackground()
-                    
-
-                } else {
-                    
-                    print("ERROR REMOVING FROM PARSE")
-
-                }
-            })
+            saveSubscriptionsLocally()
+//            var query = PFQuery(className: "Podcast")
+//            query.whereKey("collectionId", equalTo: podcast.collectionId)
+//            query.findObjectsInBackgroundWithBlock({
+//                (objects: [PFObject]?, error: NSError?) -> Void in
+//                var pfPodcast: PFObject!
+//                
+//                if error == nil && objects?.count > 0 {
+//                    // podcast exists
+//                    print("Removing PFPodcast...")
+//                    PFUser.currentUser()!.removeObjectsInArray(objects!, forKey: "subscriptions")
+//                    PFUser.currentUser()!.saveInBackgroundWithBlock({
+//                        (success, error) in
+//                        self.saveSubscriptionsLocally()
+//                    })
+//                    
+//
+//                } else {
+//                    
+//                    print("ERROR REMOVING FROM PARSE")
+//
+//                }
+//            })
             return true
         } else {
             return false
@@ -99,44 +106,69 @@ class User : NSObject {
     }
     
     func updateSubscriptions() {
-        let query = PFQuery(className: "_User")
-        query.includeKey("subscriptions")
-        
-        if PFUser.currentUser()!.objectId == nil {
-            PFUser.currentUser()!.saveInBackgroundWithBlock({
-                (success, error) in
-                let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
-                    (result, error) in
-                    print(result)
-                    let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
-                    var podcastIDs : [Int] = []
-                    for pfPodcast in pfPodcasts {
-                        var pcID = pfPodcast["collectionId"]
-                        podcastIDs.append(pcID as! Int)
-                    }
-                    self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
-                })
-            })
-        } else {
-            let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
-                (result, error) in
-                print(result)
-                let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
-                var podcastIDs : [Int] = []
-                for pfPodcast in pfPodcasts {
-                    var pcID = pfPodcast["collectionId"]
-                    podcastIDs.append(pcID as! Int)
-                }
-                self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
-                
-            })
-
-        }
+//        let query = PFQuery(className: "_User")
+//        query.includeKey("subscriptions")
+//        
+//        if PFUser.currentUser()!.objectId == nil {
+//            PFUser.currentUser()!.saveInBackgroundWithBlock({
+//                (success, error) in
+//                let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
+//                    (result, error) in
+//                    print(result)
+//                    let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
+//                    var podcastIDs : [Int] = []
+//                    for pfPodcast in pfPodcasts {
+//                        var pcID = pfPodcast["collectionId"]
+//                        podcastIDs.append(pcID as! Int)
+//                    }
+//                    self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
+//                })
+//            })
+//        } else {
+//            let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
+//                (result, error) in
+//                print(result)
+//                let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
+//                var podcastIDs : [Int] = []
+//                for pfPodcast in pfPodcasts {
+//                    var pcID = pfPodcast["collectionId"]
+//                    podcastIDs.append(pcID as! Int)
+//                }
+//                self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
+//                
+//            })
+//
+//        }
     }
     
     func isSubscribedTo(podcast: Podcast) -> Bool {
         return subscriptions.contains(podcast)
     }
+    
+    func saveSubscriptionsLocally() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(subscriptions, toFile: Podcast.ArchiveURL.path!)
+        if isSuccessfulSave {
+            print("saved podcasts locally")
+        } else {
+            print("failed to save podcasts locally")
+        }
+    }
+    
+    func loadLocalSubscriptions() -> [Podcast]? {
+        if let localPodcasts = NSKeyedUnarchiver.unarchiveObjectWithFile(Podcast.ArchiveURL.path!) as? [Podcast] {
+            for pc in localPodcasts {
+                if !subscriptions.contains(pc) {
+                    subscriptions.append(pc)
+                }
+             }
+            print("loaded \(localPodcasts.count) from local storage")
+            return localPodcasts
+            
+        } else {
+            return nil
+        }
+    }
+    
 }
 
 
@@ -145,6 +177,7 @@ extension User: APIControllerProtocol {
         let resultsArray = results["results"] as! NSArray
         dispatch_async(dispatch_get_main_queue(), {
             self.subscriptions = Podcast.podcastsWithJSON(resultsArray).reverse()
+            self.saveSubscriptionsLocally()
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
             print("about to post notification")
             NSNotificationCenter.defaultCenter().postNotificationName(User.subscriptionUpdateKey, object: self)

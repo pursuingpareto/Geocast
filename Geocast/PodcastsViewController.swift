@@ -26,20 +26,15 @@ class PodcastsViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+        user.loadLocalSubscriptions()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userSubscriptionsUpdated", name: User.subscriptionUpdateKey, object: nil)
-//        user.updateSubscriptions()
-//        let testObject = PFObject(className: "TestObject")
-//        testObject["foo"] = "bar"
-//        testObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-//            print("Object has been saved.")
-//        }
         
         let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addPodcast:")
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = editButtonItem()
 
         super.viewDidLoad()
-//        user.subscribe(testPodcast)
         podcasts = user.getSubscriptions()
         
         
@@ -67,7 +62,6 @@ class PodcastsViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        user.updateSubscriptions()
         podcasts = user.getSubscriptions()
 
         self.podcastsTableView.reloadData()
