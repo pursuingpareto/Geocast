@@ -74,17 +74,6 @@ class EpisodesViewController: UIViewController {
         setTextForSubscribeButton() 
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if let playerViewController = segue.destinationViewController as? PlayerViewController {
-            let episodeIndex = episodesTableView.indexPathForSelectedRow!.row
-            let detailEpisode = self.episodes[episodeIndex]
-            playerViewController.episode = detailEpisode
-            let navPlayerViewController = self.tabBarController?.viewControllers?[2] as! PlayerViewController
-            navPlayerViewController.episode = detailEpisode
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -175,9 +164,6 @@ class EpisodesViewController: UIViewController {
                 self.podcastImageView.image = image
             })
         }
-        
-        // Download an NSData representation of the image at the URL
-        
     }
 }
 
