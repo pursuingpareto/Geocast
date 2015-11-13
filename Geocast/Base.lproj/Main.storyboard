@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Podcasts View Controller-->
+        <!--Podcasts-->
         <scene sceneID="w4c-Lx-21V">
             <objects>
                 <tableViewController id="SOH-oX-xiL" customClass="PodcastsViewController" customModule="Geocast" customModuleProvider="target" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
                             <outlet property="delegate" destination="SOH-oX-xiL" id="nCT-VG-tfk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="y8r-Oy-gEK"/>
+                    <navigationItem key="navigationItem" title="Podcasts" id="y8r-Oy-gEK"/>
                     <connections>
                         <outlet property="podcastsTableView" destination="BEf-aG-g71" id="Zdv-lN-arJ"/>
                         <segue destination="cYM-cX-hBa" kind="show" identifier="searchSegue" id="PI8-GL-MVk"/>
@@ -659,6 +659,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Irc-O4-UqK"/>
+        <segue reference="8U2-YW-le5"/>
     </inferredMetricsTieBreakers>
 </document>

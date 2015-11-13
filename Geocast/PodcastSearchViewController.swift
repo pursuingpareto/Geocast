@@ -26,12 +26,29 @@ class PodcastSearchViewController: UITableViewController {
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = "Search for Podcasts"
+            controller.hidesNavigationBarDuringPresentation = false
             self.tableView.tableHeaderView = controller.searchBar
             return controller
         })()
+        navigationItem.title = "Search"
+        resultSearchController.delegate = self
+        print("SearchDisplayController is \(searchDisplayController)")
         
         self.tableView.reloadData()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        resultSearchController.searchBar.text = nil
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        print("View did appear")
+        super.viewDidAppear(animated)
+        resultSearchController.active = true
+        resultSearchController.searchBar.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,17 +116,20 @@ extension PodcastSearchViewController: UISearchResultsUpdating {
     }
 }
 
+extension PodcastSearchViewController: UISearchControllerDelegate {
+    func didPresentSearchController(searchController: UISearchController) {
+        print("Did present search controller")
+        searchController.searchBar.becomeFirstResponder()
+    }
+}
+
 extension PodcastSearchViewController: APIControllerProtocol {
     func didReceiveAPIResults(results: NSDictionary) {
-
         let resultsArray = results["results"] as! NSArray
-
         dispatch_async(dispatch_get_main_queue(), {
             self.filteredPodcasts = Podcast.podcastsWithJSON(resultsArray)
             self.tableView.reloadData()
-
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         })
-        
     }
 }
