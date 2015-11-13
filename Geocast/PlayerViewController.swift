@@ -66,10 +66,12 @@ class PlayerViewController: UIViewController {
     }
     
     func setTextForSubscribeButton() {
-        if User.sharedInstance.isSubscribedTo((episode?.podcast)!) {
-            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
-        } else {
-            subscribeButton.setTitle("Subscribe", forState: .Normal)
+        if let episode = episode {
+            if User.sharedInstance.isSubscribedTo((episode.podcast)!) {
+                subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+            } else {
+                subscribeButton.setTitle("Subscribe", forState: .Normal)
+            }
         }
     }
     
