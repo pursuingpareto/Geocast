@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import MediaPlayer
 
 class PlayerViewController: UIViewController {
     
@@ -19,6 +20,9 @@ class PlayerViewController: UIViewController {
     var progress: Float = 0.0
     var totalSeconds : Float = 0.0
     var popupText: String? = nil
+    var imageCache = [String : UIImage]()
+    var image: UIImage?
+
     
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var podcastTitle: UILabel!
@@ -132,6 +136,8 @@ class PlayerViewController: UIViewController {
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
 
         if let episode = episode {
+            assignImage(episode.podcast.largeImageURL)
+            
             var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
             
             let mins: Int!
@@ -157,6 +163,36 @@ class PlayerViewController: UIViewController {
             let playerItem = AVPlayerItem(URL: url!)
             audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
             
+//            let albumArt = MPMediaItemArtwork(image: image!)
+            
+            if NSClassFromString("MPNowPlayingInfoCenter") != nil {
+                var songInfo = [
+                    MPMediaItemPropertyArtist: episode.podcast.title,
+                    MPMediaItemPropertyTitle: episode.title,
+                    MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
+//                    MPMediaItemPropertyArtwork: albumArt
+                ]
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
+            }
+            
+            try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
+            try! AVAudioSession.sharedInstance().setActive(true)
+            
+            do {
+                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            }
+            catch {
+                print("Audio session error.")
+            }
+            
+//            if (AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)) {
+//                print("Receiving remote control events"),
+//                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+//            }
+//            else {
+//                print("Audio Session error.")
+//            }
+            
         }
         else {
             progressBar.hidden = true
@@ -172,6 +208,46 @@ class PlayerViewController: UIViewController {
             noEpisodeLabel.hidden = false
         }
 
+    }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        if event!.type == UIEventType.RemoteControl {
+            if event?.subtype == UIEventSubtype.RemoteControlPlay {
+                audioPlayer.play()
+                print("remote play")
+            }
+            else if event?.subtype == UIEventSubtype.RemoteControlPause {
+                audioPlayer.pause()
+                print("remote pause")
+            }
+            else if event?.subtype == UIEventSubtype.RemoteControlNextTrack {
+                // Put in logic to move to next track
+            }
+            else if event?.subtype == UIEventSubtype.RemoteControlPreviousTrack {
+                // Put in logic to move to previous track
+            }
+
+        }
+    }
+    
+    func assignImage(url:String) {
+        
+        var imgURL: NSURL = NSURL(string: url)!
+        image = self.imageCache[url]
+        if image == nil {
+            let request: NSURLRequest = NSURLRequest(URL: imgURL)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                if error == nil {
+                    self.image = UIImage(data: data!)
+                    
+                    // Store the image in to our cache
+                    self.imageCache[url] = self.image
+                    print(self.image)
+                } else {
+                    print("Error: \(error!.localizedDescription)")
+                }
+            })
+        }
     }
     
     func displaySuccessfulTagPopup() {
