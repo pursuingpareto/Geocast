@@ -30,34 +30,6 @@ class User : NSObject {
         } else {
             subscriptions.append(podcast)
             saveSubscriptionsLocally()
-            
-            // try to get Podcast associated with annotation
-//            var query = PFQuery(className: "Podcast")
-//            query.whereKey("collectionId", equalTo: podcast.collectionId)
-//            query.findObjectsInBackgroundWithBlock({
-//                (objects: [PFObject]?, error: NSError?) -> Void in
-//                var pfPodcast: PFObject!
-//                
-//                if error == nil && objects?.count > 0 {
-//                    // podcast exists
-//                    
-//                    print("PODCAST EXISTS")
-//                    
-//                    pfPodcast = objects![0]
-//                    
-//                    print(pfPodcast)
-//                } else {
-//                    
-//                    print("CREATING PODCAST IN PARSE")
-//                    pfPodcast = podcast.saveToParse()
-//                }
-//
-//                PFUser.currentUser()!.addUniqueObject(pfPodcast, forKey: "subscriptions")
-//                PFUser.currentUser()!.saveInBackgroundWithBlock({
-//                    (success, error) in
-//                    self.saveSubscriptionsLocally()
-//                })
-//            })
             return true
         }
     }
@@ -69,28 +41,6 @@ class User : NSObject {
             subscriptions.removeAtIndex(index!)
             print("subscriptions has length \(subscriptions.count)")
             saveSubscriptionsLocally()
-//            var query = PFQuery(className: "Podcast")
-//            query.whereKey("collectionId", equalTo: podcast.collectionId)
-//            query.findObjectsInBackgroundWithBlock({
-//                (objects: [PFObject]?, error: NSError?) -> Void in
-//                var pfPodcast: PFObject!
-//                
-//                if error == nil && objects?.count > 0 {
-//                    // podcast exists
-//                    print("Removing PFPodcast...")
-//                    PFUser.currentUser()!.removeObjectsInArray(objects!, forKey: "subscriptions")
-//                    PFUser.currentUser()!.saveInBackgroundWithBlock({
-//                        (success, error) in
-//                        self.saveSubscriptionsLocally()
-//                    })
-//                    
-//
-//                } else {
-//                    
-//                    print("ERROR REMOVING FROM PARSE")
-//
-//                }
-//            })
             return true
         } else {
             return false
@@ -106,39 +56,7 @@ class User : NSObject {
     }
     
     func updateSubscriptions() {
-//        let query = PFQuery(className: "_User")
-//        query.includeKey("subscriptions")
-//        
-//        if PFUser.currentUser()!.objectId == nil {
-//            PFUser.currentUser()!.saveInBackgroundWithBlock({
-//                (success, error) in
-//                let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
-//                    (result, error) in
-//                    print(result)
-//                    let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
-//                    var podcastIDs : [Int] = []
-//                    for pfPodcast in pfPodcasts {
-//                        var pcID = pfPodcast["collectionId"]
-//                        podcastIDs.append(pcID as! Int)
-//                    }
-//                    self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
-//                })
-//            })
-//        } else {
-//            let user = query.getObjectInBackgroundWithId(PFUser.currentUser()!.objectId!, block: {
-//                (result, error) in
-//                print(result)
-//                let pfPodcasts : [PFObject] = result!["subscriptions"] as! [PFObject]
-//                var podcastIDs : [Int] = []
-//                for pfPodcast in pfPodcasts {
-//                    var pcID = pfPodcast["collectionId"]
-//                    podcastIDs.append(pcID as! Int)
-//                }
-//                self.iTunesAPI.lookupMultiplePodcasts(podcastIDs)
-//                
-//            })
-//
-//        }
+
     }
     
     func isSubscribedTo(podcast: Podcast) -> Bool {
