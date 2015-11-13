@@ -137,7 +137,7 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
 
-        if let episode = episode {
+        if let episode = audioPlayer.episode {
             assignImage(episode.podcast.largeImageURL)
             
             var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }

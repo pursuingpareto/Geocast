@@ -36,12 +36,13 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.hidden = true
         tableView.dataSource = self
         tableView.frame = mapView.frame
         tableView.delegate = self
         
-        tableView.removeFromSuperview()
+//        tableView.removeFromSuperview()
         
         view.bringSubviewToFront(mapView)
         view.sendSubviewToBack(tableView)
@@ -72,38 +73,19 @@ class MapViewController: UIViewController {
         case 0:
             tableView.hidden = true
             mapView.hidden = false
-//            tableView.removeFromSuperview()
-//            view.addSubview(mapView)
-            tableView.userInteractionEnabled = false
-            mapView.userInteractionEnabled = true
-//            view.sendSubviewToBack(tableView)
-//            view.bringSubviewToFront(mapView)
+
             print("map view selected")
         case 1:
-//            view.addSubview(tableView)
-//            mapView.removeFromSuperview()
+
             tableView.reloadData()
             tableView.hidden  = false
             mapView.hidden = true
-            
-            tableView.userInteractionEnabled = true
-            mapView.userInteractionEnabled = false
-//            view.sendSubviewToBack(mapView)
-//            view.bringSubviewToFront(tableView)
-            tableView.delegate = self
             print("table view selected")
         default:
             break; 
         }
         
     }
-
-    
-//    func createTableView() -> UITableView {
-//        let tv = UITableView(frame: mapView.frame)
-//        tv.dataSource = self
-//        return tv
-//    }
     
     @IBAction func redoSearchInArea(sender: UIButton) {
         print("mapView is \(mapView)")
@@ -209,7 +191,11 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation as? MapEpisodeAnnotation {
-            performSegueWithIdentifier("showPlayerFromMap", sender: annotation)
+//            performSegueWithIdentifier("showPlayerFromMap", sender: annotation)
+            PodcastPlayer.sharedInstance.episode = annotation.episode
+            self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+            
+            
             print("Performing segue to player from map... sender is \(annotation)")
         }
     }
@@ -254,6 +240,8 @@ extension MapViewController: UITableViewDataSource {
 extension MapViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let annotation = annotations[indexPath.row]
-        performSegueWithIdentifier("showPlayerFromMap", sender: annotation)
+//        performSegueWithIdentifier("showPlayerFromMap", sender: annotation)
+        PodcastPlayer.sharedInstance.episode = annotation.episode
+        self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
     }
 }

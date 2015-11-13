@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 class PodcastPlayer: AVPlayer {
+    var episode: Episode?
     class var sharedInstance: PodcastPlayer {
         struct Singleton {
             static let instance = PodcastPlayer()
