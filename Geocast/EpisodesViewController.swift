@@ -281,12 +281,10 @@ extension EpisodesViewController: UITableViewDataSource {
     }
 }
 extension EpisodesViewController: UITableViewDelegate {
-//    func tableView(tableView: UITableView,
-//        didSelectRowAtIndexPath indexPath: NSIndexPath){
-//            println(indexPath)
-//            //            let detailsVC = DetailsViewController(nibName: "DetailsViewController", bundle: nil)
-//            //            detailsVC.entryUrl = entriesArray[indexPath.row]["link"]
-//            //            detailsVC.entryTitle = entriesArray[indexPath.row]["title"]
-//            //            self.navigationController?.pushViewController(detailsVC, animated: true)
-//    }
+    func tableView(tableView: UITableView,
+        didSelectRowAtIndexPath indexPath: NSIndexPath){
+            let ep = episodes[indexPath.row]
+            PodcastPlayer.sharedInstance.episode = ep
+            self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+    }
 }
