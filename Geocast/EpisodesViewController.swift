@@ -21,6 +21,7 @@ class EpisodesViewController: UIViewController {
     var podcast: Podcast!
     var episodes: [Episode]! = Array()
     var imageCache = [String : UIImage]()
+    var customRefreshControl = UIRefreshControl()
     
     var xmlParser: NSXMLParser!
     var entryTitle: String!
@@ -52,29 +53,19 @@ class EpisodesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        customRefreshControl.tintColor = UIColor.whiteColor()
+        customRefreshControl.backgroundColor = UIColor(red:15/255, green: 65/255, blue: 79/255, alpha: 1)
+        customRefreshControl.addTarget(self, action: "refreshEpisodes", forControlEvents: UIControlEvents.ValueChanged)
+        episodesTableView.addSubview(customRefreshControl)
+
         //1
         self.episodesTableView.estimatedRowHeight = 40.0
         //2
         
         episodesTableView.delegate = self
         episodesTableView.dataSource = self
-        let feedUrl = podcast.feedUrl
         
-        let urlString = NSURL(string: feedUrl)
-        let rssUrlRequest:NSURLRequest = NSURLRequest(URL:urlString!)
-        let queue:NSOperationQueue = NSOperationQueue()
-        
-        NSURLConnection.sendAsynchronousRequest(rssUrlRequest, queue: queue) {
-            (response, data, error) -> Void in
-            //3
-
-            self.xmlParser = NSXMLParser(data: data!)
-            
-            self.xmlParser.delegate = self
-            
-            self.xmlParser.shouldProcessNamespaces = true
-            self.xmlParser.parse()
-        }
+        queryEpisodes()
         
     }
     
@@ -96,6 +87,32 @@ class EpisodesViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func refreshEpisodes() {
+        queryEpisodes()
+        self.customRefreshControl.endRefreshing()
+    }
+
+    func queryEpisodes() {
+        let feedUrl = podcast.feedUrl
+        
+        let urlString = NSURL(string: feedUrl)
+        let rssUrlRequest:NSURLRequest = NSURLRequest(URL:urlString!)
+        let queue:NSOperationQueue = NSOperationQueue()
+        
+        NSURLConnection.sendAsynchronousRequest(rssUrlRequest, queue: queue) {
+            (response, data, error) -> Void in
+            //3
+            
+            self.xmlParser = NSXMLParser(data: data!)
+            
+            self.xmlParser.delegate = self
+            
+            self.xmlParser.shouldProcessNamespaces = true
+            self.xmlParser.parse()
+        }
+
     }
     
     func setTextForSubscribeButton() {

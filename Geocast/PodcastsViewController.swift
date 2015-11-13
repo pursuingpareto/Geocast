@@ -19,10 +19,16 @@ class PodcastsViewController: UITableViewController {
     var user : User = User.sharedInstance
     var podcasts : [Podcast] = [Podcast]()
     var imageCache = [String : UIImage]()
-    
+    var customRefreshControl = UIRefreshControl()
+   
     var testPodcast = Podcast(title: "Radiolab", thumbnailImageURL: "", largeImageURL: "", collectionId: 152249110, episodeCount: 144, feedUrl: "http://feeds.wnyc.org/radiolab", lastUpdated: "")
     
     lazy var iTunesAPI : APIController = APIController(delegate: self)
+    
+    func refreshPodcasts() {
+        iTunesAPI.lookupMultiplePodcasts(podcastIds)
+        self.customRefreshControl.endRefreshing()
+    }
     
     override func viewDidLoad() {
         
@@ -33,6 +39,12 @@ class PodcastsViewController: UITableViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addPodcast:")
         self.navigationItem.rightBarButtonItem = addButton
         self.navigationItem.leftBarButtonItem = editButtonItem()
+        
+        customRefreshControl.tintColor = UIColor.whiteColor()
+        customRefreshControl.backgroundColor = UIColor(red:15/255, green: 65/255, blue: 79/255, alpha: 1)
+        customRefreshControl.addTarget(self, action: "refreshPodcasts", forControlEvents: UIControlEvents.ValueChanged)
+        podcastsTableView.addSubview(customRefreshControl)
+
 
         super.viewDidLoad()
         podcasts = user.getSubscriptions()
