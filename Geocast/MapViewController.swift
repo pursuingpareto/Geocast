@@ -72,24 +72,26 @@ class MapViewController: UIViewController {
         case 0:
             tableView.hidden = true
             mapView.hidden = false
-            tableView.removeFromSuperview()
-            view.addSubview(mapView)
+//            tableView.removeFromSuperview()
+//            view.addSubview(mapView)
             tableView.userInteractionEnabled = false
             mapView.userInteractionEnabled = true
-            view.sendSubviewToBack(tableView)
-            view.bringSubviewToFront(mapView)
+//            view.sendSubviewToBack(tableView)
+//            view.bringSubviewToFront(mapView)
+            print("map view selected")
         case 1:
-            view.addSubview(tableView)
-            mapView.removeFromSuperview()
+//            view.addSubview(tableView)
+//            mapView.removeFromSuperview()
             tableView.reloadData()
             tableView.hidden  = false
             mapView.hidden = true
             
             tableView.userInteractionEnabled = true
             mapView.userInteractionEnabled = false
-            view.sendSubviewToBack(mapView)
-            view.bringSubviewToFront(tableView)
+//            view.sendSubviewToBack(mapView)
+//            view.bringSubviewToFront(tableView)
             tableView.delegate = self
+            print("table view selected")
         default:
             break; 
         }

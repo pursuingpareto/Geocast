@@ -201,7 +201,7 @@
                                             <outlet property="episodeTitle" destination="fZ6-sv-iQG" id="sv5-tx-ZKv"/>
                                             <outlet property="playedIndicator" destination="gpW-Pq-Pt9" id="c2e-q4-xar"/>
                                             <outlet property="publicationDate" destination="lC8-bW-Nhm" id="QvT-Eo-ccS"/>
-                                            <segue destination="yyZ-no-Vza" kind="show" identifier="showPlayerSegue" id="zk8-Rb-VWd"/>
+                                            <segue destination="yyZ-no-Vza" kind="show" identifier="showPlayerFromEpisodeList" id="zk8-Rb-VWd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -661,7 +661,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lUm-5A-jva"/>
         <segue reference="Irc-O4-UqK"/>
+        <segue reference="zk8-Rb-VWd"/>
     </inferredMetricsTieBreakers>
 </document>

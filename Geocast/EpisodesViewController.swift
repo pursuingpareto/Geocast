@@ -75,6 +75,7 @@ class EpisodesViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if let playerViewController = segue.destinationViewController as? PlayerViewController {
             let episodeIndex = episodesTableView.indexPathForSelectedRow!.row
             let detailEpisode = self.episodes[episodeIndex]
