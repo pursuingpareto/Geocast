@@ -124,19 +124,6 @@ class PlayerViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setTextForSubscribeButton()
-        
-            
-        if popupText != nil {
-            displaySuccessfulTagPopup()
-            popupText = nil
-        }
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
-
         if let episode = audioPlayer.episode {
             assignImage(episode.podcast.largeImageURL)
             
@@ -165,14 +152,14 @@ class PlayerViewController: UIViewController {
             let playerItem = AVPlayerItem(URL: url!)
             audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
             
-//            let albumArt = MPMediaItemArtwork(image: image!)
+            //            let albumArt = MPMediaItemArtwork(image: image!)
             
             if NSClassFromString("MPNowPlayingInfoCenter") != nil {
                 var songInfo = [
                     MPMediaItemPropertyArtist: episode.podcast.title,
                     MPMediaItemPropertyTitle: episode.title,
                     MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
-//                    MPMediaItemPropertyArtwork: albumArt
+                    //                    MPMediaItemPropertyArtwork: albumArt
                 ]
                 MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
             }
@@ -187,13 +174,13 @@ class PlayerViewController: UIViewController {
                 print("Audio session error.")
             }
             
-//            if (AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)) {
-//                print("Receiving remote control events"),
-//                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-//            }
-//            else {
-//                print("Audio Session error.")
-//            }
+            //            if (AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)) {
+            //                print("Receiving remote control events"),
+            //                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            //            }
+            //            else {
+            //                print("Audio Session error.")
+            //            }
             
         }
         else {
@@ -209,7 +196,18 @@ class PlayerViewController: UIViewController {
             subscribeButton.hidden = true
             noEpisodeLabel.hidden = false
         }
-
+        
+            
+        if popupText != nil {
+            displaySuccessfulTagPopup()
+            popupText = nil
+        }
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
     }
     
     override func remoteControlReceivedWithEvent(event: UIEvent?) {
