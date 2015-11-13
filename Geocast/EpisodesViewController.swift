@@ -9,12 +9,6 @@
 import UIKit
 
 class EpisodesViewController: UIViewController {
-
-    
-    @IBOutlet weak var podcastTitle: UILabel!
-    
-    @IBOutlet weak var subscribeButton: UIButton!
-    @IBOutlet weak var podcastImageView: UIImageView!
     
     @IBOutlet weak var episodesTableView: UITableView!
     
@@ -53,13 +47,13 @@ class EpisodesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customRefreshControl.tintColor = UIColor.whiteColor()
-        customRefreshControl.backgroundColor = UIColor(red:15/255, green: 65/255, blue: 79/255, alpha: 1)
-        customRefreshControl.addTarget(self, action: "refreshEpisodes", forControlEvents: UIControlEvents.ValueChanged)
-        episodesTableView.addSubview(customRefreshControl)
+//        customRefreshControl.tintColor = UIColor.whiteColor()
+//        customRefreshControl.backgroundColor = UIColor(red:15/255, green: 65/255, blue: 79/255, alpha: 1)
+//        customRefreshControl.addTarget(self, action: "refreshEpisodes", forControlEvents: UIControlEvents.ValueChanged)
+//        episodesTableView.addSubview(customRefreshControl)
 
         //1
-        self.episodesTableView.estimatedRowHeight = 40.0
+//        self.episodesTableView.estimatedRowHeight = 40.0
         //2
         
         episodesTableView.delegate = self
@@ -71,7 +65,7 @@ class EpisodesViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setTextForSubscribeButton() 
+//        setTextForSubscribeButton() 
     }
     
     override func didReceiveMemoryWarning() {
@@ -105,13 +99,13 @@ class EpisodesViewController: UIViewController {
 
     }
     
-    func setTextForSubscribeButton() {
-        if User.sharedInstance.isSubscribedTo((podcast)!) {
-            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
-        } else {
-            subscribeButton.setTitle("Subscribe", forState: .Normal)
-        }
-    }
+//    func setTextForSubscribeButton() {
+//        if User.sharedInstance.isSubscribedTo((podcast)!) {
+//            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+//        } else {
+//            subscribeButton.setTitle("Subscribe", forState: .Normal)
+//        }
+//    }
     
     @IBAction func subscribeButtonClicked(sender: UIButton) {
         if User.sharedInstance.isSubscribedTo((podcast)!) {
@@ -137,10 +131,11 @@ class EpisodesViewController: UIViewController {
             print("subscribe button pressed, attempting to subscribe...")
             User.sharedInstance.subscribe((podcast)!)
         }
-        setTextForSubscribeButton()
+//        setTextForSubscribeButton()
     }
     
-    func assignImage(url:String) {
+    
+    func assignImage(toCellAtIndexPath indexPath: NSIndexPath, withUrl url:String) {
         
         var imgURL: NSURL = NSURL(string: url)!
         var image = self.imageCache[url]
@@ -153,7 +148,9 @@ class EpisodesViewController: UIViewController {
                     // Store the image in to our cache
                     self.imageCache[url] = image
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.podcastImageView.image = image
+                        if let cellToUpdate = self.episodesTableView.cellForRowAtIndexPath(indexPath) as? PodcastSummaryCell {
+                            cellToUpdate.podcastImageView?.image = image
+                        }
                     })
                 } else {
                     print("Error: \(error!.localizedDescription)")
@@ -161,10 +158,16 @@ class EpisodesViewController: UIViewController {
             })
         } else {
             dispatch_async(dispatch_get_main_queue(), {
-                self.podcastImageView.image = image
+                if let cellToUpdate = self.episodesTableView.cellForRowAtIndexPath(indexPath) as? PodcastSummaryCell {
+                    cellToUpdate.podcastImageView?.image = image
+                }
             })
         }
+        
+        // Download an NSData representation of the image at the URL
+        
     }
+    
 }
 
 extension EpisodesViewController: NSXMLParserDelegate {
@@ -235,8 +238,8 @@ extension EpisodesViewController: NSXMLParserDelegate {
             }
 
             self.episodesTableView.reloadData()
-            self.podcastTitle.text = self.podcast.title
-            self.assignImage(self.podcast.thumbnailImageURL)
+//            self.podcastTitle.text = self.podcast.title
+//            self.assignImage(self.podcast.thumbnailImageURL)
         })
     }
 }
@@ -245,25 +248,40 @@ extension EpisodesViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("podcastSummaryCell")! as! PodcastSummaryCell
+                cell.podcastTitle.text = podcast.title
+                cell.podcastSummary.text = "example podcast summary"
+                assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
+                if User.sharedInstance.isSubscribedTo(podcast) {
+                    cell.subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+                } else {
+                    cell.subscribeButton.setTitle("Subscribe", forState: .Normal)
+                }
+                return cell
+                
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("episodeCell")! as! EpisodeCell
+                let episode = episodes[indexPath.row - 1]
+                
+                //            if (nil == cell){
+                //                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "episodeCell")
+                //            }
+                
+                cell.episodeTitle.text = episode.title
+                cell.duration.text = episode.duration
+                
+                let publicationDate = episode.pubDate
+                
+                cell.publicationDate.text = publicationDate.substringToIndex(publicationDate.startIndex.advancedBy(17))
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                return cell
+            }
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("episodeCell")! as! EpisodeCell
-            
-//            if (nil == cell){
-//                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "episodeCell")
-//            }
-
-            cell.episodeTitle.text = episodes[indexPath.row].title
-            cell.duration.text = episodes[indexPath.row].duration
-            
-            let publicationDate = episodes[indexPath.row].pubDate
-            
-            cell.publicationDate.text = publicationDate.substringToIndex(publicationDate.startIndex.advancedBy(17))
-            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            return cell
     }
     func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int{
-            return episodes.count
+            return episodes.count + 1
     }
 }
 extension EpisodesViewController: UITableViewDelegate {
@@ -273,5 +291,21 @@ extension EpisodesViewController: UITableViewDelegate {
             print("EPISODE IS \(ep.title)")
             PodcastPlayer.sharedInstance.episode = ep
             self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+    }
+    
+//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.row == 0 {
+//            return 120
+//        } else {
+//            return 91
+//        }
+//    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 150
+        } else {
+            return 91
+        }
     }
 }
