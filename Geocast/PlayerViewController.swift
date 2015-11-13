@@ -109,6 +109,7 @@ class PlayerViewController: UIViewController {
     }
     
     @IBAction func progressBarChanged(sender: UISlider) {
+        print("Progress bar changed")
         progress = sender.value
         let seconds = Int64(progress * totalSeconds)
         
@@ -122,9 +123,11 @@ class PlayerViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("VIEW WILL APPEAR")
         super.viewWillAppear(animated)
         setTextForSubscribeButton()
-        if let episode = audioPlayer.episode {
+        if let episode = PodcastPlayer.sharedInstance.episode {
+            print("Assigned episode to PodcastPlayer's episode")
             assignImage(episode.podcast.largeImageURL)
             
             var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
@@ -182,6 +185,17 @@ class PlayerViewController: UIViewController {
             //                print("Audio Session error.")
             //            }
             
+            progressBar.hidden = false
+            trackTitle.hidden = false
+            podcastTitle.hidden = false
+            episodeSummary.hidden = false
+            remainingTime.hidden = false
+            playedTime.hidden = false
+            playButton.hidden = false
+            locationTagButton.hidden = false
+            stopButton.hidden = false
+            subscribeButton.hidden = false
+            noEpisodeLabel.hidden = true
         }
         else {
             progressBar.hidden = true

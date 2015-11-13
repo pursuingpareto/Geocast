@@ -270,6 +270,7 @@ extension EpisodesViewController: UITableViewDelegate {
     func tableView(tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath){
             let ep = episodes[indexPath.row]
+            print("EPISODE IS \(ep.title)")
             PodcastPlayer.sharedInstance.episode = ep
             self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
     }
