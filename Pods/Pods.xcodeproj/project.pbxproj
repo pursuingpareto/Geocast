@@ -666,6 +666,7 @@
 		A09723F606F44E337FF816A76EAC78EC /* PFInternalUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFInternalUtils.m; path = Parse/Internal/PFInternalUtils.m; sourceTree = "<group>"; };
 		A0D19E90F696DB45F7CE7ABCB6C2FBDB /* PFACLPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PFACLPrivate.h; path = Parse/Internal/ACL/PFACLPrivate.h; sourceTree = "<group>"; };
 		A102FD301D02268BBA90D0A63A41CAF5 /* PFObjectFilePersistenceController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFObjectFilePersistenceController.m; path = Parse/Internal/Object/FilePersistence/PFObjectFilePersistenceController.m; sourceTree = "<group>"; };
+		A19873611BF7F565001A16EA /* TempView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TempView.xib; path = ../TempView.xib; sourceTree = "<group>"; };
 		A1E0687B88FDD528A1BF84BC0C284A6E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		A23BC4FFFE1B01C11FD7C87FEA8F14C5 /* PFThreadsafety.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFThreadsafety.m; path = Parse/Internal/ThreadSafety/PFThreadsafety.m; sourceTree = "<group>"; };
 		A32021B8BC696733F693C3311E65BAAE /* PFMutableUserState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PFMutableUserState.m; path = Parse/Internal/User/State/PFMutableUserState.m; sourceTree = "<group>"; };
@@ -958,6 +959,7 @@
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
+				A19873611BF7F565001A16EA /* TempView.xib */,
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				44E5CA6134C04B093AD8C39BAB4EFD8E /* Frameworks */,
 				4B657238145A298E2C2E0ED134EA9AA7 /* Pods */,

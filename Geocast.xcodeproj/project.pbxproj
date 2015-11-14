@@ -42,6 +42,7 @@
 		A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */; };
 		A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D97F1BF537BA002FE51D /* Subscription.swift */; };
 		A1D3D9821BF68A6E002FE51D /* PodcastSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */; };
+		A1D3D9841BF7D3EE002FE51D /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */; };
 		D326565350FA11D3EEF9E566 /* Pods_Geocast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		A1D3D97F1BF537BA002FE51D /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSummaryCell.swift; sourceTree = "<group>"; };
+		A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
 		C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Geocast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9CDE51A8A2C656824AFD3 /* Pods-Geocast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.release.xcconfig"; sourceTree = "<group>"; };
 		FB4F89D4D9007C899528F0E1 /* Pods-Geocast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.debug.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				A18035891BF27BC1003BC7F5 /* TagLocationController.swift */,
 				A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */,
 				A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */,
+				A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */,
 				A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */,
 				A11FD3471BF12DF500A83FDB /* MapViewController.swift */,
 				A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */,
@@ -393,6 +396,7 @@
 				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,
 				A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */,
 				A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */,
+				A1D3D9841BF7D3EE002FE51D /* MapAnnotationView.swift in Sources */,
 				A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */,
 				A11FD3441BF0154D00A83FDB /* PodcastCell.swift in Sources */,
 				A11FD33E1BEC39EA00A83FDB /* EpisodesViewController.swift in Sources */,

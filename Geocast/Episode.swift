@@ -85,6 +85,18 @@ class Episode: NSObject, NSCoding {
         return seconds
     }
     
+    class func durationAsString(durationInSeconds seconds: Int) -> String {
+        let hours = seconds / 3600
+        let mins = (seconds - (hours * 3600)) / 60
+        let secs = (seconds - (hours * 3600) - (mins * 60))
+        if hours == 0 {
+            return "\(mins):\(secs)"
+        } else {
+            return "\(hours):\(mins):\(secs)"
+        }
+        
+    }
+    
     init(parsedFeedData dataDict: Dictionary<String, String>, podcast: Podcast) {
         self.podcast = podcast
         self.approximateSecondsListenedToByUser = 0
@@ -114,7 +126,13 @@ class Episode: NSObject, NSCoding {
     @objc required convenience init?(coder aDecoder: NSCoder) {
         let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
         let mp3Url = aDecoder.decodeObjectForKey(PropertyKey.mp3UrlKey) as! String
-        let duration = aDecoder.decodeObjectForKey(PropertyKey.durationKey) as? Int
+        let duration: Int?
+        if let d = aDecoder.decodeObjectForKey(PropertyKey.durationKey) as? Int {
+            duration = d
+        } else {
+            duration = nil
+        }
+//        let duration = aDecoder.decodeObjectForKey(PropertyKey.durationKey) as? Int
         let pubDate = aDecoder.decodeObjectForKey(PropertyKey.pubDateKey) as! String
         let podcast = aDecoder.decodeObjectForKey(PropertyKey.podcastKey) as! Podcast
         

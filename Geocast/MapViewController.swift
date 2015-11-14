@@ -109,6 +109,21 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 extension MapViewController: MKMapViewDelegate {
+//    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+//        if let annotation = annotation as? MapEpisodeAnnotation {
+//            var view: MapAnnotationView
+//            let identifier = "mapAnnotation"
+//            if let dequedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MapAnnotationView{
+//                view = dequedView
+//                view.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
+//            } else {
+//                view = MapAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//                view.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
+//            }
+//            return view
+//        }
+//        return nil
+//    }
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if let annotation = annotation as? MapEpisodeAnnotation {
             let identifier = "tag"
@@ -118,20 +133,29 @@ extension MapViewController: MKMapViewDelegate {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
                 view.canShowCallout = true
-                view.image = annotation.image
-                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
+//                view.image = annotation.image
+//                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
+                let annotationView = MapAnnotationView()
+                annotationView.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
+                annotationView.setupConstraints()
+                view.leftCalloutAccessoryView = annotationView
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
-                view.rightCalloutAccessoryView = button
+//                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
+//                view.rightCalloutAccessoryView = button
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
-                view.image = annotation.image
-                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
-                print(view.image?.size)
+//                view.image = annotation.image
+//                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
+                
+                let annotationView = MapAnnotationView()
+                annotationView.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
+                annotationView.setupConstraints()
+                view.leftCalloutAccessoryView = annotationView
+
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
-                view.rightCalloutAccessoryView = button
+//                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
+//                view.rightCalloutAccessoryView = button
             }
             return view
         }
