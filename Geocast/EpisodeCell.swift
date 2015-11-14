@@ -15,7 +15,6 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var duration: UILabel!
     
     @IBOutlet weak var publicationDate: UILabel!
-    
-    @IBOutlet weak var playedIndicator: UIView!
-    
+        
+    @IBOutlet weak var progressBar: UIProgressView!
 }
