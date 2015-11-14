@@ -266,6 +266,7 @@ extension EpisodesViewController: UITableViewDataSource {
                 } else {
                     cell.subscribeButton.setTitle("Subscribe", forState: .Normal)
                 }
+                cell.podcast = podcast
                 return cell
                 
             } else {

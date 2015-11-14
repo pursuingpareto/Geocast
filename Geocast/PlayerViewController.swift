@@ -56,6 +56,8 @@ class PlayerViewController: UIViewController {
         let minutes = currentTime / 60
         let seconds = currentTime - (minutes * 60)
         let currentFloatTime = Float(currentTime)
+
+        episode?.approximateSecondsListenedToByUser += 1
         
         let remainingIntTime = Int(totalSeconds) - currentTime
         let remainingMinutes = Int(remainingIntTime) / 60
@@ -66,7 +68,7 @@ class PlayerViewController: UIViewController {
         playedTime.text = NSString(format: "%02d:%02d", minutes, seconds) as String
         remainingTime.text = NSString(format: "%02d:%02d", remainingMinutes, remainingSeconds) as String
         
-        print(audioPlayer.currentItem?.timedMetadata)
+        print("The user has listened to \(episode?.approximateSecondsListenedToByUser) seconds of this episode")
     }
     
     func setTextForSubscribeButton() {
@@ -156,11 +158,12 @@ class PlayerViewController: UIViewController {
         print("VIEW WILL APPEAR")
         super.viewWillAppear(animated)
         setTextForSubscribeButton()
-        if let episode = PodcastPlayer.sharedInstance.episode {
+        if let ep = PodcastPlayer.sharedInstance.episode {
+            episode = ep
             print("Assigned episode to PodcastPlayer's episode")
-            assignImage(episode.podcast.largeImageURL)
+            assignImage(episode!.podcast.largeImageURL)
             
-            var minsSecs = episode.duration.characters.split {$0 == ":"}.map { String($0) }
+            var minsSecs = episode!.duration.characters.split {$0 == ":"}.map { String($0) }
             
             let mins: Int!
             let secs: Int!
@@ -175,13 +178,13 @@ class PlayerViewController: UIViewController {
             
             remainingTime.text = NSString(format: "%02d:%02d", mins, secs) as String
             totalSeconds = Float(60 * mins + secs)
-            trackTitle.text = episode.title
-            podcastTitle.text = episode.podcast.title
-            episodeSummary.text = episode.itunesSubtitle
+            trackTitle.text = episode!.title
+            podcastTitle.text = episode!.podcast.title
+            episodeSummary.text = episode!.itunesSubtitle
             progressBar.value = 0
             
             
-            let url = NSURL(string: episode.mp3Url)
+            let url = NSURL(string: episode!.mp3Url)
             let playerItem = AVPlayerItem(URL: url!)
 
 //            playerItem.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
@@ -195,8 +198,8 @@ class PlayerViewController: UIViewController {
             
             if NSClassFromString("MPNowPlayingInfoCenter") != nil {
                 var songInfo = [
-                    MPMediaItemPropertyArtist: episode.podcast.title,
-                    MPMediaItemPropertyTitle: episode.title,
+                    MPMediaItemPropertyArtist: episode!.podcast.title,
+                    MPMediaItemPropertyTitle: episode!.title,
                     MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
                     //                    MPMediaItemPropertyArtwork: albumArt
                 ]

@@ -63,6 +63,43 @@ class User : NSObject {
         return subscriptions.contains(podcast)
     }
     
+    func loadLocalEpisodes(forPodcast podcast: Podcast) -> [Episode]? {
+        if let localEps = NSKeyedUnarchiver.unarchiveObjectWithFile(Episode.archiveURLforPodcast(podcast).path!) as? [Episode] {
+            return localEps
+        } else {
+            return nil
+        }
+    }
+    
+    func updateLocalEpisodes(forPodcast podcast: Podcast, withEpisodes episodes: [Episode]) {
+        if let localEpsForPodcast = loadLocalEpisodes(forPodcast: podcast) {
+            var allPodcastEpisodes : [Episode] = []
+            var foundMatch: Bool = false
+            for episode in episodes {
+                for localEpisode in localEpsForPodcast {
+                    if episode.mp3Url == localEpisode.mp3Url {
+                        foundMatch = true
+                        allPodcastEpisodes.append(localEpisode)
+                        break
+                    }
+                }
+                if !foundMatch {
+                    allPodcastEpisodes.append(episode)
+                }
+            }
+            saveEpisodesLocally(allPodcastEpisodes, forPodcast: podcast)
+        }
+    }
+    
+    func saveEpisodesLocally(episodes: [Episode], forPodcast podcast: Podcast) {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(episodes, toFile: Episode.archiveURLforPodcast(podcast).path!)
+        if isSuccessfulSave {
+            print("saved podcasts locally")
+        } else {
+            print("failed to save podcasts locally")
+        }
+    }
+    
     func saveSubscriptionsLocally() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(subscriptions, toFile: Podcast.ArchiveURL.path!)
         if isSuccessfulSave {
