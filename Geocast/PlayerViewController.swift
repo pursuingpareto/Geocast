@@ -215,7 +215,9 @@ class PlayerViewController: UIViewController {
             trackTitle.text = episode!.title
             podcastTitle.text = episode!.podcast.title
             episodeSummary.text = episode!.itunesSubtitle
-            publicationDate.text = episode!.pubDate
+            
+            let pubDate = episode!.pubDate.substringToIndex(episode!.pubDate.startIndex.advancedBy(16))
+            publicationDate.text = pubDate
             progressBar.value = 0
             
             

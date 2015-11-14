@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import DateTools
 
 class PodcastsViewController: UITableViewController {
     
@@ -156,7 +157,16 @@ extension PodcastsViewController {
             
             let podcast = podcasts[indexPath.row]
             cell.titleLabel.text = podcast.title
-            cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(podcast.lastUpdated!)"
+            
+            var df = NSDateFormatter()
+            df.dateFormat = "yyyy-MM-dd"
+            
+            let lastDate = df.dateFromString(podcast.lastUpdated!)
+
+            if let lastDate = lastDate {
+                cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow())"
+            }
+            
             assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
             
             cell!.textLabel?.numberOfLines = 0
