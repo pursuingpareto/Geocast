@@ -199,11 +199,7 @@
                                         <rect key="frame" x="0.0" y="172" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xZb-uf-R5z" id="wwO-ag-CSc">
-<<<<<<< b7be3a217eb83db1e3afcc72a670658e1d60095a
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
-=======
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
->>>>>>> Got toolbar set up on player and arranged all items. Still need to do a bit of work on summary, tag button, and subscribe button.
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="episodeTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ6-sv-iQG">
