@@ -23,7 +23,6 @@ class PlayerViewController: UIViewController {
     var imageCache = [String : UIImage]()
     var image: UIImage?
 
-    
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var podcastTitle: UILabel!
     @IBOutlet weak var publicationDate: UILabel!
@@ -87,8 +86,10 @@ class PlayerViewController: UIViewController {
     func setTextForSubscribeButton() {
         if let episode = episode {
             if User.sharedInstance.isSubscribedTo((episode.podcast)!) {
+                print("user is subscribed to this podcast")
                 subscribeButton.setTitle("Unsubscribe", forState: .Normal)
             } else {
+                print("user is not subscribed to this podcast")
                 subscribeButton.setTitle("Subscribe", forState: .Normal)
             }
         }
@@ -98,7 +99,7 @@ class PlayerViewController: UIViewController {
         if User.sharedInstance.isSubscribedTo((episode?.podcast)!) {
             // TODO add confirmation popup?
             
-            let message = "Are you sure you want to unsubscribe from \(episode?.podcast.title)?"
+            let message = "Are you sure you want to unsubscribe from \(episode!.podcast.title)?"
             let alertController = UIAlertController(title: "Confirm Unsubscribe", message: message, preferredStyle: .Alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
                 (alert) in
@@ -109,6 +110,7 @@ class PlayerViewController: UIViewController {
                 (alert) in
                 print("Confirming unsubscribe...")
                 User.sharedInstance.unsubscribe((self.episode?.podcast)!)
+                self.setTextForSubscribeButton()
             })
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: {
@@ -215,6 +217,9 @@ class PlayerViewController: UIViewController {
             trackTitle.text = episode!.title
             podcastTitle.text = episode!.podcast.title
             episodeSummary.text = episode!.itunesSubtitle
+            
+            let pubDate = episode!.pubDate.substringToIndex(episode!.pubDate.startIndex.advancedBy(16))
+            publicationDate.text = pubDate
             progressBar.value = 0
             
             
@@ -228,28 +233,6 @@ class PlayerViewController: UIViewController {
             
             audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
             audioPlayer.currentItem?.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
-            
-            //            let albumArt = MPMediaItemArtwork(image: image!)
-            
-            if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-                var songInfo = [
-                    MPMediaItemPropertyArtist: episode!.podcast.title,
-                    MPMediaItemPropertyTitle: episode!.title,
-                    MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
-                    //                    MPMediaItemPropertyArtwork: albumArt
-                ]
-                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
-            }
-            
-            try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
-            try! AVAudioSession.sharedInstance().setActive(true)
-            
-            do {
-                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-            }
-            catch {
-                print("Audio session error.")
-            }
             
             //            if (AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)) {
             //                print("Receiving remote control events"),
@@ -269,6 +252,7 @@ class PlayerViewController: UIViewController {
             subscribeButton.hidden = false
             noEpisodeLabel.hidden = true
             publicationDate.hidden = false
+            playbackToolbar.hidden = false
         }
         else {
             progressBar.hidden = true
@@ -281,6 +265,7 @@ class PlayerViewController: UIViewController {
             subscribeButton.hidden = true
             noEpisodeLabel.hidden = false
             publicationDate.hidden = true
+            playbackToolbar.hidden = true
         }
         
             
@@ -290,6 +275,28 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    func setupRemoteControl(image: UIImage?) {
+        if NSClassFromString("MPNowPlayingInfoCenter") != nil {
+            var songInfo = [
+                MPMediaItemPropertyArtist: episode!.podcast.title,
+                MPMediaItemPropertyTitle: episode!.title,
+                MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
+            ]
+
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
+        }
+        
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
+        try! AVAudioSession.sharedInstance().setActive(true)
+        
+        do {
+            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        }
+        catch {
+            print("Audio session error.")
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -328,11 +335,17 @@ class PlayerViewController: UIViewController {
                     
                     // Store the image in to our cache
                     self.imageCache[url] = self.image
-                    print(self.image)
+                    
+                    self.setupRemoteControl(self.image)
+//                    print(self.image)
                 } else {
                     print("Error: \(error!.localizedDescription)")
+                    self.setupRemoteControl(self.image)
                 }
             })
+        }
+        else {
+            self.setupRemoteControl(self.image)
         }
     }
     

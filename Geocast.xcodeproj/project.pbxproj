@@ -250,6 +250,7 @@
 				A11FD30A1BEC05D500A83FDB /* Resources */,
 				EDB075D178DEB07CEE6F5A67 /* Embed Pods Frameworks */,
 				18DFC0D9FFAAD50913D41248 /* Copy Pods Resources */,
+				33DAD8331BF7DE38000BB581 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -352,6 +353,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Geocast/Pods-Geocast-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		33DAD8331BF7DE38000BB581 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 7574fdc0b390df4e959d855eff6dd404967dd85d 32ac714201e235b8a24e5848387b1f76b4c3d36170997d03c56d20b39d62032e";
 		};
 		B5EEC55CF01DF47D04336AB9 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
