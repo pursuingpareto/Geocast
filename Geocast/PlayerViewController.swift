@@ -215,6 +215,7 @@ class PlayerViewController: UIViewController {
             trackTitle.text = episode!.title
             podcastTitle.text = episode!.podcast.title
             episodeSummary.text = episode!.itunesSubtitle
+            publicationDate.text = episode!.pubDate
             progressBar.value = 0
             
             
@@ -269,6 +270,7 @@ class PlayerViewController: UIViewController {
             subscribeButton.hidden = false
             noEpisodeLabel.hidden = true
             publicationDate.hidden = false
+            playbackToolbar.hidden = false
         }
         else {
             progressBar.hidden = true
@@ -281,6 +283,7 @@ class PlayerViewController: UIViewController {
             subscribeButton.hidden = true
             noEpisodeLabel.hidden = false
             publicationDate.hidden = true
+            playbackToolbar.hidden = true
         }
         
             

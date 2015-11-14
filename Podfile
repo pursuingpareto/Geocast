@@ -3,5 +3,8 @@
 use_frameworks!
 
 target 'Geocast' do
-    pod 'Parse'
+    	pod 'Parse'
+	pod 'Fabric'
+	pod 'Crashlytics'
+	pod 'DateTools'
 end
