@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DateTools.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00A07AB01A7C3021B17C3B843EDB0B6B</key>
+		<key>141709171D1EFCD755771E84759E01AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4C9D91BC5166E9044DF89969B2512578</key>
+		<key>4E57901086B820F07D1D384D840526DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FFA011F250876C5BE8F579B575B48D57</key>
+		<key>D7F65D800E2EAB415D0377F19BECE3A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F44B086D53C14D48470ABA2B3975EE10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
