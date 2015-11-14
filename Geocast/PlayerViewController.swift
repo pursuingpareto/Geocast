@@ -122,6 +122,32 @@ class PlayerViewController: UIViewController {
         
     }
     
+    private var myContext = 0
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if context == &myContext {
+            if let newValue = change?[NSKeyValueChangeNewKey] {
+                print("Duration changed!")
+                let totalSecs = CMTimeGetSeconds((audioPlayer.currentItem?.duration)!)
+                totalSeconds = Float(totalSecs)
+                let mins = floor(totalSecs / 60.0)
+                let secs = ceil(totalSecs - 60.0 * mins)
+                print("mins: \(mins)\nsecs: \(secs)")
+                episode?.duration = "\(mins):\(secs)"
+                if let cmValue = newValue as? CMTime {
+                    print(CMTimeGetSeconds(cmValue))
+                }
+            } else {
+                super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            }
+            
+        }
+    }
+    
+    deinit {
+        audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         print("VIEW WILL APPEAR")
         super.viewWillAppear(animated)
@@ -153,7 +179,13 @@ class PlayerViewController: UIViewController {
             
             let url = NSURL(string: episode.mp3Url)
             let playerItem = AVPlayerItem(URL: url!)
+
+//            playerItem.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
+            
+            
+            
             audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
+            audioPlayer.currentItem?.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
             
             //            let albumArt = MPMediaItemArtwork(image: image!)
             

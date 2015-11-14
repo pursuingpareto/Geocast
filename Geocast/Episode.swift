@@ -8,12 +8,14 @@
 
 import Foundation
 import Parse
+import CoreMedia
 
-class Episode {
+class Episode: NSObject {
 //    var podcast : Podcast!
     var title: String!
     var mp3Url : String!
-    var duration: String!
+    dynamic var duration: String!
+    var gmDuration: CMTime?
     var pubDate: String!
     var podcast: Podcast!
     
@@ -60,7 +62,7 @@ class Episode {
         return pfEpisode
     }
     
-    var description : String {
+    override var description : String {
         return "title: \(title)\nduration: \(duration)\nmp3Url: \(mp3Url)\npubDate: \(pubDate)\nsummary: \(summary)\nitunesSum: \(itunesSummary)\nitunesSub: \(itunesSubtitle)\n\n"
     }
     
