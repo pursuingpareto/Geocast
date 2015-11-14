@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import Bolts
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFUser.currentUser()!.incrementKey("runCount")
         PFUser.currentUser()!["subscriptions"] = []
         PFUser.currentUser()!.saveInBackground()
+        
+        Fabric.sharedSDK().debug = true
+        Fabric.with([Crashlytics()])
         
 //        User.sharedInstance.updateSubscriptions()
         
