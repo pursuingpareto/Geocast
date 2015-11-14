@@ -33,7 +33,7 @@ class Episode: NSObject, NSCoding {
     
     var title: String!
     var mp3Url : String!
-    var duration: String!
+    var duration: Int?
     var gmDuration: CMTime?
     var pubDate: String!
     var podcast: Podcast!
@@ -47,7 +47,7 @@ class Episode: NSObject, NSCoding {
     var itunesSubtitle: String?
 //    var itunesExplicit: Bool = false
     
-    init(title: String, mp3Url: String, duration: String, pubDate: String, podcast: Podcast)  {
+    init(title: String, mp3Url: String, duration: Int?, pubDate: String, podcast: Podcast)  {
         self.title = title
         self.mp3Url = mp3Url
         self.duration = duration
@@ -56,12 +56,43 @@ class Episode: NSObject, NSCoding {
         self.approximateSecondsListenedToByUser = 0
      }
     
+    class func durationFromString(string: String) -> Int? {
+        var seconds: Int?
+        
+        var fractionalTime = string.characters.split { $0 == "." }.map { String($0) }
+        var wholeTime = fractionalTime[0]
+        var splitTime = wholeTime.characters.split { $0 == ":" }.map { String($0) }
+        switch splitTime.count {
+        case 1:
+            seconds = Int(splitTime[0])
+        case 2:
+            if let mins = Int(splitTime[0]) {
+                if let secs = Int(splitTime[1]) {
+                    seconds = 60 * mins + secs
+                }
+            }
+        case 3:
+            if let hours = Int(splitTime[0]) {
+                if let mins = Int(splitTime[1]) {
+                    if let secs = Int(splitTime[2]) {
+                        seconds = 3600 * hours + 60 * mins + secs
+                    }
+                }
+            }
+        default:
+            seconds = nil
+        }
+        return seconds
+    }
+    
     init(parsedFeedData dataDict: Dictionary<String, String>, podcast: Podcast) {
         self.podcast = podcast
         self.approximateSecondsListenedToByUser = 0
         self.title = dataDict["title"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         self.mp3Url = dataDict["mp3Url"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        self.duration = dataDict["itunes:duration"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        if let durationString: String = dataDict["itunes:duration"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
+            self.duration = Episode.durationFromString(durationString)
+        }
         self.pubDate = dataDict["pubDate"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         self.summary = dataDict["description"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         self.itunesSummary = dataDict["itunes:summary"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
@@ -69,21 +100,21 @@ class Episode: NSObject, NSCoding {
     }
     
     @objc func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(title, forKey: PropertyKey.titleKey) as! String
-        aCoder.encodeObject(mp3Url, forKey: PropertyKey.mp3UrlKey) as! String
-        aCoder.encodeObject(duration, forKey: PropertyKey.durationKey) as! String
-        aCoder.encodeObject(pubDate, forKey: PropertyKey.pubDateKey) as! String
-        aCoder.encodeObject(podcast, forKey: PropertyKey.podcastKey) as! Podcast
-        aCoder.encodeObject(approximateSecondsListenedToByUser, forKey: PropertyKey.approximateSecondsListenedToByUserKey) as! Int
-        aCoder.encodeObject(summary, forKey: PropertyKey.summaryKey) as? String
-        aCoder.encodeObject(itunesSubtitle, forKey: PropertyKey.itunesSubtitleKey) as? String
-        aCoder.encodeObject(itunesSummary, forKey: PropertyKey.itunesSummaryKey) as? String
+        aCoder.encodeObject(title, forKey: PropertyKey.titleKey)
+        aCoder.encodeObject(mp3Url, forKey: PropertyKey.mp3UrlKey)
+        aCoder.encodeObject(duration, forKey: PropertyKey.durationKey)
+        aCoder.encodeObject(pubDate, forKey: PropertyKey.pubDateKey)
+        aCoder.encodeObject(podcast, forKey: PropertyKey.podcastKey)
+        aCoder.encodeObject(approximateSecondsListenedToByUser, forKey: PropertyKey.approximateSecondsListenedToByUserKey)
+        aCoder.encodeObject(summary, forKey: PropertyKey.summaryKey)
+        aCoder.encodeObject(itunesSubtitle, forKey: PropertyKey.itunesSubtitleKey)
+        aCoder.encodeObject(itunesSummary, forKey: PropertyKey.itunesSummaryKey) 
     }
     
     @objc required convenience init?(coder aDecoder: NSCoder) {
         let title = aDecoder.decodeObjectForKey(PropertyKey.titleKey) as! String
         let mp3Url = aDecoder.decodeObjectForKey(PropertyKey.mp3UrlKey) as! String
-        let duration = aDecoder.decodeObjectForKey(PropertyKey.durationKey) as! String
+        let duration = aDecoder.decodeObjectForKey(PropertyKey.durationKey) as? Int
         let pubDate = aDecoder.decodeObjectForKey(PropertyKey.pubDateKey) as! String
         let podcast = aDecoder.decodeObjectForKey(PropertyKey.podcastKey) as! Podcast
         
@@ -104,7 +135,7 @@ class Episode: NSObject, NSCoding {
         self.podcast = Podcast(pfPodcast: pfEpisode["podcast"] as! PFObject)
         self.title = pfEpisode["title"] as! String
         self.mp3Url = pfEpisode["mp3Url"] as! String
-        self.duration = pfEpisode["duration"] as! String
+        self.duration = Episode.durationFromString(pfEpisode["duration"] as! String)
         self.pubDate = pfEpisode["pubDate"] as! String
         self.summary = pfEpisode["summary"] as? String
         self.itunesSummary = pfEpisode["itunesSummary"] as? String

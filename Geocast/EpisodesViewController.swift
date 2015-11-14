@@ -241,9 +241,11 @@ extension EpisodesViewController: NSXMLParserDelegate {
             self.podcast.summary = self.podcastDictionary["description"]
             self.podcast.author = self.podcastDictionary["itunes:author"]
             self.podcast.lastUpdated = self.podcastDictionary["lastBuildDate"]
+            var newEpisodes : [Episode] = []
             for entry in self.entriesArray {
-                self.episodes.append(Episode(parsedFeedData: entry, podcast:self.podcast))
+                newEpisodes.append(Episode(parsedFeedData: entry, podcast:self.podcast))
             }
+            self.episodes = User.sharedInstance.updateLocalEpisodes(forPodcast: self.podcast, withEpisodes: newEpisodes)
 
             self.episodesTableView.reloadData()
 //            self.podcastTitle.text = self.podcast.title
@@ -279,8 +281,16 @@ extension EpisodesViewController: UITableViewDataSource {
                 
                 cell.episodeTitle.text = episode.title
                 print("duration is \(episode.duration)")
-                let minutes = Int(episode.duration)! / 60
-                let seconds = Int(episode.duration)! - (minutes * 60)
+                var minutes: Int!
+                var seconds: Int!
+                if episode.duration != nil {
+                    // TODO - add hours support
+                    minutes = episode.duration! / 60
+                    seconds = episode.duration! - (minutes * 60)
+                } else {
+                    minutes = 10
+                    seconds = 10
+                }
                 
                 cell.duration.text = NSString(format: "%02d:%02d", minutes, seconds) as String
                 
@@ -305,14 +315,6 @@ extension EpisodesViewController: UITableViewDelegate {
             PodcastPlayer.sharedInstance.episode = ep
             self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
     }
-    
-//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if indexPath.row == 0 {
-//            return 120
-//        } else {
-//            return 91
-//        }
-//    }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {

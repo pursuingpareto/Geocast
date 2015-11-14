@@ -149,10 +149,10 @@ class PlayerViewController: UIViewController {
                 print("Duration changed!")
                 let totalSecs = CMTimeGetSeconds((audioPlayer.currentItem?.duration)!)
                 totalSeconds = Float(totalSecs)
-                let mins = floor(totalSecs / 60.0)
-                let secs = ceil(totalSecs - 60.0 * mins)
+                let mins = Int(totalSecs / 60.0)
+                let secs = Int(totalSecs) - 60 * mins
                 print("mins: \(mins)\nsecs: \(secs)")
-                episode?.duration = "\(mins):\(secs)"
+                episode?.duration = Int(totalSecs)
                 if let cmValue = newValue as? CMTime {
                     print(CMTimeGetSeconds(cmValue))
                 }
@@ -196,13 +196,13 @@ class PlayerViewController: UIViewController {
             print("Assigned episode to PodcastPlayer's episode")
             assignImage(episode!.podcast.largeImageURL)
             
-            var minsSecs = episode!.duration.characters.split {$0 == ":"}.map { String($0) }
+//            var minsSecs = episode!.duration.characters.split {$0 == ":"}.map { String($0) }
             
             let mins: Int!
             let secs: Int!
-            if minsSecs.count == 2 {
-                mins = (minsSecs[0] as NSString).integerValue
-                secs = (minsSecs[1] as NSString).integerValue
+            if episode?.duration != nil {
+                mins = episode!.duration! / 60
+                secs = episode!.duration! - 60 * mins
             } else {
                 // TODO - fix this hacky solution to some poorly formatted durations.
                 mins = 10

@@ -71,11 +71,12 @@ class User : NSObject {
         }
     }
     
-    func updateLocalEpisodes(forPodcast podcast: Podcast, withEpisodes episodes: [Episode]) {
+    func updateLocalEpisodes(forPodcast podcast: Podcast, withEpisodes episodes: [Episode]) -> [Episode] {
+        var allPodcastEpisodes : [Episode] = []
         if let localEpsForPodcast = loadLocalEpisodes(forPodcast: podcast) {
-            var allPodcastEpisodes : [Episode] = []
             var foundMatch: Bool = false
             for episode in episodes {
+                foundMatch = false
                 for localEpisode in localEpsForPodcast {
                     if episode.mp3Url == localEpisode.mp3Url {
                         foundMatch = true
@@ -87,8 +88,11 @@ class User : NSObject {
                     allPodcastEpisodes.append(episode)
                 }
             }
-            saveEpisodesLocally(allPodcastEpisodes, forPodcast: podcast)
+        } else {
+            allPodcastEpisodes = episodes
         }
+        saveEpisodesLocally(allPodcastEpisodes, forPodcast: podcast)
+        return allPodcastEpisodes
     }
     
     func saveEpisodesLocally(episodes: [Episode], forPodcast podcast: Podcast) {
