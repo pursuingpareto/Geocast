@@ -66,7 +66,7 @@ class EpisodesViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        setTextForSubscribeButton() 
+        setTextForSubscribeButton() 
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,13 +100,15 @@ class EpisodesViewController: UIViewController {
 
     }
     
-//    func setTextForSubscribeButton() {
-//        if User.sharedInstance.isSubscribedTo((podcast)!) {
-//            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
-//        } else {
-//            subscribeButton.setTitle("Subscribe", forState: .Normal)
-//        }
-//    }
+    func setTextForSubscribeButton() {
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        let cell = episodesTableView.cellForRowAtIndexPath(indexPath) as? PodcastSummaryCell
+        if User.sharedInstance.isSubscribedTo((podcast)!) {
+            cell?.subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+        } else {
+            cell?.subscribeButton.setTitle("Subscribe", forState: .Normal)
+        }
+    }
     
     @IBAction func subscribeButtonClicked(sender: UIButton) {
         if User.sharedInstance.isSubscribedTo((podcast)!) {
@@ -122,6 +124,7 @@ class EpisodesViewController: UIViewController {
             let confirmAction = UIAlertAction(title: "Unsubscribe", style: .Default, handler: {
                 (alert) in
                 print("Confirming unsubscribe...")
+                self.setTextForSubscribeButton()
                 User.sharedInstance.unsubscribe((self.podcast)!)
             })
             alertController.addAction(confirmAction)
@@ -132,7 +135,7 @@ class EpisodesViewController: UIViewController {
             print("subscribe button pressed, attempting to subscribe...")
             User.sharedInstance.subscribe((podcast)!)
         }
-//        setTextForSubscribeButton()
+        setTextForSubscribeButton()
     }
     
     

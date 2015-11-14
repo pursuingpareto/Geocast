@@ -86,8 +86,10 @@ class PlayerViewController: UIViewController {
     func setTextForSubscribeButton() {
         if let episode = episode {
             if User.sharedInstance.isSubscribedTo((episode.podcast)!) {
+                print("user is subscribed to this podcast")
                 subscribeButton.setTitle("Unsubscribe", forState: .Normal)
             } else {
+                print("user is not subscribed to this podcast")
                 subscribeButton.setTitle("Subscribe", forState: .Normal)
             }
         }
@@ -97,7 +99,7 @@ class PlayerViewController: UIViewController {
         if User.sharedInstance.isSubscribedTo((episode?.podcast)!) {
             // TODO add confirmation popup?
             
-            let message = "Are you sure you want to unsubscribe from \(episode?.podcast.title)?"
+            let message = "Are you sure you want to unsubscribe from \(episode!.podcast.title)?"
             let alertController = UIAlertController(title: "Confirm Unsubscribe", message: message, preferredStyle: .Alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
                 (alert) in
@@ -108,6 +110,7 @@ class PlayerViewController: UIViewController {
                 (alert) in
                 print("Confirming unsubscribe...")
                 User.sharedInstance.unsubscribe((self.episode?.podcast)!)
+                self.setTextForSubscribeButton()
             })
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: {
