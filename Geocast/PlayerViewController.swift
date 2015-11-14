@@ -38,15 +38,17 @@ class PlayerViewController: UIViewController {
     
     
     @IBAction func playOrPause(sender: AnyObject) {
-
         if isPlaying {
             audioPlayer.pause()
             isPlaying = false
+            if timer != nil {
+                timer.invalidate()
+            }
         } else {
             audioPlayer.play()
             isPlaying = true
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
     }
     
     func updateTime() {
@@ -63,6 +65,8 @@ class PlayerViewController: UIViewController {
         progressBar.setValue(progress, animated: true)
         playedTime.text = NSString(format: "%02d:%02d", minutes, seconds) as String
         remainingTime.text = NSString(format: "%02d:%02d", remainingMinutes, remainingSeconds) as String
+        
+        print(audioPlayer.currentItem?.timedMetadata)
     }
     
     func setTextForSubscribeButton() {
