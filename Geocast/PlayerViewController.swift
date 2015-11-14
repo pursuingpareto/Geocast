@@ -23,8 +23,6 @@ class PlayerViewController: UIViewController {
     var imageCache = [String : UIImage]()
     var image: UIImage?
 
-    @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var podcastTitle: UILabel!
     @IBOutlet weak var publicationDate: UILabel!
@@ -334,7 +332,6 @@ class PlayerViewController: UIViewController {
                     
                     // Store the image in to our cache
                     self.imageCache[url] = self.image
-                    self.imageView.image = self.image
                     
                     self.setupRemoteControl(self.image)
 //                    print(self.image)
@@ -345,7 +342,6 @@ class PlayerViewController: UIViewController {
             })
         }
         else {
-            self.imageView.image = self.image
             self.setupRemoteControl(self.image)
         }
     }
