@@ -269,7 +269,11 @@ extension EpisodesViewController: UITableViewDataSource {
                 //            }
                 
                 cell.episodeTitle.text = episode.title
-                cell.duration.text = episode.duration
+                
+                let minutes = Int(episode.duration)! / 60
+                let seconds = Int(episode.duration)! - (minutes * 60)
+                
+                cell.duration.text = NSString(format: "%02d:%02d", minutes, seconds) as String
                 
                 let publicationDate = episode.pubDate
                 
@@ -305,7 +309,7 @@ extension EpisodesViewController: UITableViewDelegate {
         if indexPath.row == 0 {
             return 150
         } else {
-            return 91
+            return 70
         }
     }
 }
