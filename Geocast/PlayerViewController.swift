@@ -26,29 +26,42 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var podcastTitle: UILabel!
+    @IBOutlet weak var publicationDate: UILabel!
+    
     @IBOutlet weak var episodeSummary: UITextView!
     @IBOutlet weak var playedTime: UILabel!
     @IBOutlet weak var remainingTime: UILabel!
-    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var locationTagButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var noEpisodeLabel: UILabel!
     
+    @IBOutlet weak var toolbarPlayButton: UIBarButtonItem!
+    
+    @IBOutlet weak var playbackToolbar: UIToolbar!
     
     
-    @IBAction func playOrPause(sender: AnyObject) {
+//    var newPlayButton: UIBarButtonItem!
+//    var newPauseButton: UIBarButtonItem!
+//    
+//    func setup() {
+//        newPlayButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Play, target: self, action: "startEpisode")
+//        newPauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "stopEpisode")
+//        
+//    }
+    
+    @IBAction func toolbarPlayOrPause(sender: AnyObject) {
+        
         if isPlaying {
             audioPlayer.pause()
             isPlaying = false
-            if timer != nil {
-                timer.invalidate()
-            }
+//            playbackToolbar.setItems([newPlayButton], animated: false)
         } else {
             audioPlayer.play()
             isPlaying = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+//            playbackToolbar.setItems([newPauseButton], animated: false)
         }
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        
     }
     
     func updateTime() {
@@ -108,11 +121,11 @@ class PlayerViewController: UIViewController {
         setTextForSubscribeButton()
     }
     
-    @IBAction func stop(sender: AnyObject) {
-        audioPlayer.pause()
-        audioPlayer.seekToTime(kCMTimeZero)
-        isPlaying = false
-    }
+//    @IBAction func stop(sender: AnyObject) {
+//        audioPlayer.pause()
+//        audioPlayer.seekToTime(kCMTimeZero)
+//        isPlaying = false
+//    }
     
     @IBAction func progressBarChanged(sender: UISlider) {
         print("Progress bar changed")
@@ -154,8 +167,28 @@ class PlayerViewController: UIViewController {
         audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
     }
     
+    @IBAction func fastForwardPressed(sender: AnyObject) {
+        let seconds = CMTimeMake(15, 1)
+        let currentTime = audioPlayer.currentTime()
+        let newTime = currentTime + seconds
+        
+        audioPlayer.seekToTime(newTime)
+    }
+    
+    
+    @IBAction func rewindPressed(sender: AnyObject) {
+        let seconds = CMTimeMake(-15, 1)
+        let currentTime = audioPlayer.currentTime()
+        let newTime = currentTime + seconds
+        
+        audioPlayer.seekToTime(newTime)
+    }
+    
+    
     override func viewWillAppear(animated: Bool) {
         print("VIEW WILL APPEAR")
+//        setup()
+
         super.viewWillAppear(animated)
         setTextForSubscribeButton()
         if let ep = PodcastPlayer.sharedInstance.episode {
@@ -178,6 +211,7 @@ class PlayerViewController: UIViewController {
             
             remainingTime.text = NSString(format: "%02d:%02d", mins, secs) as String
             totalSeconds = Float(60 * mins + secs)
+
             trackTitle.text = episode!.title
             podcastTitle.text = episode!.podcast.title
             episodeSummary.text = episode!.itunesSubtitle
@@ -185,6 +219,7 @@ class PlayerViewController: UIViewController {
             
             
             let url = NSURL(string: episode!.mp3Url)
+
             let playerItem = AVPlayerItem(URL: url!)
 
 //            playerItem.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
@@ -230,11 +265,10 @@ class PlayerViewController: UIViewController {
             episodeSummary.hidden = false
             remainingTime.hidden = false
             playedTime.hidden = false
-            playButton.hidden = false
             locationTagButton.hidden = false
-            stopButton.hidden = false
             subscribeButton.hidden = false
             noEpisodeLabel.hidden = true
+            publicationDate.hidden = false
         }
         else {
             progressBar.hidden = true
@@ -243,11 +277,10 @@ class PlayerViewController: UIViewController {
             episodeSummary.hidden = true
             remainingTime.hidden = true
             playedTime.hidden = true
-            playButton.hidden = true
             locationTagButton.hidden = true
-            stopButton.hidden = true
             subscribeButton.hidden = true
             noEpisodeLabel.hidden = false
+            publicationDate.hidden = true
         }
         
             
