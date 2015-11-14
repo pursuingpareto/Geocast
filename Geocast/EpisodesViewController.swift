@@ -24,6 +24,7 @@ class EpisodesViewController: UIViewController {
     var insideItem: Bool = false
     var currentParsedElement:String! = String()
     var shouldParseCurrentElement = true
+    var podcastDictionary: [String:String]! = Dictionary()
     var entryDictionary: [String:String]! = Dictionary()
     var entryValue: String = ""
     var entriesArray:[Dictionary <String, String> ]! = Array()
@@ -201,6 +202,7 @@ extension EpisodesViewController: NSXMLParserDelegate {
                 if insideItem {
                     shouldParseCurrentElement = true
                 } else {
+                    print("elementName: \(elementName)")
                     shouldParseCurrentElement = false
                 }
             } else {
@@ -210,11 +212,11 @@ extension EpisodesViewController: NSXMLParserDelegate {
 
     func parser(parser: NSXMLParser,
         foundCharacters string: String?){
-            if shouldParseCurrentElement {
+//            if shouldParseCurrentElement {
                 if string != nil {
                     entryValue += string!
                 }
-            }
+//            }
     }
 
     func parser(parser: NSXMLParser,
@@ -223,6 +225,8 @@ extension EpisodesViewController: NSXMLParserDelegate {
         qualifiedName qName: String?){
             if shouldParseCurrentElement {
                 entryDictionary[currentParsedElement] = entryValue
+            } else {
+                podcastDictionary[currentParsedElement] = entryValue
             }
             if elementName == "item" {
                 self.insideItem = false
@@ -233,6 +237,10 @@ extension EpisodesViewController: NSXMLParserDelegate {
     //4
     func parserDidEndDocument(parser: NSXMLParser){
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            print(self.podcastDictionary)
+            self.podcast.summary = self.podcastDictionary["description"]
+            self.podcast.author = self.podcastDictionary["itunes:author"]
+            self.podcast.lastUpdated = self.podcastDictionary["lastBuildDate"]
             for entry in self.entriesArray {
                 self.episodes.append(Episode(parsedFeedData: entry, podcast:self.podcast))
             }
@@ -269,7 +277,7 @@ extension EpisodesViewController: UITableViewDataSource {
                 //            }
                 
                 cell.episodeTitle.text = episode.title
-                
+                print("duration is \(episode.duration)")
                 let minutes = Int(episode.duration)! / 60
                 let seconds = Int(episode.duration)! - (minutes * 60)
                 

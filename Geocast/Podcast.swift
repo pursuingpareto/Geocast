@@ -33,6 +33,8 @@ class Podcast: NSObject, NSCoding {
     var episodeCount: Int?
     var feedUrl: String
     var lastUpdated: String?
+    var summary: String?
+    var author: String?
     var episodes = [Episode]()
     
     init(title: String, thumbnailImageURL: String, largeImageURL: String, collectionId: Int, episodeCount: Int?, feedUrl: String, lastUpdated: String)  {
