@@ -23,6 +23,7 @@ class PlayerViewController: UIViewController {
     var imageCache = [String : UIImage]()
     var image: UIImage?
 
+    @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var podcastTitle: UILabel!
@@ -232,28 +233,6 @@ class PlayerViewController: UIViewController {
             audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
             audioPlayer.currentItem?.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
             
-            //            let albumArt = MPMediaItemArtwork(image: image!)
-            
-            if NSClassFromString("MPNowPlayingInfoCenter") != nil {
-                var songInfo = [
-                    MPMediaItemPropertyArtist: episode!.podcast.title,
-                    MPMediaItemPropertyTitle: episode!.title,
-                    MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
-                    //                    MPMediaItemPropertyArtwork: albumArt
-                ]
-                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
-            }
-            
-            try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
-            try! AVAudioSession.sharedInstance().setActive(true)
-            
-            do {
-                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-            }
-            catch {
-                print("Audio session error.")
-            }
-            
             //            if (AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)) {
             //                print("Receiving remote control events"),
             //                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
@@ -295,6 +274,28 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    func setupRemoteControl(image: UIImage?) {
+        if NSClassFromString("MPNowPlayingInfoCenter") != nil {
+            var songInfo = [
+                MPMediaItemPropertyArtist: episode!.podcast.title,
+                MPMediaItemPropertyTitle: episode!.title,
+                MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
+            ]
+
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
+        }
+        
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
+        try! AVAudioSession.sharedInstance().setActive(true)
+        
+        do {
+            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        }
+        catch {
+            print("Audio session error.")
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -333,11 +334,19 @@ class PlayerViewController: UIViewController {
                     
                     // Store the image in to our cache
                     self.imageCache[url] = self.image
-                    print(self.image)
+                    self.imageView.image = self.image
+                    
+                    self.setupRemoteControl(self.image)
+//                    print(self.image)
                 } else {
                     print("Error: \(error!.localizedDescription)")
+                    self.setupRemoteControl(self.image)
                 }
             })
+        }
+        else {
+            self.imageView.image = self.image
+            self.setupRemoteControl(self.image)
         }
     }
     
