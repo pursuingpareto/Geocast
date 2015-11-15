@@ -149,34 +149,48 @@ extension PodcastsViewController {
     override func tableView(tableView: UITableView,
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             
-            var cell:PodcastCell! = tableView.dequeueReusableCellWithIdentifier("podcastCell")! as! PodcastCell
+            var finalCell: UITableViewCell?
             
-//            if (nil == cell){
-//                cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "podcastCell")
-//            }
-            
-            let podcast = podcasts[indexPath.row]
-            cell.titleLabel.text = podcast.title
-            
-            var df = NSDateFormatter()
-            df.dateFormat = "yyyy-MM-dd"
-            
-            let lastDate = df.dateFromString(podcast.lastUpdated!)
-
-            if let lastDate = lastDate {
-                cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow())"
+            if podcasts.count == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("noPodcastsCell") as! NoPodcastsCell
+                
+                finalCell = cell
+            }
+            else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("podcastCell")! as! PodcastCell
+                
+                let podcast = podcasts[indexPath.row]
+                cell.titleLabel.text = podcast.title
+                
+                var df = NSDateFormatter()
+                df.dateFormat = "yyyy-MM-dd"
+                
+                let lastDate = df.dateFromString(podcast.lastUpdated!)
+                
+                if let lastDate = lastDate {
+                    cell.detailLabel.text = "\(podcast.episodeCount!) Episodes, last \(lastDate.shortTimeAgoSinceNow())"
+                }
+                
+                assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
+                
+                cell.textLabel?.numberOfLines = 0
+                //            cell!.detailTextLabel?.text = podcast["description"]
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                
+                finalCell = cell
             }
             
-            assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
-            
-            cell!.textLabel?.numberOfLines = 0
-//            cell!.detailTextLabel?.text = podcast["description"]
-            cell!.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-            return cell
+            return finalCell!
     }
     override func tableView(tableView: UITableView,
         numberOfRowsInSection section: Int) -> Int{
-            return podcasts.count
+            
+            if podcasts.count == 0 {
+                return 1
+            }
+            else {
+                return podcasts.count
+            }
     }
     
     override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {

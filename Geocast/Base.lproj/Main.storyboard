@@ -71,6 +71,33 @@
                                     <segue destination="xPN-7V-iby" kind="show" id="8U2-YW-le5"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="noPodcastsCell" id="T3x-AT-dfa" customClass="NoPodcastsCell" customModule="Geocast" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="186" width="600" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3x-AT-dfa" id="jZ8-cb-oau">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You have no podcasts in your library!  Tap the + button to add your first podcast." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAF-ab-d7i">
+                                            <rect key="frame" x="8" y="39" width="613" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="zAF-ab-d7i" firstAttribute="centerY" secondItem="jZ8-cb-oau" secondAttribute="centerY" id="MRc-2n-B7n"/>
+                                        <constraint firstItem="zAF-ab-d7i" firstAttribute="leading" secondItem="jZ8-cb-oau" secondAttribute="leading" id="ULK-dg-b94"/>
+                                        <constraint firstAttribute="trailing" secondItem="zAF-ab-d7i" secondAttribute="trailing" id="wV3-AI-G7G"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="noPodcastsLabel" destination="zAF-ab-d7i" id="c3H-hR-29D"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="SOH-oX-xiL" id="Lqh-o9-fwX"/>
@@ -232,7 +259,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="P5b-t9-RTE">
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5b-t9-RTE">
                                                     <rect key="frame" x="510" y="48" width="80" height="2"/>
                                                     <animations/>
                                                 </progressView>
