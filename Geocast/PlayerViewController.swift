@@ -54,17 +54,24 @@ class PlayerViewController: UIViewController {
             audioPlayer.pause()
             isPlaying = false
 //            playbackToolbar.setItems([newPlayButton], animated: false)
+            timer.invalidate()
         } else {
             audioPlayer.play()
             isPlaying = true
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
 //            playbackToolbar.setItems([newPauseButton], animated: false)
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        
         
     }
     
     func updateTime() {
-        let currentTime = Int(audioPlayer.currentTime().value) / Int(audioPlayer.currentTime().timescale)
+        
+        print("totalSeconds \(totalSeconds)")
+        
+        print("value \(Float(audioPlayer.currentTime().value))")
+        print("timescale \(Float(audioPlayer.currentTime().timescale))")
+        let currentTime = Int(Float(audioPlayer.currentTime().value) / Float(audioPlayer.currentTime().timescale))
         let minutes = currentTime / 60
         let seconds = currentTime - (minutes * 60)
         let currentFloatTime = Float(currentTime)
@@ -319,10 +326,13 @@ class PlayerViewController: UIViewController {
             if event?.subtype == UIEventSubtype.RemoteControlPlay {
                 audioPlayer.play()
                 print("remote play")
+                timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+
             }
             else if event?.subtype == UIEventSubtype.RemoteControlPause {
                 audioPlayer.pause()
                 print("remote pause")
+                timer.invalidate()
             }
             else if event?.subtype == UIEventSubtype.RemoteControlNextTrack {
                 // Put in logic to move to next track

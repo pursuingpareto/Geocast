@@ -21,7 +21,11 @@
                                 <rect key="frame" x="0.0" y="86" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5qe-aO-JK6" id="JxT-Xy-B66">
+<<<<<<< 7fb601176c547138a3cf10fda330250d85e194bb
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+=======
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+>>>>>>> Number of seconds listened to now pauses when it should. Progress bar on episode view updates.
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="numEpisodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naU-1n-KTG">
@@ -75,7 +79,7 @@
                                 <rect key="frame" x="0.0" y="186" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3x-AT-dfa" id="jZ8-cb-oau">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You have no podcasts in your library!  Tap the + button to add your first podcast." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAF-ab-d7i">
@@ -128,7 +132,11 @@
                                 <rect key="frame" x="0.0" y="86" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="podcastCell" tableViewCell="Wcn-d4-v6C" id="SEm-Mj-owJ">
+<<<<<<< 7fb601176c547138a3cf10fda330250d85e194bb
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+=======
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+>>>>>>> Number of seconds listened to now pauses when it should. Progress bar on episode view updates.
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </tableViewCellContentView>
@@ -169,7 +177,11 @@
                                         <rect key="frame" x="0.0" y="22" width="600" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEf-ca-A0e" id="jDr-sX-j7s">
+<<<<<<< 7fb601176c547138a3cf10fda330250d85e194bb
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+=======
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149.5"/>
+>>>>>>> Number of seconds listened to now pauses when it should. Progress bar on episode view updates.
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EcN-iL-4Yf">
@@ -227,12 +239,19 @@
                                         <rect key="frame" x="0.0" y="172" width="600" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xZb-uf-R5z" id="wwO-ag-CSc">
+<<<<<<< 7fb601176c547138a3cf10fda330250d85e194bb
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+=======
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
+>>>>>>> Number of seconds listened to now pauses when it should. Progress bar on episode view updates.
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="episodeTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ6-sv-iQG">
                                                     <rect key="frame" x="21" y="19" width="93" height="21"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="OUL-Iz-mJT"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -280,6 +299,7 @@
                                                 <constraint firstItem="mkL-ik-c8g" firstAttribute="top" secondItem="fZ6-sv-iQG" secondAttribute="bottom" constant="8" id="c7K-mh-CAD"/>
                                                 <constraint firstItem="lC8-bW-Nhm" firstAttribute="top" secondItem="wwO-ag-CSc" secondAttribute="topMargin" constant="11" id="eTV-fE-1fn"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mkL-ik-c8g" secondAttribute="bottom" constant="13.5" id="eV5-iX-GCm"/>
+                                                <constraint firstItem="mkL-ik-c8g" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fZ6-sv-iQG" secondAttribute="trailing" constant="10" id="hgv-4X-eVn"/>
                                                 <constraint firstItem="mkL-ik-c8g" firstAttribute="top" secondItem="fZ6-sv-iQG" secondAttribute="top" id="mrg-nJ-qQN"/>
                                             </constraints>
                                             <variation key="default">
@@ -289,6 +309,7 @@
                                                     <exclude reference="Kn7-Kh-dwu"/>
                                                     <exclude reference="c7K-mh-CAD"/>
                                                     <exclude reference="eV5-iX-GCm"/>
+                                                    <exclude reference="hgv-4X-eVn"/>
                                                     <exclude reference="mrg-nJ-qQN"/>
                                                 </mask>
                                             </variation>
@@ -616,7 +637,11 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sa3-La-eDf" id="Mwx-b9-mWU">
+<<<<<<< 7fb601176c547138a3cf10fda330250d85e194bb
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+=======
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65.5"/>
+>>>>>>> Number of seconds listened to now pauses when it should. Progress bar on episode view updates.
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHX-pW-AT5">
@@ -748,7 +773,11 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHT-5w-4LZ" id="UpQ-B5-te0">
+<<<<<<< 7fb601176c547138a3cf10fda330250d85e194bb
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
+=======
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
+>>>>>>> Number of seconds listened to now pauses when it should. Progress bar on episode view updates.
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>

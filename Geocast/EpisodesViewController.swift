@@ -66,7 +66,8 @@ class EpisodesViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setTextForSubscribeButton() 
+        setTextForSubscribeButton()
+        episodesTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -290,10 +291,15 @@ extension EpisodesViewController: UITableViewDataSource {
                     // TODO - add hours support
                     minutes = episode.duration! / 60
                     seconds = episode.duration! - (minutes * 60)
+                    let timePlayed = episode.approximateSecondsListenedToByUser
+                    
+                    cell.progressBar.setProgress(Float(timePlayed / episode.duration!), animated: false)
+                    
                 } else {
                     minutes = 10
                     seconds = 10
                 }
+                
                 
                 cell.duration.text = NSString(format: "%02d:%02d", minutes, seconds) as String
                 
