@@ -22,8 +22,7 @@ class MapPopupView: UIView {
         
         // 2. call super.init(frame:)
         super.init(frame: frame)
-//        createSubviews()
-//        addAllSubviews()
+
         
     }
     
@@ -32,8 +31,17 @@ class MapPopupView: UIView {
         // 2. call super.init(coder:)
         
         super.init(coder: aDecoder)
-//        createSubviews()
-//        addAllSubviews()
+        
+    }
+    
+    func makeOneTimeChanges() {
+        self.layer.cornerRadius = 4
+        self.layer.borderColor = UIColor.darkGrayColor().CGColor
+        self.layer.borderWidth = 1
+        playButton.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+        playButton.layer.cornerRadius = 2
+        playButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        playButton.layer.borderWidth = 1
     }
     
     func setupConstraints() {
@@ -51,6 +59,19 @@ class MapPopupView: UIView {
         playButton.sizeToFit()
         durationLabel.sizeToFit()
         self.sizeToFit()
+        makeOneTimeChanges()
+    }
+    
+    func stringForDistance(distanceInMeters meters: CLLocationDistance) -> String {
+        let miles = 0.000621371 * meters
+        let feet = meters * 3.28084
+        if feet < 1000 {
+            return "\(Int(feet)) ft"
+        } else if miles < 10 {
+            return String(format: "%.1f mi", miles)
+        } else {
+            return String(format: "%f mi", Int(miles))
+        }
     }
     
     func setupWithAnnotation(annotation: MapEpisodeAnnotation, forUserLocation location: CLLocation?) {
@@ -60,8 +81,8 @@ class MapPopupView: UIView {
         self.locationLabel?.text = "The White House"
         let placeLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
         if location != nil {
-            let distance = location!.distanceFromLocation(placeLocation)
-            self.distanceLabel.text = "\(distance)"
+            let meters = location!.distanceFromLocation(placeLocation)
+            self.distanceLabel.text = stringForDistance(distanceInMeters: meters)
         }
         self.episodeLabel.text = "\(podcast.title) - \(episode.title)"
         if episode.duration != nil {

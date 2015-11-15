@@ -90,9 +90,9 @@ class Episode: NSObject, NSCoding {
         let mins = (seconds - (hours * 3600)) / 60
         let secs = (seconds - (hours * 3600) - (mins * 60))
         if hours == 0 {
-            return "\(mins):\(secs)"
+            return String(format: "%02d:%02d", mins, secs)
         } else {
-            return "\(hours):\(mins):\(secs)"
+            return String(format: "%1d:%02d:%02d", hours, mins, secs)
         }
         
     }
