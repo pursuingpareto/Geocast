@@ -182,7 +182,7 @@ extension TagLocationController: UITableViewDataSource {
             cell.nameLabel.text = pm.name
         }
         
-        cell.addressLabel.sizeToFit()
+//        cell.addressLabel.sizeToFit()
         
 //        cell?.textLabel?.numberOfLines = 4
 //        
