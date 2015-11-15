@@ -35,6 +35,11 @@ class TagLocationController: UIViewController {
     }
     
     
+    @IBAction func didTapCancel(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         searchBar.becomeFirstResponder()
