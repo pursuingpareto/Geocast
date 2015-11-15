@@ -166,6 +166,7 @@ class PlayerViewController: UIViewController {
     }
     
     deinit {
+        
         audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
     }
     
@@ -226,13 +227,13 @@ class PlayerViewController: UIViewController {
             let url = NSURL(string: episode!.mp3Url)
 
             let playerItem = AVPlayerItem(URL: url!)
+            
+            setupAudioPlayer(playerItem)
 
 //            playerItem.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
             
             
             
-            audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
-            audioPlayer.currentItem?.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
             
             //            if (AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)) {
             //                print("Receiving remote control events"),
@@ -273,6 +274,16 @@ class PlayerViewController: UIViewController {
             displaySuccessfulTagPopup()
             popupText = nil
         }
+    }
+    
+    func setupAudioPlayer(playerItem: AVPlayerItem) {
+        audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
+        audioPlayer.currentItem?.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
     }
     
     func setupRemoteControl(image: UIImage?) {

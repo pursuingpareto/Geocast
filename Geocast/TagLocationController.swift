@@ -35,6 +35,11 @@ class TagLocationController: UIViewController {
     }
     
     
+    @IBAction func didTapCancel(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         searchBar.becomeFirstResponder()
@@ -177,7 +182,7 @@ extension TagLocationController: UITableViewDataSource {
             cell.nameLabel.text = pm.name
         }
         
-        cell.addressLabel.sizeToFit()
+//        cell.addressLabel.sizeToFit()
         
 //        cell?.textLabel?.numberOfLines = 4
 //        
