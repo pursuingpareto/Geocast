@@ -34,14 +34,13 @@ class TagManager : NSObject {
             if error == nil && objects?.count > 0 {
                 // podcast exists
                 
-                print("PODCAST EXISTS")
+ 
                 
                 pfPodcast = objects![0]
                 
-                print(pfPodcast)
             } else {
                 
-                print("CREATING PODCAST IN PARSE")
+
                 pfPodcast = episode.podcast.saveToParse()
             }
             
@@ -58,7 +57,7 @@ class TagManager : NSObject {
                 }
                 
                 // add geotag
-                print("ADDING GEOTAG")
+
                 let pfTag = PFObject(className: "Tag")
                 pfTag["podcast"] = pfPodcast
                 pfTag["episode"] = pfEpisode
@@ -86,7 +85,7 @@ class TagManager : NSObject {
             var tags: [MapEpisodeAnnotation] = []
             
             for tagObject in tagObjects {
-                print("tagObject is \(tagObject)")
+
                 let pfPodcast = tagObject["podcast"] as! PFObject
                 let pfEpisode = tagObject["episode"] as! PFObject
                 let pfLocation = tagObject["location"] as! PFGeoPoint

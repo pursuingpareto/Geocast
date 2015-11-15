@@ -12,6 +12,7 @@ import Parse
 
 class MapViewController: UIViewController {
     
+    @IBOutlet weak var popupView: MapPopupView!
     var episodesWithCoordinates: [(Episode!, CLLocationCoordinate2D)] = []
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var redoSearchButton: UIButton!
@@ -30,6 +31,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        popupView.hidden = true
 
         tableView.hidden = true
         tableView.dataSource = self
@@ -70,10 +72,9 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func redoSearchInArea(sender: UIButton) {
-        print("mapView is \(mapView)")
-        print("region is \(mapView.region)")
+
         let location = mapView.region.center
-        print("Location of mapView center is \(location)")
+
         let geoPoint: PFGeoPoint = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
         if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint) {
             self.annotations = annotations
@@ -93,7 +94,7 @@ class MapViewController: UIViewController {
                 print("attempting to get annotations")
                 if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint!) {
                     self.annotations = annotations
-                    print("annotations are \(annotations)")
+
                     self.mapView.addAnnotations(self.annotations)
                 }
             }
@@ -132,7 +133,9 @@ extension MapViewController: MKMapViewDelegate {
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView { // 2
                 dequeuedView.annotation = annotation
                 view = dequeuedView
-                view.canShowCallout = true
+                view.canShowCallout = false
+//                view.canShowCallout = true
+
 //                view.image = annotation.image
 //                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
                 let annotationView = MapAnnotationView()
@@ -144,7 +147,8 @@ extension MapViewController: MKMapViewDelegate {
 //                view.rightCalloutAccessoryView = button
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
+                view.canShowCallout = false
+                //                view.canShowCallout = true
 //                view.image = annotation.image
 //                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
                 
@@ -157,6 +161,7 @@ extension MapViewController: MKMapViewDelegate {
 //                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
 //                view.rightCalloutAccessoryView = button
             }
+            print("LEFT CALLOUT IS \(view.leftCalloutAccessoryView)")
             return view
         }
         return nil
@@ -168,6 +173,17 @@ extension MapViewController: MKMapViewDelegate {
             self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
         }
     }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("DID SELECT ANNOTATION VIEW")
+//        popupView.hidden = false
+        popupView.setupConstraints()
+        view.addSubview(popupView)
+        view.bringSubviewToFront(popupView)
+
+        popupView.setupWithAnnotation(view.annotation as! MapEpisodeAnnotation, forUserLocation: locationManager.location)
+    }
+
 }
 
 extension MapViewController: UITableViewDataSource {

@@ -39,6 +39,7 @@
 		A18035A21BF2B6A7003BC7F5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A11BF2B6A7003BC7F5 /* SystemConfiguration.framework */; };
 		A18035A41BF2B6AE003BC7F5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A31BF2B6AE003BC7F5 /* libz.tbd */; };
 		A18035A61BF2B6B6003BC7F5 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */; };
+		A19873631BF80488001A16EA /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19873621BF80488001A16EA /* MapPopupView.swift */; };
 		A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */; };
 		A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D97F1BF537BA002FE51D /* Subscription.swift */; };
 		A1D3D9821BF68A6E002FE51D /* PodcastSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */; };
@@ -93,6 +94,7 @@
 		A18035A11BF2B6A7003BC7F5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A18035A31BF2B6AE003BC7F5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A19873621BF80488001A16EA /* MapPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
 		A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		A1D3D97F1BF537BA002FE51D /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSummaryCell.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */,
 				A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */,
 				A11FD3471BF12DF500A83FDB /* MapViewController.swift */,
+				A19873621BF80488001A16EA /* MapPopupView.swift */,
 				A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */,
 				A11FD3431BF0154D00A83FDB /* PodcastCell.swift */,
 				33DAD8311BF42AAE000BB581 /* EpisodeCell.swift */,
@@ -406,6 +409,7 @@
 			files = (
 				A18035881BF17363003BC7F5 /* User.swift in Sources */,
 				A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */,
+				A19873631BF80488001A16EA /* MapPopupView.swift in Sources */,
 				A11FD33C1BEC330600A83FDB /* Podcast.swift in Sources */,
 				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,
 				A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */,
