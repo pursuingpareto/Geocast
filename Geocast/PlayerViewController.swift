@@ -50,6 +50,8 @@ class PlayerViewController: UIViewController {
     
     @IBAction func toolbarPlayOrPause(sender: AnyObject) {
         
+        var btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Play, target: self, action: "toolbarPlayOrPause:")
+        
         if isPlaying {
             audioPlayer.pause()
             isPlaying = false
@@ -57,10 +59,14 @@ class PlayerViewController: UIViewController {
             timer.invalidate()
         } else {
             audioPlayer.play()
+            btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "toolbarPlayOrPause:")
             isPlaying = true
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
 //            playbackToolbar.setItems([newPauseButton], animated: false)
         }
+        var items = playbackToolbar.items!
+        items[3] = btn
+        playbackToolbar.setItems(items, animated: true)
         
         
     }

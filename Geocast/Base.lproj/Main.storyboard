@@ -75,7 +75,7 @@
                                 <rect key="frame" x="0.0" y="186" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3x-AT-dfa" id="jZ8-cb-oau">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You have no podcasts in your library!  Tap the + button to add your first podcast." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAF-ab-d7i">
@@ -445,23 +445,25 @@
                                     <constraint firstAttribute="width" constant="600" id="RcY-X0-DtZ"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="hiU-MK-DjB"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="znt-4b-TCK"/>
                                     <barButtonItem systemItem="rewind" id="i2Y-gg-yF2">
                                         <connections>
                                             <action selector="rewindPressed:" destination="yyZ-no-Vza" id="qfk-Ip-26F"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="0RR-Gd-K90"/>
                                     <barButtonItem width="50" systemItem="play" id="OQw-XP-Ggx">
                                         <connections>
                                             <action selector="toolbarPlayOrPause:" destination="yyZ-no-Vza" id="zqA-SL-kvU"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="r5k-1S-qox"/>
                                     <barButtonItem systemItem="fastForward" id="t8m-yt-6Ez">
                                         <connections>
                                             <action selector="fastForwardPressed:" destination="yyZ-no-Vza" id="l8d-qq-KMO"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Kd2-cH-NWu"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xdU-wr-mKB"/>
                                 </items>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="default">
@@ -800,6 +802,9 @@
                                         <rect key="frame" x="76" y="95" width="88" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Play Episode"/>
+                                        <connections>
+                                            <action selector="playEpisodePressed:" destination="y98-n2-Zw8" eventType="touchUpInside" id="1t8-18-Dyu"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iw5-f2-zIW">
                                         <rect key="frame" x="8" y="8" width="173" height="21"/>
