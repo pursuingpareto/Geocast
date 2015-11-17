@@ -336,7 +336,7 @@ extension EpisodesViewController: UITableViewDelegate {
         if indexPath.row == 0 {
             return 150
         } else {
-            return 70
+            return 90
         }
     }
 }
