@@ -171,6 +171,7 @@ class PlayerViewController: UIViewController {
                 if let cmValue = newValue as? CMTime {
                     print(CMTimeGetSeconds(cmValue))
                 }
+                updateTime()
             } else {
                 super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
             }
