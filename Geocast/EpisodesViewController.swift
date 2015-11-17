@@ -300,7 +300,7 @@ extension EpisodesViewController: UITableViewDataSource {
                     seconds = episode.duration! - (minutes * 60)
                     let timePlayed = episode.approximateSecondsListenedToByUser
                     
-                    cell.progressBar.setProgress(Float(timePlayed / episode.duration!), animated: false)
+                    cell.progressBar.setProgress(episode.progress, animated: false)
                     
                 } else {
                     minutes = 10

@@ -89,8 +89,8 @@
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="zAF-ab-d7i" firstAttribute="centerY" secondItem="jZ8-cb-oau" secondAttribute="centerY" id="MRc-2n-B7n"/>
-                                        <constraint firstItem="zAF-ab-d7i" firstAttribute="leading" secondItem="jZ8-cb-oau" secondAttribute="leading" id="ULK-dg-b94"/>
-                                        <constraint firstAttribute="trailing" secondItem="zAF-ab-d7i" secondAttribute="trailing" id="wV3-AI-G7G"/>
+                                        <constraint firstItem="zAF-ab-d7i" firstAttribute="leading" secondItem="jZ8-cb-oau" secondAttribute="leading" constant="10" id="ULK-dg-b94"/>
+                                        <constraint firstAttribute="trailing" secondItem="zAF-ab-d7i" secondAttribute="trailing" constant="10" id="wV3-AI-G7G"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
@@ -169,7 +169,7 @@
                                         <rect key="frame" x="0.0" y="22" width="600" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEf-ca-A0e" id="jDr-sX-j7s">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EcN-iL-4Yf">

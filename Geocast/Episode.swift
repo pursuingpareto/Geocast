@@ -19,6 +19,7 @@ class Episode: NSObject, NSCoding {
         static let pubDateKey = "pubDate"
         static let podcastKey = "podcast"
         static let approximateSecondsListenedToByUserKey = "approximateSecondsListenedToByUser"
+        static let progress = "progress"
         static let summaryKey = "summary"
         static let itunesSummaryKey = "itunesSummary"
         static let itunesSubtitleKey = "itunesSubtitle"
@@ -39,6 +40,7 @@ class Episode: NSObject, NSCoding {
     var podcast: Podcast!
     
     var approximateSecondsListenedToByUser: Int
+    var progress: Float
     
     var summary: String?
 //    var categories = [String]()
@@ -54,6 +56,7 @@ class Episode: NSObject, NSCoding {
         self.pubDate = pubDate
         self.podcast = podcast
         self.approximateSecondsListenedToByUser = 0
+        self.progress = 0.0
      }
     
     class func durationFromString(string: String) -> Int? {
@@ -100,6 +103,7 @@ class Episode: NSObject, NSCoding {
     init(parsedFeedData dataDict: Dictionary<String, String>, podcast: Podcast) {
         self.podcast = podcast
         self.approximateSecondsListenedToByUser = 0
+        self.progress = 0.0
         self.title = dataDict["title"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         self.mp3Url = dataDict["mp3Url"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         if let durationString: String = dataDict["itunes:duration"]?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) {
@@ -118,6 +122,7 @@ class Episode: NSObject, NSCoding {
         aCoder.encodeObject(pubDate, forKey: PropertyKey.pubDateKey)
         aCoder.encodeObject(podcast, forKey: PropertyKey.podcastKey)
         aCoder.encodeObject(approximateSecondsListenedToByUser, forKey: PropertyKey.approximateSecondsListenedToByUserKey)
+        aCoder.encodeObject(progress, forKey: PropertyKey.progress)
         aCoder.encodeObject(summary, forKey: PropertyKey.summaryKey)
         aCoder.encodeObject(itunesSubtitle, forKey: PropertyKey.itunesSubtitleKey)
         aCoder.encodeObject(itunesSummary, forKey: PropertyKey.itunesSummaryKey) 
@@ -159,6 +164,7 @@ class Episode: NSObject, NSCoding {
         self.itunesSummary = pfEpisode["itunesSummary"] as? String
         self.itunesSubtitle = pfEpisode["itunesSubtitle"] as? String
         self.approximateSecondsListenedToByUser = 0
+        self.progress = 0.0
     }
     
     func saveToParse(withPFPodcast pfPodcast: PFObject) -> PFObject {
