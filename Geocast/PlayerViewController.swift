@@ -38,15 +38,7 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var playbackToolbar: UIToolbar!
     
-    
-//    var newPlayButton: UIBarButtonItem!
-//    var newPauseButton: UIBarButtonItem!
-//    
-//    func setup() {
-//        newPlayButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Play, target: self, action: "startEpisode")
-//        newPauseButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "stopEpisode")
-//        
-//    }
+
     
     @IBAction func toolbarPlayOrPause(sender: AnyObject) {
         
@@ -73,10 +65,7 @@ class PlayerViewController: UIViewController {
     
     func updateTime() {
         
-        print("totalSeconds \(totalSeconds)")
-        
-        print("value \(Float(audioPlayer.currentTime().value))")
-        print("timescale \(Float(audioPlayer.currentTime().timescale))")
+
         let currentTime = Int(Float(audioPlayer.currentTime().value) / Float(audioPlayer.currentTime().timescale))
         let minutes = currentTime / 60
         let seconds = currentTime - (minutes * 60)
@@ -93,20 +82,19 @@ class PlayerViewController: UIViewController {
         playedTime.text = NSString(format: "%02d:%02d", minutes, seconds) as String
         remainingTime.text = NSString(format: "%02d:%02d", remainingMinutes, remainingSeconds) as String
         
-        print("The user has listened to \(episode?.approximateSecondsListenedToByUser) seconds of this episode")
     }
     
     func setTextForSubscribeButton() {
         if let episode = episode {
             if User.sharedInstance.isSubscribedTo((episode.podcast)!) {
-                print("user is subscribed to this podcast")
+
                 subscribeButton.setTitle("Unsubscribe", forState: .Normal)
             } else {
-                print("user is not subscribed to this podcast")
+
                 subscribeButton.setTitle("Subscribe", forState: .Normal)
             }
         } else {
-            print("could not assign episode = episode")
+
         }
     }
     
@@ -123,7 +111,7 @@ class PlayerViewController: UIViewController {
             
             let confirmAction = UIAlertAction(title: "Unsubscribe", style: .Default, handler: {
                 (alert) in
-                print("Confirming unsubscribe...")
+
                 User.sharedInstance.unsubscribe((self.episode?.podcast)!)
                 self.setTextForSubscribeButton()
             })
@@ -132,7 +120,7 @@ class PlayerViewController: UIViewController {
                 
             })
         } else {
-            print("subscribe button pressed, attempting to subscribe...")
+
             User.sharedInstance.subscribe((episode?.podcast)!)
         }
         setTextForSubscribeButton()
@@ -145,7 +133,7 @@ class PlayerViewController: UIViewController {
 //    }
     
     @IBAction func progressBarChanged(sender: UISlider) {
-        print("Progress bar changed")
+
         progress = sender.value
         let seconds = Int64(progress * totalSeconds)
         
@@ -163,16 +151,14 @@ class PlayerViewController: UIViewController {
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context == &myContext {
             if let newValue = change?[NSKeyValueChangeNewKey] {
-                print("Duration changed!")
+
                 let totalSecs = CMTimeGetSeconds((audioPlayer.currentItem?.duration)!)
                 totalSeconds = Float(totalSecs)
                 let mins = Int(totalSecs / 60.0)
                 let secs = Int(totalSecs) - 60 * mins
-                print("mins: \(mins)\nsecs: \(secs)")
+
                 episode?.duration = Int(totalSecs)
-                if let cmValue = newValue as? CMTime {
-                    print(CMTimeGetSeconds(cmValue))
-                }
+
                 updateTime()
             } else {
                 super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
@@ -205,15 +191,18 @@ class PlayerViewController: UIViewController {
     
     
     override func viewWillAppear(animated: Bool) {
-        print("VIEW WILL APPEAR")
 //        setup()
 
         super.viewWillAppear(animated)
         
+        for item in playbackToolbar.items! {
+            item.enabled = false
+        }
+        
         if let ep = PodcastPlayer.sharedInstance.episode {
             episode = ep
             setTextForSubscribeButton()
-            print("Assigned episode to PodcastPlayer's episode")
+
             assignImage(episode!.podcast.largeImageURL)
             
 //            var minsSecs = episode!.duration.characters.split {$0 == ":"}.map { String($0) }
@@ -236,29 +225,29 @@ class PlayerViewController: UIViewController {
             podcastTitle.text = episode!.podcast.title
             episodeSummary.text = episode!.itunesSubtitle
             
+            // TODO - fix this! Will fail eventually!
             let pubDate = episode!.pubDate.substringToIndex(episode!.pubDate.startIndex.advancedBy(16))
             publicationDate.text = pubDate
             progressBar.value = 0
             
             
             let url = NSURL(string: episode!.mp3Url)
+            print("about to get player item")
+            dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+                let playerItem = AVPlayerItem(URL: url!)
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.setupAudioPlayer(playerItem)
+                    for item in self.playbackToolbar.items! {
+                        item.enabled = true
+                    }
+                    print("got player item")
+                })
+            }
 
-            let playerItem = AVPlayerItem(URL: url!)
-            
-            setupAudioPlayer(playerItem)
-
-//            playerItem.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
             
             
+//            setupAudioPlayer(playerItem)
             
-            
-            //            if (AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)) {
-            //                print("Receiving remote control events"),
-            //                UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-            //            }
-            //            else {
-            //                print("Audio Session error.")
-            //            }
             
             progressBar.hidden = false
             trackTitle.hidden = false
