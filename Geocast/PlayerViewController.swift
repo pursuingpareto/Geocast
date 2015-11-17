@@ -47,14 +47,12 @@ class PlayerViewController: UIViewController {
         if isPlaying {
             audioPlayer.pause()
             isPlaying = false
-//            playbackToolbar.setItems([newPlayButton], animated: false)
             timer.invalidate()
         } else {
             audioPlayer.play()
             btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "toolbarPlayOrPause:")
             isPlaying = true
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
-//            playbackToolbar.setItems([newPauseButton], animated: false)
         }
         var items = playbackToolbar.items!
         items[3] = btn
@@ -75,12 +73,20 @@ class PlayerViewController: UIViewController {
 
         episode?.approximateSecondsListenedToByUser += 1
         
+        
         let remainingIntTime = Int(totalSeconds) - currentTime
         let remainingMinutes = Int(remainingIntTime) / 60
         let remainingSeconds = remainingIntTime - (remainingMinutes * 60)
         
         progress = currentFloatTime / totalSeconds
         episode?.progress = progress
+
+        if currentTime % 10 == 0 {
+            episode?.progress = progress
+            print("progress \(progress)")
+            User.sharedInstance.updateOneLocalEpisode(forPodcast: self.episode!.podcast, withEpisode: episode!)
+        }
+
         print("progress made \(episode?.progress)")
         
         progressBar.setValue(progress, animated: true)

@@ -144,11 +144,13 @@ class Episode: NSObject, NSCoding {
         self.init(title: title, mp3Url: mp3Url, duration: duration, pubDate: pubDate, podcast: podcast)
         
         let approximateSecondsListenedToByUser = aDecoder.decodeObjectForKey(PropertyKey.approximateSecondsListenedToByUserKey) as! Int
+        let progress = aDecoder.decodeObjectForKey(PropertyKey.progress) as! Float
         let summary = aDecoder.decodeObjectForKey(PropertyKey.summaryKey) as? String
         let itunesSubtitle = aDecoder.decodeObjectForKey(PropertyKey.itunesSubtitleKey) as? String
         let itunesSummary = aDecoder.decodeObjectForKey(PropertyKey.itunesSummaryKey) as? String
         
         self.approximateSecondsListenedToByUser = approximateSecondsListenedToByUser
+        self.progress = progress
         self.summary = summary
         self.itunesSubtitle = itunesSubtitle
         self.itunesSummary = itunesSummary

@@ -106,6 +106,12 @@ class User : NSObject {
         return allPodcastEpisodes
     }
     
+    func updateOneLocalEpisode(forPodcast podcast: Podcast, withEpisode episode: Episode) -> Episode {
+        saveEpisodesLocally([episode], forPodcast: podcast)
+        print("updated episode \(episode.progress)")
+        return episode
+    }
+    
     func saveEpisodesLocally(episodes: [Episode], forPodcast podcast: Podcast) {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(episodes, toFile: Episode.archiveURLforPodcast(podcast).path!)
         if isSuccessfulSave {
