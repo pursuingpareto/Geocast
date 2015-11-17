@@ -325,6 +325,17 @@ class PlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
+        let verticalBar = UIImage(named: "vertical_bar")
+        let size = CGSizeApplyAffineTransform((verticalBar?.size)!, CGAffineTransformMakeScale(0.2, 0.2))
+        let hasAlpha = false
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+        verticalBar!.drawInRect(CGRect(origin: CGPointZero, size: size))
+        
+        let scaledBar = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        progressBar.setThumbImage(scaledBar, forState: .Normal)
     }
     
     override func remoteControlReceivedWithEvent(event: UIEvent?) {
