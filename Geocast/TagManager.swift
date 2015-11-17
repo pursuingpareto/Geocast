@@ -80,6 +80,24 @@ class TagManager : NSObject {
         query.whereKey("location", nearGeoPoint: geoPoint)
         query.includeKey("podcast")
         query.includeKey("episode")
+        
+//        query.findObjectsInBackgroundWithBlock({
+//            (objects: [PFObject]?, error: NSError?) -> Void in
+//            var tags: [MapEpisodeAnnotation] = []
+//            
+//            for tagObject in objects! {
+//                
+//                let pfPodcast = tagObject["podcast"] as! PFObject
+//                let pfEpisode = tagObject["episode"] as! PFObject
+//                let pfLocation = tagObject["location"] as! PFGeoPoint
+//                let episode = Episode(pfEpisode: pfEpisode)
+//                let tag = MapEpisodeAnnotation(title: pfPodcast["title"] as! String, subtitle: pfEpisode["title"] as! String, coordinate: CLLocationCoordinate2DMake(pfLocation.latitude, pfLocation.longitude), imageURL: pfPodcast["thumbnailImageURL"] as? String, episode: episode)
+//                tags.append(tag)
+//            }
+//            self.tags = tags
+//            print(tags)
+//        })
+        
         do {
             let tagObjects = try query.findObjects() as [PFObject]
             var tags: [MapEpisodeAnnotation] = []
