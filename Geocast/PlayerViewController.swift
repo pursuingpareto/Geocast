@@ -297,12 +297,16 @@ class PlayerViewController: UIViewController {
         audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
     }
     
+    
+    
     func setupRemoteControl(image: UIImage?) {
         if NSClassFromString("MPNowPlayingInfoCenter") != nil {
+            let podcastArt = MPMediaItemArtwork(image: image!)
             var songInfo = [
                 MPMediaItemPropertyArtist: episode!.podcast.title,
                 MPMediaItemPropertyTitle: episode!.title,
                 MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
+                MPMediaItemPropertyArtwork: podcastArt
             ]
 
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
@@ -387,7 +391,7 @@ class PlayerViewController: UIViewController {
                     self.imageCache[url] = self.image
                     
                     self.setupRemoteControl(self.image)
-//                    print(self.image)
+                    print("image for remote control \(self.image)")
                 } else {
                     print("Error: \(error!.localizedDescription)")
                     self.setupRemoteControl(self.image)
