@@ -12,6 +12,7 @@ import MapKit
 class TagLocationController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
 
     let initialLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
     let searchRadius: CLLocationDistance = 2000
@@ -120,26 +121,28 @@ extension TagLocationController: UITableViewDelegate {
             print("No location for that...")
             return
         }
-        let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(getAddress(fromPlacemark: location.placemark))"
-        let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-            (alert) in
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        })
-        alertController.addAction(cancelAction)
-        
-        let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
-            (alert) in
-            self.tagManager.addTag(forEpisode: self.episode, atLocation: loc)
-
-            self.performSegueWithIdentifier("unwindToPlayer", sender: self)
-        })
-        alertController.addAction(confirmAction)
-        
-        
-        self.presentViewController(alertController, animated: true, completion: {
-
-        })
+        dismissKeyboard()
+        searchBar.text = location.
+//        let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(getAddress(fromPlacemark: location.placemark))"
+//        let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+//            (alert) in
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        })
+//        alertController.addAction(cancelAction)
+//        
+//        let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
+//            (alert) in
+//            self.tagManager.addTag(forEpisode: self.episode, atLocation: loc)
+//
+//            self.performSegueWithIdentifier("unwindToPlayer", sender: self)
+//        })
+//        alertController.addAction(confirmAction)
+//        
+//        
+//        self.presentViewController(alertController, animated: true, completion: {
+//
+//        })
         
 //        print("about to add tag")
         
