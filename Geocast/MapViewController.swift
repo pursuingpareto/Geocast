@@ -68,6 +68,7 @@ class MapViewController: UIViewController {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        mapView.hidden = true
         updateView()
     }
     
@@ -179,6 +180,7 @@ class MapViewController: UIViewController {
 
                     self.mapView.addAnnotations(self.annotations)
                     self.activityIndicator.stopAnimating()
+                    self.mapView.hidden = false
                     print("annotations to be added to map \(self.annotations)")
                 }
             }
