@@ -67,6 +67,8 @@ class PlayerViewController: UIViewController {
         
 
         let currentTime = Int(Float(audioPlayer.currentTime().value) / Float(audioPlayer.currentTime().timescale))
+
+        
         let minutes = currentTime / 60
         let seconds = currentTime - (minutes * 60)
         let currentFloatTime = Float(currentTime)

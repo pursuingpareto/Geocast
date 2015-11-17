@@ -58,6 +58,10 @@
 		A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D97F1BF537BA002FE51D /* Subscription.swift */; };
 		A1D3D9821BF68A6E002FE51D /* PodcastSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */; };
 		A1D3D9841BF7D3EE002FE51D /* MapAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */; };
+		A1D4EF311BFB9D2000C64969 /* LocationTagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4EF301BFB9D2000C64969 /* LocationTagController.swift */; };
+		A1D4EF331BFBA6A300C64969 /* SearchLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4EF321BFBA6A300C64969 /* SearchLocationCell.swift */; };
+		A1D4EF351BFBA6DE00C64969 /* TagDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4EF341BFBA6DE00C64969 /* TagDescriptionCell.swift */; };
+		A1D4EF371BFBA70400C64969 /* TagLocationButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4EF361BFBA70400C64969 /* TagLocationButtonsCell.swift */; };
 		D326565350FA11D3EEF9E566 /* Pods_Geocast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -127,6 +131,10 @@
 		A1D3D97F1BF537BA002FE51D /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSummaryCell.swift; sourceTree = "<group>"; };
 		A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotationView.swift; sourceTree = "<group>"; };
+		A1D4EF301BFB9D2000C64969 /* LocationTagController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTagController.swift; sourceTree = "<group>"; };
+		A1D4EF321BFBA6A300C64969 /* SearchLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocationCell.swift; path = ../SearchLocationCell.swift; sourceTree = "<group>"; };
+		A1D4EF341BFBA6DE00C64969 /* TagDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagDescriptionCell.swift; sourceTree = "<group>"; };
+		A1D4EF361BFBA70400C64969 /* TagLocationButtonsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLocationButtonsCell.swift; sourceTree = "<group>"; };
 		C9B42BB3134B9EDF09B1394D /* Pods_Geocast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Geocast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9CDE51A8A2C656824AFD3 /* Pods-Geocast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.release.xcconfig"; sourceTree = "<group>"; };
 		FB4F89D4D9007C899528F0E1 /* Pods-Geocast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Geocast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Geocast/Pods-Geocast.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,12 +242,16 @@
 			children = (
 				33DAD8341BF805BC000BB581 /* Images */,
 				A11FD3111BEC05D500A83FDB /* AppDelegate.swift */,
+				A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */,
+				A1D4EF321BFBA6A300C64969 /* SearchLocationCell.swift */,
+				A1D4EF341BFBA6DE00C64969 /* TagDescriptionCell.swift */,
+				A1D4EF361BFBA70400C64969 /* TagLocationButtonsCell.swift */,
 				A11FD3331BEC068900A83FDB /* MainTabController.swift */,
 				A11FD3151BEC05D500A83FDB /* Main.storyboard */,
 				A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */,
 				A180358B1BF29F22003BC7F5 /* TagManager.swift */,
 				A18035891BF27BC1003BC7F5 /* TagLocationController.swift */,
-				A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */,
+				A1D4EF301BFB9D2000C64969 /* LocationTagController.swift */,
 				A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */,
 				A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */,
 				A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */,
@@ -469,8 +481,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D4EF331BFBA6A300C64969 /* SearchLocationCell.swift in Sources */,
 				A18035881BF17363003BC7F5 /* User.swift in Sources */,
 				A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */,
+				A1D4EF371BFBA70400C64969 /* TagLocationButtonsCell.swift in Sources */,
+				A1D4EF351BFBA6DE00C64969 /* TagDescriptionCell.swift in Sources */,
 				A19873631BF80488001A16EA /* MapPopupView.swift in Sources */,
 				A11FD33C1BEC330600A83FDB /* Podcast.swift in Sources */,
 				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,
@@ -492,6 +507,7 @@
 				A11FD3381BEC077500A83FDB /* PodcastsViewController.swift in Sources */,
 				A11FD3341BEC068900A83FDB /* MainTabController.swift in Sources */,
 				33DAD8321BF42AAE000BB581 /* EpisodeCell.swift in Sources */,
+				A1D4EF311BFB9D2000C64969 /* LocationTagController.swift in Sources */,
 				A1D3D9821BF68A6E002FE51D /* PodcastSummaryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
