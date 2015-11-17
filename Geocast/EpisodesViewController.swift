@@ -97,13 +97,20 @@ class EpisodesViewController: UIViewController {
         NSURLConnection.sendAsynchronousRequest(rssUrlRequest, queue: queue) {
             (response, data, error) -> Void in
             //3
-            
-            self.xmlParser = NSXMLParser(data: data!)
-            
-            self.xmlParser.delegate = self
-            
-            self.xmlParser.shouldProcessNamespaces = true
-            self.xmlParser.parse()
+            if (error != nil) {
+                print("oops, error")
+            }
+            else {
+                if let data = data{
+                    self.xmlParser = NSXMLParser(data: data)
+                    
+                    self.xmlParser.delegate = self
+                    
+                    self.xmlParser.shouldProcessNamespaces = true
+                    self.xmlParser.parse()
+                    
+                }                
+            }
         }
 
     }
