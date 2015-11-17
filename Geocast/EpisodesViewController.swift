@@ -60,9 +60,9 @@ class EpisodesViewController: UIViewController {
         episodesTableView.delegate = self
         episodesTableView.dataSource = self
         
-        episodes = User.sharedInstance.loadLocalEpisodes(forPodcast: podcast)
+//        episodes = User.sharedInstance.loadLocalEpisodes(forPodcast: podcast)
         
-//        queryEpisodes()
+        queryEpisodes()
         
     }
     
@@ -248,7 +248,7 @@ extension EpisodesViewController: NSXMLParserDelegate {
     //4
     func parserDidEndDocument(parser: NSXMLParser){
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            print(self.podcastDictionary)
+            print("dictionary \(self.podcastDictionary)")
             self.podcast.summary = self.podcastDictionary["description"]
             self.podcast.author = self.podcastDictionary["itunes:author"]
             self.podcast.lastUpdated = self.podcastDictionary["lastBuildDate"]
@@ -272,7 +272,7 @@ extension EpisodesViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("podcastSummaryCell")! as! PodcastSummaryCell
                 cell.podcastTitle.text = podcast.title
-                cell.podcastSummary.text = "example podcast summary"
+                cell.podcastSummary.text = podcast.summary
                 assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
                 if User.sharedInstance.isSubscribedTo(podcast) {
                     cell.subscribeButton.setTitle("Unsubscribe", forState: .Normal)
