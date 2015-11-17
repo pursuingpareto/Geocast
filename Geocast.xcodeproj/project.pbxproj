@@ -22,6 +22,7 @@
 		33DAD84C1BF80679000BB581 /* AudioFile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DAD8481BF80679000BB581 /* AudioFile@3x.png */; };
 		33DAD84E1BF80DFB000BB581 /* NoPodcastsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD84D1BF80DFB000BB581 /* NoPodcastsCell.swift */; };
 		33DAD8501BFAB599000BB581 /* TaggedEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */; };
+		33DAD8521BFBAB9E000BB581 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD8511BFBAB9E000BB581 /* Reachability.swift */; };
 		A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3111BEC05D500A83FDB /* AppDelegate.swift */; };
 		A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3151BEC05D500A83FDB /* Main.storyboard */; };
 		A11FD3191BEC05D500A83FDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3181BEC05D500A83FDB /* Images.xcassets */; };
@@ -91,6 +92,7 @@
 		33DAD8481BF80679000BB581 /* AudioFile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AudioFile@3x.png"; sourceTree = "<group>"; };
 		33DAD84D1BF80DFB000BB581 /* NoPodcastsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPodcastsCell.swift; sourceTree = "<group>"; };
 		33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaggedEpisodeCell.swift; sourceTree = "<group>"; };
+		33DAD8511BFBAB9E000BB581 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A11FD30C1BEC05D500A83FDB /* Geocast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11FD3101BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11FD3111BEC05D500A83FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				A180358B1BF29F22003BC7F5 /* TagManager.swift */,
 				A18035891BF27BC1003BC7F5 /* TagLocationController.swift */,
 				A1D4EF301BFB9D2000C64969 /* LocationTagController.swift */,
+				33DAD8511BFBAB9E000BB581 /* Reachability.swift */,
 				A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */,
 				A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */,
 				A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */,
@@ -508,6 +511,7 @@
 				A11FD3341BEC068900A83FDB /* MainTabController.swift in Sources */,
 				33DAD8321BF42AAE000BB581 /* EpisodeCell.swift in Sources */,
 				A1D4EF311BFB9D2000C64969 /* LocationTagController.swift in Sources */,
+				33DAD8521BFBAB9E000BB581 /* Reachability.swift in Sources */,
 				A1D3D9821BF68A6E002FE51D /* PodcastSummaryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

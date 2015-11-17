@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.sharedSDK().debug = true
         Fabric.with([Crashlytics()])
         
+        
 //        User.sharedInstance.updateSubscriptions()
         
         return true

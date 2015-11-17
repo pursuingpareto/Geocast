@@ -351,9 +351,23 @@ class PlayerViewController: UIViewController {
             }
             else if event?.subtype == UIEventSubtype.RemoteControlNextTrack {
                 // Put in logic to move to next track
+                print("remote forward")
+                let seconds = CMTimeMake(15, 1)
+                let currentTime = audioPlayer.currentTime()
+                let newTime = currentTime + seconds
+                
+                audioPlayer.seekToTime(newTime)
+
             }
             else if event?.subtype == UIEventSubtype.RemoteControlPreviousTrack {
                 // Put in logic to move to previous track
+                print("remote rewind")
+                let seconds = CMTimeMake(-15, 1)
+                let currentTime = audioPlayer.currentTime()
+                let newTime = currentTime + seconds
+                
+                audioPlayer.seekToTime(newTime)
+
             }
 
         }

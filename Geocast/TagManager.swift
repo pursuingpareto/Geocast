@@ -95,7 +95,7 @@ class TagManager : NSObject {
 //                tags.append(tag)
 //            }
 //            self.tags = tags
-//            print(tags)
+//            print("dese tags\(tags)")
 //        })
         
         do {

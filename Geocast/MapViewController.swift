@@ -25,6 +25,8 @@ class MapViewController: UIViewController {
     let regionRadius: CLLocationDistance = 2000
     var nextEpisode : Episode?
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
@@ -150,15 +152,19 @@ class MapViewController: UIViewController {
     @IBAction func redoSearchInArea(sender: UIButton) {
 
         let location = mapView.region.center
+        
+        activityIndicator.startAnimating()
 
         let geoPoint: PFGeoPoint = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
         if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint) {
             self.annotations = annotations
             self.mapView.addAnnotations(self.annotations)
+            activityIndicator.stopAnimating()
         }
     }
     
     func updateView() {
+        activityIndicator.startAnimating()
         print("Updating view")
         PFGeoPoint.geoPointForCurrentLocationInBackground({
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
@@ -172,6 +178,7 @@ class MapViewController: UIViewController {
                     self.annotations = annotations
 
                     self.mapView.addAnnotations(self.annotations)
+                    self.activityIndicator.stopAnimating()
                     print("annotations to be added to map \(self.annotations)")
                 }
             }
@@ -284,13 +291,20 @@ extension MapViewController: UITableViewDataSource {
         let distance = currentPosition?.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
         let cell = tableView.dequeueReusableCellWithIdentifier("taggedEpisodeCell", forIndexPath: indexPath) as! TaggedEpisodeCell
         
+        var distanceInMiles: Double = 0.0
+        if let distance = distance {
+            let distanceDouble = distance / 1609.34
+            distanceInMiles = Double(round(100 * distanceDouble) / 100)
+        }
         
         let podcastTitle = episode?.podcast.title as! String!
         let episodeTitle = episode?.title as! String!
         
         cell.podcastEpisode.text = "\(podcastTitle) - \(episodeTitle)"
         
-        cell.summaryText.text = episode?.itunesSummary
+        cell.summaryText.text = episode?.itunesSubtitle
+  
+        cell.distance.text = "\(String(distanceInMiles)) mi"
         
         let episodeDuration = episode?.duration as! Int!
         

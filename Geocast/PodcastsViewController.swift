@@ -77,7 +77,27 @@ class PodcastsViewController: UITableViewController {
         super.viewWillAppear(animated)
         podcasts = user.getSubscriptions()
 
+        if !Reachability.isConnectedToNetwork() {
+            let alertController = UIAlertController(title: "Internet Offline", message: "Your internet appears to be offline.  Please check your connection and try again.", preferredStyle: .Alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+                (alert) in
+            })
+            alertController.addAction(cancelAction)
+            
+            let confirmAction = UIAlertAction(title: "Okay", style: .Default, handler: {
+                (alert) in
+            })
+            alertController.addAction(confirmAction)
+            self.presentViewController(alertController, animated: true, completion: {
+                
+            })
+        } else {
+            print("connected to network")
+        }
+
         self.podcastsTableView.reloadData()
+        
+        
     }
     
     func addPodcast(sender: AnyObject) {
