@@ -25,7 +25,7 @@ class User : NSObject {
     
     func subscribe(podcast: Podcast) -> Bool {
         print("\nSUBSCRIBING!\n\n")
-        if subscriptions.contains(podcast) {
+        if self.isSubscribedTo(podcast) {
             return false
         } else {
             subscriptions.append(podcast)
@@ -35,10 +35,16 @@ class User : NSObject {
     }
     
     func unsubscribe(podcast: Podcast) -> Bool {
-        if subscriptions.contains(podcast) {
+        if self.isSubscribedTo(podcast) {
             print("subscriptions has length \(subscriptions.count)")
             let index = subscriptions.indexOf(podcast)
-            subscriptions.removeAtIndex(index!)
+            
+            for (i, pc) in subscriptions.enumerate() {
+                if pc.collectionId == podcast.collectionId {
+                    subscriptions.removeAtIndex(i)
+                    break
+                }
+            }
             print("subscriptions has length \(subscriptions.count)")
             saveSubscriptionsLocally()
             return true
@@ -60,7 +66,12 @@ class User : NSObject {
     }
     
     func isSubscribedTo(podcast: Podcast) -> Bool {
-        return subscriptions.contains(podcast)
+        for pc in subscriptions {
+            if pc.collectionId == podcast.collectionId {
+                return true
+            }
+        }
+        return false
     }
     
     func loadLocalEpisodes(forPodcast podcast: Podcast) -> [Episode]? {

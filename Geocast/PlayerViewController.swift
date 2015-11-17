@@ -105,6 +105,8 @@ class PlayerViewController: UIViewController {
                 print("user is not subscribed to this podcast")
                 subscribeButton.setTitle("Subscribe", forState: .Normal)
             }
+        } else {
+            print("could not assign episode = episode")
         }
     }
     
@@ -207,9 +209,10 @@ class PlayerViewController: UIViewController {
 //        setup()
 
         super.viewWillAppear(animated)
-        setTextForSubscribeButton()
+        
         if let ep = PodcastPlayer.sharedInstance.episode {
             episode = ep
+            setTextForSubscribeButton()
             print("Assigned episode to PodcastPlayer's episode")
             assignImage(episode!.podcast.largeImageURL)
             
