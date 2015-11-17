@@ -89,8 +89,8 @@
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="zAF-ab-d7i" firstAttribute="centerY" secondItem="jZ8-cb-oau" secondAttribute="centerY" id="MRc-2n-B7n"/>
-                                        <constraint firstItem="zAF-ab-d7i" firstAttribute="leading" secondItem="jZ8-cb-oau" secondAttribute="leading" id="ULK-dg-b94"/>
-                                        <constraint firstAttribute="trailing" secondItem="zAF-ab-d7i" secondAttribute="trailing" id="wV3-AI-G7G"/>
+                                        <constraint firstItem="zAF-ab-d7i" firstAttribute="leading" secondItem="jZ8-cb-oau" secondAttribute="leading" constant="10" id="ULK-dg-b94"/>
+                                        <constraint firstAttribute="trailing" secondItem="zAF-ab-d7i" secondAttribute="trailing" constant="10" id="wV3-AI-G7G"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
@@ -187,10 +187,10 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="podcastSummary" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOK-tU-mZ4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="podcastSummary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOK-tU-mZ4">
                                                     <rect key="frame" x="106" y="29" width="486" height="80"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -210,6 +210,7 @@
                                                 <constraint firstItem="DZC-5L-Gre" firstAttribute="centerX" secondItem="EcN-iL-4Yf" secondAttribute="centerX" id="UYR-IM-xql"/>
                                                 <constraint firstItem="pA6-Oo-Zew" firstAttribute="top" secondItem="EcN-iL-4Yf" secondAttribute="top" id="chS-mA-cMr"/>
                                                 <constraint firstItem="pA6-Oo-Zew" firstAttribute="leading" secondItem="EcN-iL-4Yf" secondAttribute="trailing" constant="10" id="fyO-v7-CPB"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kOK-tU-mZ4" secondAttribute="trailing" constant="20" id="jb3-cp-eRp"/>
                                                 <constraint firstItem="kOK-tU-mZ4" firstAttribute="leading" secondItem="pA6-Oo-Zew" secondAttribute="leading" id="wY9-Wj-9L7"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="EcN-iL-4Yf" secondAttribute="leading" id="xhQ-oQ-L7u"/>
                                                 <constraint firstItem="DZC-5L-Gre" firstAttribute="top" secondItem="EcN-iL-4Yf" secondAttribute="bottom" constant="10" id="z9p-jI-iNq"/>

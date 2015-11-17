@@ -78,6 +78,9 @@ class PlayerViewController: UIViewController {
         let remainingSeconds = remainingIntTime - (remainingMinutes * 60)
         
         progress = currentFloatTime / totalSeconds
+        episode?.progress = progress
+        print("progress made \(episode?.progress)")
+        
         progressBar.setValue(progress, animated: true)
         playedTime.text = NSString(format: "%02d:%02d", minutes, seconds) as String
         remainingTime.text = NSString(format: "%02d:%02d", remainingMinutes, remainingSeconds) as String

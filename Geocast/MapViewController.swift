@@ -172,6 +172,7 @@ class MapViewController: UIViewController {
                     self.annotations = annotations
 
                     self.mapView.addAnnotations(self.annotations)
+                    print("annotations to be added to map \(self.annotations)")
                 }
             }
         })
