@@ -21,6 +21,7 @@
 		33DAD84B1BF80679000BB581 /* AudioFile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DAD8471BF80679000BB581 /* AudioFile@2x.png */; };
 		33DAD84C1BF80679000BB581 /* AudioFile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DAD8481BF80679000BB581 /* AudioFile@3x.png */; };
 		33DAD84E1BF80DFB000BB581 /* NoPodcastsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD84D1BF80DFB000BB581 /* NoPodcastsCell.swift */; };
+		33DAD8501BFAB599000BB581 /* TaggedEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */; };
 		A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3111BEC05D500A83FDB /* AppDelegate.swift */; };
 		A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3151BEC05D500A83FDB /* Main.storyboard */; };
 		A11FD3191BEC05D500A83FDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3181BEC05D500A83FDB /* Images.xcassets */; };
@@ -85,6 +86,7 @@
 		33DAD8471BF80679000BB581 /* AudioFile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AudioFile@2x.png"; sourceTree = "<group>"; };
 		33DAD8481BF80679000BB581 /* AudioFile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AudioFile@3x.png"; sourceTree = "<group>"; };
 		33DAD84D1BF80DFB000BB581 /* NoPodcastsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPodcastsCell.swift; sourceTree = "<group>"; };
+		33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaggedEpisodeCell.swift; sourceTree = "<group>"; };
 		A11FD30C1BEC05D500A83FDB /* Geocast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11FD3101BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11FD3111BEC05D500A83FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */,
 				A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */,
 				A11FD3471BF12DF500A83FDB /* MapViewController.swift */,
+				33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */,
 				A19873621BF80488001A16EA /* MapPopupView.swift */,
 				A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */,
 				A11FD3431BF0154D00A83FDB /* PodcastCell.swift */,
@@ -473,6 +476,7 @@
 				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,
 				A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */,
 				A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */,
+				33DAD8501BFAB599000BB581 /* TaggedEpisodeCell.swift in Sources */,
 				A1D3D9841BF7D3EE002FE51D /* MapAnnotationView.swift in Sources */,
 				33DAD84E1BF80DFB000BB581 /* NoPodcastsCell.swift in Sources */,
 				A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */,

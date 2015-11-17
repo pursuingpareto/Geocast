@@ -24,6 +24,7 @@ class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     let regionRadius: CLLocationDistance = 2000
     var nextEpisode : Episode?
+    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
@@ -280,9 +281,28 @@ extension MapViewController: UITableViewDataSource {
         let coordinate = annotation.coordinate
         let currentPosition = locationManager.location
         let distance = currentPosition?.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
-        let cell = tableView.dequeueReusableCellWithIdentifier("tagCell", forIndexPath: indexPath)
-        cell.textLabel!.text = "\(episode!.title): \(distance)"
-        print(cell.textLabel!.text)
+        let cell = tableView.dequeueReusableCellWithIdentifier("taggedEpisodeCell", forIndexPath: indexPath) as! TaggedEpisodeCell
+        
+        
+        let podcastTitle = episode?.podcast.title as! String!
+        let episodeTitle = episode?.title as! String!
+        
+        cell.podcastEpisode.text = "\(podcastTitle) - \(episodeTitle)"
+        
+        cell.summaryText.text = episode?.itunesSummary
+        
+        let episodeDuration = episode?.duration as! Int!
+        
+        
+        let minutes = episodeDuration / 60
+        let seconds = episodeDuration - (minutes * 60)
+        
+        cell.duration.text = NSString(format: "%02d:%02d", minutes, seconds) as String
+
+        print("duration \(episode?.duration)")
+        
+//        cell.textLabel!.text = "\(episode!.title): \(distance)"
+//        print(cell.textLabel!.text)
         return cell
     }
 }
