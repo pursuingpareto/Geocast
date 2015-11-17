@@ -284,13 +284,20 @@ extension MapViewController: UITableViewDataSource {
         let distance = currentPosition?.distanceFromLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
         let cell = tableView.dequeueReusableCellWithIdentifier("taggedEpisodeCell", forIndexPath: indexPath) as! TaggedEpisodeCell
         
+        var distanceInMiles: Double = 0.0
+        if let distance = distance {
+            let distanceDouble = distance / 1609.34
+            distanceInMiles = Double(round(100 * distanceDouble) / 100)
+        }
         
         let podcastTitle = episode?.podcast.title as! String!
         let episodeTitle = episode?.title as! String!
         
         cell.podcastEpisode.text = "\(podcastTitle) - \(episodeTitle)"
         
-        cell.summaryText.text = episode?.itunesSummary
+        cell.summaryText.text = episode?.itunesSubtitle
+  
+        cell.distance.text = "\(String(distanceInMiles)) mi"
         
         let episodeDuration = episode?.duration as! Int!
         
