@@ -75,7 +75,7 @@
                                 <rect key="frame" x="0.0" y="186" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3x-AT-dfa" id="jZ8-cb-oau">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You have no podcasts in your library!  Tap the + button to add your first podcast." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAF-ab-d7i">
@@ -223,20 +223,20 @@
                                             <outlet property="subscribeButton" destination="DZC-5L-Gre" id="CKW-m9-6Mr"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" rowHeight="70" id="xZb-uf-R5z" customClass="EpisodeCell" customModule="Geocast" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="172" width="600" height="70"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="episodeCell" rowHeight="100" id="xZb-uf-R5z" customClass="EpisodeCell" customModule="Geocast" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="172" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xZb-uf-R5z" id="wwO-ag-CSc">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="episodeTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ6-sv-iQG">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="episodeTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ6-sv-iQG">
                                                     <rect key="frame" x="21" y="19" width="93" height="21"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="OUL-Iz-mJT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -270,7 +270,7 @@
                                             <animations/>
                                             <constraints>
                                                 <constraint firstItem="P5b-t9-RTE" firstAttribute="width" secondItem="mkL-ik-c8g" secondAttribute="width" id="2jt-Vi-ppZ"/>
-                                                <constraint firstItem="lC8-bW-Nhm" firstAttribute="top" secondItem="fZ6-sv-iQG" secondAttribute="bottom" constant="10" id="8jd-nl-Kae"/>
+                                                <constraint firstItem="lC8-bW-Nhm" firstAttribute="top" secondItem="fZ6-sv-iQG" secondAttribute="bottom" constant="5" id="8jd-nl-Kae"/>
                                                 <constraint firstItem="fZ6-sv-iQG" firstAttribute="leading" secondItem="wwO-ag-CSc" secondAttribute="leadingMargin" constant="10" id="AFu-9V-UdG"/>
                                                 <constraint firstItem="P5b-t9-RTE" firstAttribute="centerY" secondItem="lC8-bW-Nhm" secondAttribute="centerY" id="DlQ-Fb-zcL"/>
                                                 <constraint firstItem="mkL-ik-c8g" firstAttribute="leading" secondItem="fZ6-sv-iQG" secondAttribute="leading" id="Kn7-Kh-dwu"/>
