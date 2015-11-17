@@ -25,6 +25,8 @@ class MapViewController: UIViewController {
     let regionRadius: CLLocationDistance = 2000
     var nextEpisode : Episode?
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
@@ -150,15 +152,19 @@ class MapViewController: UIViewController {
     @IBAction func redoSearchInArea(sender: UIButton) {
 
         let location = mapView.region.center
+        
+        activityIndicator.startAnimating()
 
         let geoPoint: PFGeoPoint = PFGeoPoint(latitude: location.latitude, longitude: location.longitude)
         if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint) {
             self.annotations = annotations
             self.mapView.addAnnotations(self.annotations)
+            activityIndicator.stopAnimating()
         }
     }
     
     func updateView() {
+        activityIndicator.startAnimating()
         print("Updating view")
         PFGeoPoint.geoPointForCurrentLocationInBackground({
             (geoPoint: PFGeoPoint?, error: NSError?) -> Void in
@@ -172,6 +178,7 @@ class MapViewController: UIViewController {
                     self.annotations = annotations
 
                     self.mapView.addAnnotations(self.annotations)
+                    self.activityIndicator.stopAnimating()
                     print("annotations to be added to map \(self.annotations)")
                 }
             }
