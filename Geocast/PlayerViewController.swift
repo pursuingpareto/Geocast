@@ -203,6 +203,7 @@ class PlayerViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
 //        setup()
+        print("PLAYER VIEW WILL APPEAR")
 
         super.viewWillAppear(animated)
         
@@ -246,13 +247,24 @@ class PlayerViewController: UIViewController {
             print("about to get player item")
             dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
                 let playerItem = AVPlayerItem(URL: url!)
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.setupAudioPlayer(playerItem)
+                
+                if playerItem.asset.tracks.first?.trackID != PodcastPlayer.sharedInstance.currentItem?.asset.tracks.first?.trackID {
+                    print("NEW PLAYER ITEM")
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.setupAudioPlayer(playerItem)
+                        for item in self.playbackToolbar.items! {
+                            item.enabled = true
+                        }
+                        print("got player item")
+                    })
+                } else {
+                    print("OLD PLAYER ITEM")
                     for item in self.playbackToolbar.items! {
                         item.enabled = true
                     }
-                    print("got player item")
-                })
+                }
+                
+                
             }
 
             
@@ -331,6 +343,7 @@ class PlayerViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        print("PLAYER VIEW DID LOAD")
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
         let verticalBar = UIImage(named: "vertical_bar")
