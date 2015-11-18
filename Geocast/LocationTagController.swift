@@ -17,6 +17,9 @@ class TagLocationController: UITableViewController {
     var nameForLocation: String?
     var addressForLocation: String?
     var descriptionForTag: String?
+    var locationToAdd: CLLocation?
+    
+    var tagManager = TagManager.sharedInstance
     
     // TODO make this user's location
     let initialLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
@@ -30,8 +33,9 @@ class TagLocationController: UITableViewController {
             controller.searchBar.sizeToFit()
             controller.searchBar.placeholder = "Search for location or address"
             controller.dimsBackgroundDuringPresentation = false
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("searchLocationCell", forIndexPath: NSIndexPath(forRow: 0, inSection: 0)) as! SearchLocationCell
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("searchLocationCell", forIndexPath: NSIndexPath(forRow: 0, inSection: 1)) as! SearchLocationCell
             controller.searchBar.bounds = cell.bounds
+            controller.searchBar.searchBarStyle = UISearchBarStyle.Minimal
             
             cell.searchBar = controller.searchBar
             cell.addSubview(cell.searchBar)
@@ -42,6 +46,16 @@ class TagLocationController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.sizeToFit()
         searchController.delegate = self
+
+        let backButton = UIButton(type: .System)
+        backButton.setTitle("Back", forState: .Normal)
+        backButton.sizeToFit()
+        backButton.bounds.size.height = 70
+//        backButton.frame.origin = CGPointMake(10, 10)
+        backButton.contentHorizontalAlignment = .Left
+        backButton.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0)
+        backButton.addTarget(self, action: "dismiss", forControlEvents: .TouchUpInside)
+        tableView.tableHeaderView = backButton
         
         print("searchController.searchBar is \(searchController.searchBar)")
         
@@ -57,37 +71,71 @@ class TagLocationController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
+            return 2
+        } else if section == 1 {
             return 1
         } else {
             if searchController.active {
+                print("telling tableview that there are \(locations.count) locations")
                 return locations.count
             } else {
-                return 2 // 1 for the TagDescriptionCell and 1 for TagLocationButtons Cell
+                return 1 // 1 for the TagDescriptionCell
             }
         }
         
     }
     
+    func dismiss() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("addTagCell", forIndexPath: indexPath) as! AddTagCell
+                cell.episodeLabel.text = "\(episode.podcast.title) - \(episode.title)"
+                print(nameForLocation)
+                if nameForLocation == nil {
+                    print("NAME FOR LOCATION IS NILL")
+                    cell.locationLabel.text = "Must add location"
+                } else {
+                    print("name for location is NOT nil")
+                    cell.locationLabel.text = nameForLocation!
+                }
+//                cell.locationLabel.text = (nameForLocation != nil) ? nameForLocation! : "Must add location"
+                cell.descriptionLabel.text = (descriptionForTag != nil) ? descriptionForTag! : "Must add description"
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("tagLocationButtonsCell", forIndexPath: indexPath) as! TagLocationButtonsCell
+                // TODO : Wire up the button so it actually adds a tag.
+                
+                if nameForLocation != nil && descriptionForTag != nil && locationToAdd != nil {
+                    cell.addTagButton.enabled = true
+                } else {
+                    cell.addTagButton.enabled = false
+                }
+                
+                return cell
+            }
+        }
+        if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("searchLocationCell", forIndexPath: indexPath) as! SearchLocationCell
             cell.searchBar = searchController.searchBar
             if nameForLocation != nil {
-                cell.searchBar.text = nameForLocation
+//                cell.searchBar.text = nameForLocation
             }
-
-            print("dequed searchLocationCell... searchController is \(searchController)")
-            print("searchBar is... \(searchController.searchBar)")
-            print("cell searchBar is \(cell.searchBar)")
             return cell
-        } else {
+        } else  {
             if searchController.active {
                 let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! LocationCell
+                print("indexPath is \(indexPath)")
+                print("locations has count \(locations.count)")
                 let location = locations[indexPath.row]
                 let pm = location.placemark
                 
@@ -95,51 +143,77 @@ class TagLocationController: UITableViewController {
                 let address = getAddress(fromPlacemark: pm)
                 cell.addressLabel.text = address
                 
-                if let areaOfInterest = pm.areasOfInterest?.first {
-                    cell.nameLabel.text = areaOfInterest
-                } else {
-                    cell.nameLabel.text = pm.name
-                }
+                cell.nameLabel.text = getName(fromPlacemark: pm)
                 return cell
                 
             } else {
-                if indexPath.row == 0 {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("tagDescriptionCell", forIndexPath: indexPath) as! TagDescriptionCell
-                    return cell
-                } else {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("tagLocationButtonsCell", forIndexPath: indexPath) as! TagLocationButtonsCell
-                    // TODO : Wire up the button so it actually adds a tag.
-                    return cell
-                }
+                let cell = tableView.dequeueReusableCellWithIdentifier("tagDescriptionCell", forIndexPath: indexPath) as! TagDescriptionCell
+                cell.textView.text = descriptionForTag
+                cell.textView.delegate = self
+                return cell
             }
         }
     }
     
+    func getName(fromPlacemark pm: MKPlacemark) -> String? {
+        var text: String!
+        if let areaOfInterest = pm.areasOfInterest?.first {
+            text = areaOfInterest
+        } else {
+            text = pm.name
+        }
+        return text
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
+            return "Tag"
+        } else if section == 1 {
             return "Add Location"
         } else {
-            return "Add Description"
+            if searchController.active {
+                return nil
+            } else {
+                return "Add Description"
+            }
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as? LocationCell{
-            nameForLocation = cell.nameLabel.text
-            addressForLocation = cell.addressLabel.text
-            searchController.searchBar.resignFirstResponder()
+        if searchController.active && indexPath.section == 2 {
+            let location = locations[indexPath.row]
+            nameForLocation = getName(fromPlacemark: location.placemark)
+            locationToAdd = location.placemark.location
+            print("nameForLocation is \(nameForLocation)")
+            addressForLocation = getAddress(fromPlacemark: location.placemark)
+            print("addressForLocation is \(addressForLocation)")
             searchController.active = false
-            tableView.reloadData()
-        } else {
+            searchController.searchBar.resignFirstResponder()
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.tableView.reloadData()
+            })
+        }else {
             super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                return 100
+            } else {
+                return 44
+            }
+        }
         if indexPath.section == 1 {
-            return 66
+            return 44
         } else {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            if searchController.active {
+                return 66
+            } else {
+                return 88
+            }
         }
     }
     
@@ -185,11 +259,37 @@ class TagLocationController: UITableViewController {
             self.tableView.reloadData()
         })
     }
+    @IBAction func addTagButtonPressed(sender: AnyObject) {
+        let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(nameForLocation!)"
+        let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert) in
+        })
+        alertController.addAction(cancelAction)
+        
+        let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
+            (alert) in
+            self.tagManager.addTag(forEpisode: self.episode, atLocation: self.locationToAdd!, withName: self.nameForLocation!, withDescription: self.descriptionForTag!, withAddress: self.addressForLocation!)
+            if let presenter = self.presentingViewController as? PlayerViewController {
+                presenter.popupText = "Tag Added!"
+            }
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+        alertController.addAction(confirmAction)
+        
+        
+        self.presentViewController(alertController, animated: true, completion: {
+            
+        })
+        
+        print("about to add tag")
+    }
 }
 
 extension TagLocationController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         print("updating search results...")
+        locations.removeAll(keepCapacity: false)
         if let text = searchController.searchBar.text {
             print("text is \(text)")
             search(text)
@@ -200,12 +300,26 @@ extension TagLocationController: UISearchResultsUpdating {
 extension TagLocationController: UISearchControllerDelegate {
     func didPresentSearchController(searchController: UISearchController) {
         searchController.active = true
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     func didDismissSearchController(searchController: UISearchController) {
         searchController.active = false
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
+}
+
+extension TagLocationController: UITextViewDelegate {
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            descriptionForTag = textView.text
+            textView.resignFirstResponder()
+            tableView.reloadData()
+            return false
+        } else {
+            return true
+        }
+        
+    }
 }

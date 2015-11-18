@@ -21,7 +21,7 @@ class TagManager : NSObject {
         return Singleton.instance
     }
     
-    func addTag(forEpisode episode: Episode, atLocation location: CLLocation) {
+    func addTag(forEpisode episode: Episode, atLocation location: CLLocation, withName name: String, withDescription description: String, withAddress address: String) {
         let annotation = MapEpisodeAnnotation(episode: episode, coordinate: location.coordinate)
         
         // try to get Podcast associated with annotation
@@ -64,6 +64,9 @@ class TagManager : NSObject {
                 pfTag["user"] = PFUser.currentUser()!
                 let point = PFGeoPoint(location: location)
                 pfTag["location"] = point
+                pfTag["locationName"] = name
+                pfTag["tagDescription"] = description
+                pfTag["address"] = address
                 pfTag.saveInBackground()
             })
         })

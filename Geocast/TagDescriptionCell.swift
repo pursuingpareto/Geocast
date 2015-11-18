@@ -11,4 +11,5 @@ import UIKit
 class TagDescriptionCell: UITableViewCell {
     
     @IBOutlet weak var textView: UITextView!
+
 }

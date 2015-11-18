@@ -127,29 +127,29 @@
 //        dismissKeyboard()
 //        searchBar.text = location.placemark.name
 //        
-////        let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(getAddress(fromPlacemark: location.placemark))"
-////        let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
-////        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-////            (alert) in
-////            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-////        })
-////        alertController.addAction(cancelAction)
-////        
-////        let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
-////            (alert) in
-////            self.tagManager.addTag(forEpisode: self.episode, atLocation: loc)
-////
-////            self.performSegueWithIdentifier("unwindToPlayer", sender: self)
-////        })
-////        alertController.addAction(confirmAction)
-////        
-////        
-////        self.presentViewController(alertController, animated: true, completion: {
-////
-////        })
+//        let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(getAddress(fromPlacemark: location.placemark))"
+//        let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+//            (alert) in
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        })
+//        alertController.addAction(cancelAction)
 //        
-////        print("about to add tag")
+//        let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
+//            (alert) in
+//            self.tagManager.addTag(forEpisode: self.episode, atLocation: loc)
+//
+//            self.performSegueWithIdentifier("unwindToPlayer", sender: self)
+//        })
+//        alertController.addAction(confirmAction)
 //        
+//        
+//        self.presentViewController(alertController, animated: true, completion: {
+//
+//        })
+//        
+//        print("about to add tag")
+//
 //        
 //    }
 //}

@@ -439,16 +439,22 @@ class PlayerViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let destinationVC = segue.destinationViewController as? TagLocationController else {
-            super.prepareForSegue(segue, sender: sender)
-            return
-        }
         
-        if let episode = episode {
-            destinationVC.episode = episode
-            super.prepareForSegue(segue, sender: sender)
-            
+        if let tagVC = segue.destinationViewController as? TagLocationController {
+            tagVC.episode = episode
         }
+        super.prepareForSegue(segue, sender: sender)
+        
+//        guard let destinationVC = segue.destinationViewController as? TagLocationController else {
+//            super.prepareForSegue(segue, sender: sender)
+//            return
+//        }
+//        
+//        if let episode = episode {
+//            destinationVC.episode = episode
+//            super.prepareForSegue(segue, sender: sender)
+//            
+//        }
         
     }
     
