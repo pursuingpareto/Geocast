@@ -216,7 +216,7 @@ class PlayerViewController: UIViewController {
             print("toolbar items \(item)")
         }
         
-        if (PodcastPlayer.sharedInstance.episode == episode && PodcastPlayer.sharedInstance.episode != nil) {
+        if (PodcastPlayer.sharedInstance.episode?.mp3Url == episode?.mp3Url && PodcastPlayer.sharedInstance.episode != nil) {
             // keep on trucking
             progressBar.hidden = false
             trackTitle.hidden = false
@@ -229,6 +229,11 @@ class PlayerViewController: UIViewController {
             noEpisodeLabel.hidden = true
             publicationDate.hidden = false
             playbackToolbar.hidden = false
+            
+            for item in self.playbackToolbar.items! {
+                item.enabled = true
+            }
+            
         } else if PodcastPlayer.sharedInstance.episode != nil {
             episode = PodcastPlayer.sharedInstance.episode
             PodcastPlayer.sharedInstance.pause()
