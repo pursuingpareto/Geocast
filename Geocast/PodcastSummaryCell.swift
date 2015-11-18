@@ -17,15 +17,15 @@ class PodcastSummaryCell: UITableViewCell {
     
     var podcast: Podcast!
     
-    @IBAction func subscribeButtonClicked(sender: AnyObject) {
-        if User.sharedInstance.isSubscribedTo(podcast!) {
-            // TODO add confirmation popup?
-            User.sharedInstance.unsubscribe(podcast)
-            subscribeButton.setTitle("Subscribe", forState: .Normal)
-        } else {
-            print("subscribe button pressed, attempting to subscribe...")
-            User.sharedInstance.subscribe((podcast)!)
-            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
-        }
-    }
+//    @IBAction func subscribeButtonClicked(sender: AnyObject) {
+//        if User.sharedInstance.isSubscribedTo(podcast!) {
+//            // TODO add confirmation popup?
+//            User.sharedInstance.unsubscribe(podcast)
+//            subscribeButton.setTitle("Subscribe", forState: .Normal)
+//        } else {
+//            print("subscribe button pressed, attempting to subscribe...")
+//            User.sharedInstance.subscribe((podcast)!)
+//            subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+//        }
+//    }
 }

@@ -129,7 +129,7 @@ class EpisodesViewController: UIViewController {
         }
     }
     
-    @IBAction func subscribeButtonClicked(sender: UIButton) {
+    func subscribeButtonClicked(sender: AnyObject?) {
         if User.sharedInstance.isSubscribedTo((podcast)!) {
             // TODO add confirmation popup?
             
@@ -296,9 +296,10 @@ extension EpisodesViewController: UITableViewDataSource {
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("podcastSummaryCell")! as! PodcastSummaryCell
-                cell.userInteractionEnabled = false
+
                 cell.podcastTitle.text = podcast.title
                 cell.podcastSummary.text = podcast.summary
+                cell.subscribeButton.addTarget(self, action: "subscribeButtonClicked:", forControlEvents: .TouchUpInside)
                 assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)
                 if User.sharedInstance.isSubscribedTo(podcast) {
                     cell.subscribeButton.setTitle("Unsubscribe", forState: .Normal)
@@ -352,12 +353,14 @@ extension EpisodesViewController: UITableViewDataSource {
 extension EpisodesViewController: UITableViewDelegate {
     func tableView(tableView: UITableView,
         didSelectRowAtIndexPath indexPath: NSIndexPath){
-            let ep = episodes[indexPath.row - 1]
-            print("EPISODE IS \(ep.title)")
-            PodcastPlayer.sharedInstance.episode = ep
-            self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+            if indexPath.row > 0 {
+                let ep = episodes[indexPath.row - 1]
+                print("EPISODE IS \(ep.title)")
+                PodcastPlayer.sharedInstance.episode = ep
+                self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+            }
     }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 150
