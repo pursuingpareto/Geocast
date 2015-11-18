@@ -41,6 +41,7 @@ class EpisodesViewController: UIViewController {
         "duration",
         "subtitle",
         "enclosure",
+        "itunes:duration"
     ]
     
     var feedUrls : [NSURL?]!
@@ -63,8 +64,6 @@ class EpisodesViewController: UIViewController {
         if let existingEpisodes = User.sharedInstance.loadLocalEpisodes(forPodcast: podcast) {
             episodes = existingEpisodes
         }
-        
-        queryEpisodes()
         
     }
     
@@ -201,7 +200,7 @@ extension EpisodesViewController: NSXMLParserDelegate {
         qualifiedName: String?,
         attributes attributeDict: [String : String]){
             
-            currentParsedElement = qualifiedName!
+            currentParsedElement = qualifiedName
             if currentParsedElement == nil {
                 currentParsedElement = elementName
             }
@@ -239,7 +238,7 @@ extension EpisodesViewController: NSXMLParserDelegate {
                 if string != nil {
                     var newString: String = "\(entryValue)\(string!)"
                     entryValue = newString
-                    print("entryValue is \(entryValue)")
+
                 }
 //            }
     }
@@ -248,9 +247,7 @@ extension EpisodesViewController: NSXMLParserDelegate {
         didEndElement elementName: String,
         namespaceURI: String?,
         qualifiedName qName: String?){
-            if shouldParseCurrentElement {
-                print("currentParsedElement it \(currentParsedElement)")
-                print("entryValue is \(entryValue)")
+            if insideItem {
                 entryDictionary[currentParsedElement] = entryValue
             } else {
                 podcastDictionary[currentParsedElement] = entryValue
@@ -264,11 +261,12 @@ extension EpisodesViewController: NSXMLParserDelegate {
     //4
     func parserDidEndDocument(parser: NSXMLParser){
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            print("dictionary \(self.podcastDictionary)")
+
             self.podcast.summary = self.podcastDictionary["description"]
             self.podcast.author = self.podcastDictionary["itunes:author"]
             self.podcast.lastUpdated = self.podcastDictionary["lastBuildDate"]
             var newEpisodes : [Episode] = []
+            print("\n\n\nentries array has \(self.entriesArray.count) entries\n\n\n")
             for entry in self.entriesArray {
                 newEpisodes.append(Episode(parsedFeedData: entry, podcast:self.podcast))
             }
@@ -277,8 +275,10 @@ extension EpisodesViewController: NSXMLParserDelegate {
                 self.podcast.lastUpdated = newEpisodes.first?.pubDate
             }
             if User.sharedInstance.isSubscribedTo(self.podcast) {
+                print("\n\n\nupdating local episodes...\n\n\n")
                 self.episodes = User.sharedInstance.updateLocalEpisodes(forPodcast: self.podcast, withEpisodes: newEpisodes)
             } else {
+                print("\n\nnot updating local episodes...\n\n")
                 self.episodes = newEpisodes
             }
             
