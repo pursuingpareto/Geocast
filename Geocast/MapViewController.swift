@@ -12,7 +12,6 @@ import Parse
 
 class MapViewController: UIViewController {
     
-    @IBOutlet var popupView: MapPopupView!
     var episodesWithCoordinates: [(Episode!, CLLocationCoordinate2D)] = []
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var redoSearchButton: UIButton!
@@ -51,10 +50,7 @@ class MapViewController: UIViewController {
 
         view.bringSubviewToFront(mapView)
         view.sendSubviewToBack(tableView)
-        view.addSubview(popupView)
-        view.bringSubviewToFront(popupView)
-        
-        dismissPopup()
+
         
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -70,69 +66,6 @@ class MapViewController: UIViewController {
         mapView.hidden = true
         updateView()
     }
-    
-    func showPopup() {
-        popupView.hidden = false
-        view.bringSubviewToFront(popupView)
-        print("Popup view is \(popupView)")
-    }
-    
-    func dismissPopup() {
-        popupView.hidden = true
-//        popupView.removeFromSuperview()
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first! as? UITouch {
-            let location = touch.locationInView(popupView)
-            if popupView.bounds.contains(location) {
-                if popupView.playButton.bounds.contains(touch.locationInView(popupView.playButton)) {
-                    popupView.playButton.sendActionsForControlEvents(.TouchDown)
-                }
-//                dismissPopup()
-//                popupView.touchesBegan(touches,  withEvent: event)
-            } else {
-                super.touchesBegan(touches , withEvent: event)
-            }
-        } else {
-            super.touchesBegan(touches , withEvent: event)
-        }
-    }
-    
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first! as? UITouch {
-            let location = touch.locationInView(popupView)
-            if popupView.bounds.contains(location) {
-                if popupView.playButton.bounds.contains(touch.locationInView(popupView.playButton)) {
-                    popupView.playButton.sendActionsForControlEvents(.TouchDragInside)
-                }
-                //                dismissPopup()
-                //                popupView.touchesBegan(touches,  withEvent: event)
-            } else {
-                super.touchesBegan(touches , withEvent: event)
-            }
-        } else {
-            super.touchesBegan(touches , withEvent: event)
-        }
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if let touch = touches.first {
-            let location = touch.locationInView(popupView)
-            if popupView.bounds.contains(location) {
-                if popupView.playButton.bounds.contains(touch.locationInView(popupView.playButton)) {
-                    popupView.playButton.sendActionsForControlEvents(.TouchUpInside)
-                }
-                dismissPopup()
-                //                popupView.touchesBegan(touches,  withEvent: event)
-            } else {
-                super.touchesEnded(touches , withEvent: event)
-            }
-        } else {
-            super.touchesEnded(touches , withEvent: event)
-        }
-    }
-    
     
     @IBAction func segmentedControlValueChanged(sender: AnyObject) {
         switch segmentedControl.selectedSegmentIndex
@@ -176,11 +109,10 @@ class MapViewController: UIViewController {
                 print("attempting to get annotations")
                 if let annotations = self.tagManager.getTagsFromParse(nearGeoPoint: geoPoint!) {
                     self.annotations = annotations
-
                     self.mapView.addAnnotations(self.annotations)
                     self.activityIndicator.stopAnimating()
                     self.mapView.hidden = false
-                    print("annotations to be added to map \(self.annotations)")
+
                 }
             }
         })
@@ -261,18 +193,10 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("DID SELECT ANNOTATION VIEW")
-        showPopup()
-        popupView.setupConstraints()
-//        view.addSubview(popupView)
-        view.bringSubviewToFront(popupView)
         if let ann = view.annotation as? MapEpisodeAnnotation {
             nextEpisode = ann.episode
         }
-        
-
-        popupView.setupWithAnnotation(view.annotation as! MapEpisodeAnnotation, forUserLocation: locationManager.location)
     }
-
 }
 
 extension MapViewController: UITableViewDataSource {
