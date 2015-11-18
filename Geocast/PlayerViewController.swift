@@ -207,9 +207,12 @@ class PlayerViewController: UIViewController {
 
         super.viewWillAppear(animated)
         
-        for item in playbackToolbar.items! {
-            item.enabled = false
+        if !isPlaying {
+            for item in playbackToolbar.items! {
+                item.enabled = false
+            }
         }
+        
         
         if let ep = PodcastPlayer.sharedInstance.episode {
             episode = ep
