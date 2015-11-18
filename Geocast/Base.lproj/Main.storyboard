@@ -170,7 +170,7 @@
                                         <rect key="frame" x="0.0" y="22" width="600" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cEf-ca-A0e" id="jDr-sX-j7s">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EcN-iL-4Yf">
@@ -210,6 +210,7 @@
                                                 <constraint firstAttribute="topMargin" secondItem="EcN-iL-4Yf" secondAttribute="top" id="TeS-Q3-a4e"/>
                                                 <constraint firstItem="DZC-5L-Gre" firstAttribute="centerX" secondItem="EcN-iL-4Yf" secondAttribute="centerX" id="UYR-IM-xql"/>
                                                 <constraint firstItem="pA6-Oo-Zew" firstAttribute="top" secondItem="EcN-iL-4Yf" secondAttribute="top" id="chS-mA-cMr"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pA6-Oo-Zew" secondAttribute="trailing" constant="10" id="ftl-dq-hUc"/>
                                                 <constraint firstItem="pA6-Oo-Zew" firstAttribute="leading" secondItem="EcN-iL-4Yf" secondAttribute="trailing" constant="10" id="fyO-v7-CPB"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="kOK-tU-mZ4" secondAttribute="trailing" constant="20" id="jb3-cp-eRp"/>
                                                 <constraint firstItem="kOK-tU-mZ4" firstAttribute="leading" secondItem="pA6-Oo-Zew" secondAttribute="leading" id="wY9-Wj-9L7"/>
