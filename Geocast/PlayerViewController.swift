@@ -311,7 +311,14 @@ class PlayerViewController: UIViewController {
     func setupAudioPlayer(playerItem: AVPlayerItem) {
         audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
         audioPlayer.currentItem?.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
-
+        
+        let seconds = Int64((episode?.progress)! * totalSeconds)
+        audioPlayer.seekToTime(CMTimeMake(seconds, 1))
+        if isPlaying {
+            audioPlayer.play()
+        } else {
+            audioPlayer.pause()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
