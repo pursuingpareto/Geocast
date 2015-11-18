@@ -307,6 +307,7 @@ extension MapViewController: UITableViewDataSource {
         cell.summaryText.text = episode?.itunesSubtitle
   
         cell.distance.text = "\(String(distanceInMiles)) mi"
+        cell.taggedAddress.text = annotation.address
         
         let episodeDuration = episode?.duration as! Int!
         
