@@ -16,6 +16,7 @@ class PlayerViewController: UIViewController {
     var audioPlayer = PodcastPlayer.sharedInstance
     var isPlaying = false
     var timer: NSTimer!
+    var statusTimer: NSTimer!
     var episode: Episode?
     var progress: Float = 0.0
     var totalSeconds : Float = 0.0
@@ -23,6 +24,9 @@ class PlayerViewController: UIViewController {
     var imageCache = [String : UIImage]()
     var image: UIImage?
 
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var trackTitle: UILabel!
     @IBOutlet weak var podcastTitle: UILabel!
     @IBOutlet weak var publicationDate: UILabel!
@@ -202,15 +206,14 @@ class PlayerViewController: UIViewController {
     
     
     override func viewWillAppear(animated: Bool) {
-//        setup()
-        print("PLAYER VIEW WILL APPEAR")
 
         super.viewWillAppear(animated)
         
-        if !isPlaying {
-            for item in playbackToolbar.items! {
-                item.enabled = false
-            }
+        playbackToolbar.tintColor = UIColor.grayColor()
+        
+        for item in playbackToolbar.items! {
+            item.enabled = false
+            print("toolbar items \(item)")
         }
         
         if (PodcastPlayer.sharedInstance.episode == episode && PodcastPlayer.sharedInstance.episode != nil) {
@@ -272,6 +275,12 @@ class PlayerViewController: UIViewController {
                     print("got player item")
                 })
             }
+
+            statusTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "checkAudioPlayerItemStatus", userInfo: nil, repeats: true)
+
+            
+//            setupAudioPlayer(playerItem)
+
             progressBar.hidden = false
             trackTitle.hidden = false
             podcastTitle.hidden = false
@@ -317,6 +326,22 @@ class PlayerViewController: UIViewController {
         } else {
             audioPlayer.pause()
         }
+    }
+    
+    func checkAudioPlayerItemStatus() {
+        
+        print("checking audio player status")
+        if (audioPlayer.currentItem?.status == AVPlayerItemStatus.ReadyToPlay) {
+            print("ready to play")
+            activityIndicator.stopAnimating()
+            playbackToolbar.tintColor = self.view.tintColor
+        }
+        else {
+            print("not ready to play")
+            activityIndicator.startAnimating()
+            playbackToolbar.tintColor = UIColor.grayColor()
+        }
+        
     }
     
     override func viewWillDisappear(animated: Bool) {

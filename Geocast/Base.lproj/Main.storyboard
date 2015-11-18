@@ -520,6 +520,10 @@
                                     </mask>
                                 </variation>
                             </slider>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xoc-y8-BtB">
+                                <rect key="frame" x="295" y="385" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -548,6 +552,7 @@
                             <constraint firstItem="LJX-4R-Zbn" firstAttribute="top" secondItem="P1b-um-7d6" secondAttribute="top" id="Ulr-fP-gI9"/>
                             <constraint firstItem="HJ4-H3-Tlz" firstAttribute="leading" secondItem="BY9-e9-Tvg" secondAttribute="leading" constant="10" id="VoH-PH-9fB"/>
                             <constraint firstItem="PGu-4K-elB" firstAttribute="top" secondItem="2Ov-Rx-fhx" secondAttribute="bottom" constant="64" id="XQZ-P0-afd"/>
+                            <constraint firstItem="xoc-y8-BtB" firstAttribute="centerX" secondItem="BY9-e9-Tvg" secondAttribute="centerX" id="YcY-1h-Q1C"/>
                             <constraint firstItem="P1b-um-7d6" firstAttribute="top" secondItem="8V1-jm-Y9i" secondAttribute="bottom" constant="39" id="Z4R-Sh-rs9"/>
                             <constraint firstAttribute="trailing" secondItem="HJ4-H3-Tlz" secondAttribute="trailing" constant="10" id="ZRz-lX-QLr"/>
                             <constraint firstItem="8V1-jm-Y9i" firstAttribute="centerX" secondItem="HJ4-H3-Tlz" secondAttribute="centerX" id="a9V-Hm-wmW"/>
@@ -569,6 +574,7 @@
                             <constraint firstAttribute="centerX" secondItem="HJ4-H3-Tlz" secondAttribute="centerX" id="paC-U8-WEd"/>
                             <constraint firstItem="P1b-um-7d6" firstAttribute="top" secondItem="1j3-9m-FQb" secondAttribute="bottom" constant="20" id="puJ-2f-Cd8"/>
                             <constraint firstItem="8V1-jm-Y9i" firstAttribute="top" secondItem="1j3-9m-FQb" secondAttribute="bottom" constant="40" id="sh0-fV-4Sm"/>
+                            <constraint firstItem="xoc-y8-BtB" firstAttribute="centerY" secondItem="BY9-e9-Tvg" secondAttribute="centerY" id="u7g-K8-rcF"/>
                             <constraint firstItem="CSx-Wz-DsD" firstAttribute="centerX" secondItem="8V1-jm-Y9i" secondAttribute="centerX" id="ugy-q2-cnp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PGu-4K-elB" secondAttribute="trailing" constant="18" id="vV1-da-ME6"/>
                             <constraint firstItem="IDf-bj-vZ3" firstAttribute="top" secondItem="PGu-4K-elB" secondAttribute="bottom" constant="40" id="vyd-qb-S4Z"/>
@@ -615,6 +621,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="m1b-1z-DRO"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="xoc-y8-BtB" id="7Z9-RX-T3Y"/>
                         <outlet property="episodeSummary" destination="2Ov-Rx-fhx" id="IlD-2b-Suf"/>
                         <outlet property="locationTagButton" destination="PGu-4K-elB" id="YTb-cO-F4X"/>
                         <outlet property="noEpisodeLabel" destination="Soj-gi-hhh" id="T3d-wh-uv6"/>
@@ -1074,7 +1081,7 @@
                                         <rect key="frame" x="0.0" y="28" width="600" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHT-5w-4LZ" id="UpQ-B5-te0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="taggedAdress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCw-aS-LFV">
