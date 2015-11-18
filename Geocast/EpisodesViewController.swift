@@ -60,7 +60,9 @@ class EpisodesViewController: UIViewController {
         episodesTableView.delegate = self
         episodesTableView.dataSource = self
         
-//        episodes = User.sharedInstance.loadLocalEpisodes(forPodcast: podcast)
+        if let existingEpisodes = User.sharedInstance.loadLocalEpisodes(forPodcast: podcast) {
+            episodes = existingEpisodes
+        }
         
         queryEpisodes()
         
@@ -68,6 +70,9 @@ class EpisodesViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if let existingEpisodes = User.sharedInstance.loadLocalEpisodes(forPodcast: podcast) {
+            episodes = existingEpisodes
+        }
         setTextForSubscribeButton()
         episodesTableView.reloadData()
     }

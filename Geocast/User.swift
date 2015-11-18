@@ -107,8 +107,20 @@ class User : NSObject {
     }
     
     func updateOneLocalEpisode(forPodcast podcast: Podcast, withEpisode episode: Episode) -> Episode {
-        saveEpisodesLocally([episode], forPodcast: podcast)
-        print("updated episode \(episode.progress)")
+//        saveEpisodesLocally([episode], forPodcast: podcast)
+        var allEps : [Episode] = []
+        if let localEps = loadLocalEpisodes(forPodcast: podcast) {
+            for var ep in localEps {
+                if episode.mp3Url == ep.mp3Url {
+                    ep = episode
+                }
+                allEps.append(ep)
+            }
+        } else {
+            allEps.append(episode)
+        }
+        saveEpisodesLocally(allEps, forPodcast: podcast)
+//        print("updated episode \(episode.progress)")
         return episode
     }
     
