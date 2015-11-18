@@ -23,6 +23,7 @@
 		33DAD84E1BF80DFB000BB581 /* NoPodcastsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD84D1BF80DFB000BB581 /* NoPodcastsCell.swift */; };
 		33DAD8501BFAB599000BB581 /* TaggedEpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */; };
 		33DAD8521BFBAB9E000BB581 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DAD8511BFBAB9E000BB581 /* Reachability.swift */; };
+		33DAD85A1BFD1B27000BB581 /* Default-Portrait-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33DAD8591BFD1B27000BB581 /* Default-Portrait-736h@3x.png */; };
 		A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3111BEC05D500A83FDB /* AppDelegate.swift */; };
 		A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3151BEC05D500A83FDB /* Main.storyboard */; };
 		A11FD3191BEC05D500A83FDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A11FD3181BEC05D500A83FDB /* Images.xcassets */; };
@@ -93,6 +94,7 @@
 		33DAD84D1BF80DFB000BB581 /* NoPodcastsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPodcastsCell.swift; sourceTree = "<group>"; };
 		33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaggedEpisodeCell.swift; sourceTree = "<group>"; };
 		33DAD8511BFBAB9E000BB581 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		33DAD8591BFD1B27000BB581 /* Default-Portrait-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait-736h@3x.png"; path = "../../../../../Downloads/Resources/iphone/Default-Portrait-736h@3x.png"; sourceTree = "<group>"; };
 		A11FD30C1BEC05D500A83FDB /* Geocast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geocast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11FD3101BEC05D500A83FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11FD3111BEC05D500A83FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				33DAD8461BF80679000BB581 /* AudioFile.png */,
 				33DAD8471BF80679000BB581 /* AudioFile@2x.png */,
 				33DAD8481BF80679000BB581 /* AudioFile@3x.png */,
+				33DAD8591BFD1B27000BB581 /* Default-Portrait-736h@3x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				33DAD8421BF80671000BB581 /* Play.png in Resources */,
 				A11FD3171BEC05D500A83FDB /* Main.storyboard in Resources */,
 				A11FD31C1BEC05D500A83FDB /* LaunchScreen.xib in Resources */,
+				33DAD85A1BFD1B27000BB581 /* Default-Portrait-736h@3x.png in Resources */,
 				33DAD83B1BF805BD000BB581 /* NearMe@2x.png in Resources */,
 				33DAD8411BF80671000BB581 /* Play-100.png in Resources */,
 				33DAD8441BF80671000BB581 /* Play@3x.png in Resources */,
@@ -640,6 +644,7 @@
 			baseConfigurationReference = FB4F89D4D9007C899528F0E1 /* Pods-Geocast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -655,6 +660,7 @@
 			baseConfigurationReference = F3D9CDE51A8A2C656824AFD3 /* Pods-Geocast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
