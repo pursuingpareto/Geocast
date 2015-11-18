@@ -288,6 +288,7 @@ extension EpisodesViewController: UITableViewDataSource {
         cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("podcastSummaryCell")! as! PodcastSummaryCell
+                cell.userInteractionEnabled = false
                 cell.podcastTitle.text = podcast.title
                 cell.podcastSummary.text = podcast.summary
                 assignImage(toCellAtIndexPath: indexPath, withUrl: podcast.thumbnailImageURL)

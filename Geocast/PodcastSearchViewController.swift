@@ -75,6 +75,9 @@ class PodcastSearchViewController: UITableViewController {
         
         // 3
         if (self.resultSearchController.active) {
+//            if let filteredPodcast = filteredPodcasts[indexPath.row] {
+//                cell.textLabel?.text = filteredPodcast.title
+//            }
             cell.textLabel?.text = filteredPodcasts[indexPath.row].title
             
             return cell

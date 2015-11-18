@@ -39,10 +39,10 @@
                                                 <constraint firstAttribute="height" constant="80" id="lOm-ZH-CvB"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="podcastTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-YR-ek2">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="podcastTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB1-YR-ek2">
                                             <rect key="frame" x="102" y="8" width="343" height="40"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -50,12 +50,13 @@
                                     <animations/>
                                     <constraints>
                                         <constraint firstItem="qB1-YR-ek2" firstAttribute="top" secondItem="DWR-kb-2G9" secondAttribute="top" constant="10" id="0ga-J8-2jK"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qB1-YR-ek2" secondAttribute="trailing" constant="10" id="MNl-s8-Rab"/>
                                         <constraint firstItem="qB1-YR-ek2" firstAttribute="leading" secondItem="DWR-kb-2G9" secondAttribute="trailing" constant="10" id="Uqk-DD-Uvm"/>
                                         <constraint firstItem="DWR-kb-2G9" firstAttribute="centerY" secondItem="JxT-Xy-B66" secondAttribute="centerY" id="XNh-JV-e3T"/>
                                         <constraint firstItem="naU-1n-KTG" firstAttribute="leading" secondItem="qB1-YR-ek2" secondAttribute="leading" id="c0y-VF-7fK"/>
                                         <constraint firstItem="DWR-kb-2G9" firstAttribute="top" secondItem="JxT-Xy-B66" secondAttribute="topMargin" constant="5" id="e28-EZ-QLP"/>
                                         <constraint firstItem="DWR-kb-2G9" firstAttribute="leading" secondItem="JxT-Xy-B66" secondAttribute="leadingMargin" constant="10" id="nbD-eu-drN"/>
-                                        <constraint firstItem="naU-1n-KTG" firstAttribute="top" secondItem="qB1-YR-ek2" secondAttribute="bottom" constant="10" id="oGU-0Y-RKE"/>
+                                        <constraint firstItem="naU-1n-KTG" firstAttribute="top" secondItem="qB1-YR-ek2" secondAttribute="bottom" constant="5" id="oGU-0Y-RKE"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
