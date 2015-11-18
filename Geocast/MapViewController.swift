@@ -22,7 +22,7 @@ class MapViewController: UIViewController {
     var testCoordinate = CLLocationCoordinate2DMake(34.1561, -118.1319)
     let locationManager = CLLocationManager()
     @IBOutlet var mapView: MKMapView!
-    let regionRadius: CLLocationDistance = 2000
+    let regionRadius: CLLocationDistance = 5000
     var nextEpisode : Episode?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -56,7 +56,6 @@ class MapViewController: UIViewController {
         
         dismissPopup()
         
-        let initialLocation = CLLocation(latitude: testCoordinate.latitude, longitude: testCoordinate.longitude)
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self

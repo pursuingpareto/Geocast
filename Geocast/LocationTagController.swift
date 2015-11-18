@@ -18,6 +18,7 @@ class TagLocationController: UITableViewController {
     var addressForLocation: String?
     var descriptionForTag: String?
     var locationToAdd: CLLocation?
+    let locationManager = CLLocationManager()
     
     var tagManager = TagManager.sharedInstance
     
@@ -26,6 +27,12 @@ class TagLocationController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startMonitoringSignificantLocationChanges()
+        }
         
         self.searchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -236,6 +243,12 @@ class TagLocationController: UITableViewController {
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = searchController.searchBar.text
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        let location : CLLocation!
+        if let loc = locationManager.location {
+            location = loc
+        } else {
+            location = initialLocation
+        }
         request.region = MKCoordinateRegion(center: initialLocation.coordinate, span:span)
         let search = MKLocalSearch(request: request)
         search.startWithCompletionHandler({
@@ -307,6 +320,10 @@ extension TagLocationController: UISearchControllerDelegate {
         searchController.active = false
 //        tableView.reloadData()
     }
+    
+}
+
+extension TagLocationController: CLLocationManagerDelegate {
     
 }
 
