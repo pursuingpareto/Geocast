@@ -102,6 +102,7 @@ class PodcastSearchViewController: UITableViewController {
             else {
                 podcast = podcasts[indexPath.row]
             }
+            User.sharedInstance.saveEpisodesLocally([], forPodcast: podcast)
             episodesViewController.podcast = podcast
         }
         super.prepareForSegue(segue, sender: sender)

@@ -27,7 +27,17 @@ class PodcastsViewController: UITableViewController {
     lazy var iTunesAPI : APIController = APIController(delegate: self)
     
     func refreshPodcasts() {
-        iTunesAPI.lookupMultiplePodcasts(podcastIds)
+        
+        podcastIds.removeAll()
+        
+        for podcast in podcasts {
+            podcastIds.append(podcast.collectionId)
+        }
+        
+        if podcastIds.count > 0 {
+            iTunesAPI.lookupMultiplePodcasts(podcastIds)
+        }
+
         self.customRefreshControl.endRefreshing()
     }
     

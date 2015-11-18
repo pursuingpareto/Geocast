@@ -268,6 +268,11 @@ extension EpisodesViewController: NSXMLParserDelegate {
             for entry in self.entriesArray {
                 newEpisodes.append(Episode(parsedFeedData: entry, podcast:self.podcast))
             }
+            
+            if self.podcast.lastUpdated == nil {
+                self.podcast.lastUpdated = newEpisodes.first?.pubDate
+            }
+            
             self.episodes = User.sharedInstance.updateLocalEpisodes(forPodcast: self.podcast, withEpisodes: newEpisodes)
 
             self.episodesTableView.reloadData()

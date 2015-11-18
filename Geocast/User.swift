@@ -26,6 +26,7 @@ class User : NSObject {
     func subscribe(podcast: Podcast) -> Bool {
         print("\nSUBSCRIBING!\n\n")
         if self.isSubscribedTo(podcast) {
+            print("already subscribed...")
             return false
         } else {
             subscriptions.append(podcast)
@@ -75,11 +76,22 @@ class User : NSObject {
     }
     
     func loadLocalEpisodes(forPodcast podcast: Podcast) -> [Episode]? {
-        if let localEps = NSKeyedUnarchiver.unarchiveObjectWithFile(Episode.archiveURLforPodcast(podcast).path!) as? [Episode] {
-            return localEps
-        } else {
+        
+        do {
+            if let localEps = try NSKeyedUnarchiver.unarchiveObjectWithFile(Episode.archiveURLforPodcast(podcast).path!) as? [Episode] {
+                return localEps
+            } else {
+                return nil
+            }
+        } catch {
+            print(error)
             return nil
         }
+//        if let localEps = NSKeyedUnarchiver.unarchiveObjectWithFile(Episode.archiveURLforPodcast(podcast).path!) as? [Episode] {
+//            return localEps
+//        } else {
+//            return nil
+//        }
     }
     
     func updateLocalEpisodes(forPodcast podcast: Podcast, withEpisodes episodes: [Episode]) -> [Episode] {
@@ -150,7 +162,7 @@ class User : NSObject {
                 }
              }
             print("loaded \(localPodcasts.count) from local storage")
-            return localPodcasts
+            return subscriptions
             
         } else {
             return nil
