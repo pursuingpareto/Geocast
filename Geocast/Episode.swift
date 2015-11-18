@@ -160,7 +160,7 @@ class Episode: NSObject, NSCoding {
         self.podcast = Podcast(pfPodcast: pfEpisode["podcast"] as! PFObject)
         self.title = pfEpisode["title"] as! String
         self.mp3Url = pfEpisode["mp3Url"] as! String
-        self.duration = Episode.durationFromString(pfEpisode["duration"] as! String)
+        self.duration = pfEpisode["duration"] as! Int
         self.pubDate = pfEpisode["pubDate"] as! String
         self.summary = pfEpisode["summary"] as? String
         self.itunesSummary = pfEpisode["itunesSummary"] as? String

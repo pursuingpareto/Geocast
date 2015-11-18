@@ -41,7 +41,6 @@ class MapViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        popupView.hidden = true
 
         tableView.hidden = true
         tableView.dataSource = self
@@ -127,56 +126,26 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 extension MapViewController: MKMapViewDelegate {
-//    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-//        if let annotation = annotation as? MapEpisodeAnnotation {
-//            var view: MapAnnotationView
-//            let identifier = "mapAnnotation"
-//            if let dequedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MapAnnotationView{
-//                view = dequedView
-//                view.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
-//            } else {
-//                view = MapAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-//                view.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
-//            }
-//            return view
-//        }
-//        return nil
-//    }
+
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if let annotation = annotation as? MapEpisodeAnnotation {
             let identifier = "tag"
             var view: MKPinAnnotationView
-//            view.reuseIdentifier = identifier
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView { // 2
                 dequeuedView.annotation = annotation
                 view = dequeuedView
-                view.canShowCallout = false
-//                view.canShowCallout = true
+                view.canShowCallout = true
 
 //                view.image = annotation.image
-//                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
-                let annotationView = MapAnnotationView()
-                annotationView.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
-                annotationView.setupConstraints()
-                view.leftCalloutAccessoryView = annotationView
+                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-//                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
-//                view.rightCalloutAccessoryView = button
+
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = false
-                //                view.canShowCallout = true
-//                view.image = annotation.image
-//                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
-                
-                let annotationView = MapAnnotationView()
-                annotationView.setupWithAnnotation(annotation, forUserLocation: locationManager.location)
-                annotationView.setupConstraints()
-                view.leftCalloutAccessoryView = annotationView
-
+                view.canShowCallout = true
+                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
                 view.calloutOffset = CGPoint(x: -5, y: 5)
-//                let button: UIButton = UIButton(type: .DetailDisclosure) as UIButton
-//                view.rightCalloutAccessoryView = button
+
             }
             print("LEFT CALLOUT IS \(view.leftCalloutAccessoryView)")
             return view

@@ -38,9 +38,9 @@ class MapEpisodeAnnotation: NSObject, MKAnnotation {
             })
         }
     }
-    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, imageURL: String?, episode: Episode, address: String) {
-        self.title = title
-        self.subtitle = subtitle
+    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, imageURL: String?, episode: Episode, address: String, tagDescription: String, locationName: String) {
+        self.title = "\(episode.podcast.title): \(episode.title)\t\(Episode.durationAsString(durationInSeconds: episode.duration!))"
+        self.subtitle = tagDescription
         self.coordinate = coordinate
         self.imageURL = imageURL
         self.episode = episode

@@ -335,9 +335,9 @@ class PlayerViewController: UIViewController {
     
     func checkAudioPlayerItemStatus() {
         
-        print("checking audio player status")
+
         if (audioPlayer.currentItem?.status == AVPlayerItemStatus.ReadyToPlay) {
-            print("ready to play")
+
             activityIndicator.stopAnimating()
             playbackToolbar.tintColor = self.view.tintColor
         }

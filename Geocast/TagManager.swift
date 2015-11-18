@@ -37,12 +37,14 @@ class TagManager : NSObject {
  
                 
                 pfPodcast = objects![0]
+                print("found podcast \(pfPodcast)")
                 
             } else {
-                
-
                 pfPodcast = episode.podcast.saveToParse()
+                print("created podcast \(pfPodcast)")
             }
+            
+            print("Now getting the episode")
             
             // try to get Episode associated with annotation
             query = PFQuery(className: "Episode")
@@ -52,8 +54,10 @@ class TagManager : NSObject {
                 var pfEpisode: PFObject!
                 if error == nil && objects?.count > 0{
                     pfEpisode = objects![0]
+                    print("found episode \(pfEpisode)")
                 } else {
                     pfEpisode = episode.saveToParse(withPFPodcast: pfPodcast)
+                    print("created episode \(pfEpisode)")
                 }
                 
                 // add geotag
@@ -67,6 +71,7 @@ class TagManager : NSObject {
                 pfTag["locationName"] = name
                 pfTag["tagDescription"] = description
                 pfTag["address"] = address
+                print("about to save tag")
                 pfTag.saveInBackground()
             })
         })
@@ -112,8 +117,10 @@ class TagManager : NSObject {
                 let pfEpisode = tagObject["episode"] as! PFObject
                 let pfLocation = tagObject["location"] as! PFGeoPoint
                 let pfAddress = tagObject["address"] as! String
+                let pfDescription = tagObject["tagDescription"] as! String
+                let pfLocationName = tagObject["locationName"] as! String
                 let episode = Episode(pfEpisode: pfEpisode)
-                let tag = MapEpisodeAnnotation(title: pfPodcast["title"] as! String, subtitle: pfEpisode["title"] as! String, coordinate: CLLocationCoordinate2DMake(pfLocation.latitude, pfLocation.longitude), imageURL: pfPodcast["thumbnailImageURL"] as? String, episode: episode, address: pfAddress)
+                let tag = MapEpisodeAnnotation(title: pfPodcast["title"] as! String, subtitle: pfEpisode["title"] as! String, coordinate: CLLocationCoordinate2DMake(pfLocation.latitude, pfLocation.longitude), imageURL: pfPodcast["thumbnailImageURL"] as? String, episode: episode, address: pfAddress, tagDescription: pfDescription, locationName: pfLocationName)
                 tags.append(tag)
             }
             self.tags = tags

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 
+
 class MapPopupView: UIView {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -62,7 +63,7 @@ class MapPopupView: UIView {
         makeOneTimeChanges()
     }
     
-    func stringForDistance(distanceInMeters meters: CLLocationDistance) -> String {
+    class func stringForDistance(distanceInMeters meters: CLLocationDistance) -> String {
         let miles = 0.000621371 * meters
         let feet = meters * 3.28084
         if feet < 1000 {
@@ -82,7 +83,7 @@ class MapPopupView: UIView {
         let placeLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
         if location != nil {
             let meters = location!.distanceFromLocation(placeLocation)
-            self.distanceLabel.text = stringForDistance(distanceInMeters: meters)
+            self.distanceLabel.text = MapPopupView.stringForDistance(distanceInMeters: meters)
         }
         self.episodeLabel.text = "\(podcast.title) - \(episode.title)"
         if episode.duration != nil {

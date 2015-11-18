@@ -186,6 +186,7 @@ class TagLocationController: UITableViewController {
         }
     }
     
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if searchController.active && indexPath.section == 2 {
             let location = locations[indexPath.row]
@@ -200,8 +201,6 @@ class TagLocationController: UITableViewController {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
             })
-        }else {
-            super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         }
     }
     
@@ -273,6 +272,7 @@ class TagLocationController: UITableViewController {
         })
     }
     @IBAction func addTagButtonPressed(sender: AnyObject) {
+        print("Add Tag Pressed")
         let message = "This will tag \(episode.podcast.title): \(episode.title) with the location \(nameForLocation!)"
         let alertController = UIAlertController(title: "Confirm Location Tag", message: message, preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
@@ -283,6 +283,7 @@ class TagLocationController: UITableViewController {
         let confirmAction = UIAlertAction(title: "Add tag", style: .Default, handler: {
             (alert) in
             self.tagManager.addTag(forEpisode: self.episode, atLocation: self.locationToAdd!, withName: self.nameForLocation!, withDescription: self.descriptionForTag!, withAddress: self.addressForLocation!)
+            print("\n\nAdded a tag with addTagButtonPressed\n\n")
             if let presenter = self.presentingViewController as? PlayerViewController {
                 presenter.popupText = "Tag Added!"
             }
