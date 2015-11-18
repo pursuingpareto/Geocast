@@ -213,14 +213,27 @@ class PlayerViewController: UIViewController {
             }
         }
         
-        
-        if let ep = PodcastPlayer.sharedInstance.episode {
-            episode = ep
+        if (PodcastPlayer.sharedInstance.episode == episode && PodcastPlayer.sharedInstance.episode != nil) {
+            // keep on trucking
+            progressBar.hidden = false
+            trackTitle.hidden = false
+            podcastTitle.hidden = false
+            episodeSummary.hidden = false
+            remainingTime.hidden = false
+            playedTime.hidden = false
+            locationTagButton.hidden = false
+            subscribeButton.hidden = false
+            noEpisodeLabel.hidden = true
+            publicationDate.hidden = false
+            playbackToolbar.hidden = false
+        } else if PodcastPlayer.sharedInstance.episode != nil {
+            episode = PodcastPlayer.sharedInstance.episode
+            PodcastPlayer.sharedInstance.pause()
             setTextForSubscribeButton()
-
+            
             assignImage(episode!.podcast.largeImageURL)
             
-//            var minsSecs = episode!.duration.characters.split {$0 == ":"}.map { String($0) }
+            //            var minsSecs = episode!.duration.characters.split {$0 == ":"}.map { String($0) }
             
             let mins: Int!
             let secs: Int!
@@ -235,7 +248,7 @@ class PlayerViewController: UIViewController {
             
             remainingTime.text = NSString(format: "%02d:%02d", mins, secs) as String
             totalSeconds = Float(60 * mins + secs)
-
+            
             trackTitle.text = episode!.title
             podcastTitle.text = episode!.podcast.title
             episodeSummary.text = episode!.itunesSubtitle
@@ -250,31 +263,15 @@ class PlayerViewController: UIViewController {
             print("about to get player item")
             dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
                 let playerItem = AVPlayerItem(URL: url!)
-                
-                if playerItem.asset.tracks.first?.trackID != PodcastPlayer.sharedInstance.currentItem?.asset.tracks.first?.trackID {
-                    print("NEW PLAYER ITEM")
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.setupAudioPlayer(playerItem)
-                        for item in self.playbackToolbar.items! {
-                            item.enabled = true
-                        }
-                        print("got player item")
-                    })
-                } else {
-                    print("OLD PLAYER ITEM")
+                print("NEW PLAYER ITEM")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.setupAudioPlayer(playerItem)
                     for item in self.playbackToolbar.items! {
                         item.enabled = true
                     }
-                }
-                
-                
+                    print("got player item")
+                })
             }
-
-            
-            
-//            setupAudioPlayer(playerItem)
-            
-            
             progressBar.hidden = false
             trackTitle.hidden = false
             podcastTitle.hidden = false
@@ -309,6 +306,7 @@ class PlayerViewController: UIViewController {
     }
     
     func setupAudioPlayer(playerItem: AVPlayerItem) {
+        audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
         audioPlayer.replaceCurrentItemWithPlayerItem(playerItem)
         audioPlayer.currentItem?.addObserver(self, forKeyPath: "duration", options: .New, context: &myContext)
         
