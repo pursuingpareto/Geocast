@@ -117,8 +117,8 @@ class Podcast: NSObject, NSCoding {
                             name = "Unknown"
                         }
 
-                        let thumbnailURL = podcastInfo["artworkUrl60"] as? String ?? ""
-                        let imageURL = podcastInfo["artworkUrl100"] as? String ?? ""
+                        let thumbnailURL = podcastInfo["artworkUrl100"] as? String ?? ""
+                        let imageURL = podcastInfo["artworkUrl600"] as? String ?? ""
                         let feedUrl = podcastInfo["feedUrl"] as? String ?? ""
                         let episodeCount = podcastInfo["trackCount"] as? Int ?? 0
                         let collectionId = podcastInfo["collectionId"] as? Int ?? 0

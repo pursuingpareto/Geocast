@@ -298,7 +298,7 @@ extension EpisodesViewController: UITableViewDataSource {
                 //            }
                 
                 cell.episodeTitle.text = episode.title
-                print("duration is \(episode.duration)")
+                print("progress is \(episode.progress)")
                 var minutes: Int!
                 var seconds: Int!
                 if episode.duration != nil {
