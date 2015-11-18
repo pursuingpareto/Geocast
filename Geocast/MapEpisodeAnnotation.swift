@@ -16,6 +16,8 @@ class MapEpisodeAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     var subtitle: String?
     var episode: Episode?
+    var address: String?
+    
     init(episode: Episode, coordinate: CLLocationCoordinate2D) {
         self.title = "\(episode.podcast.title): \(episode.title)"
         self.subtitle = episode.itunesSubtitle
@@ -36,12 +38,13 @@ class MapEpisodeAnnotation: NSObject, MKAnnotation {
             })
         }
     }
-    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, imageURL: String?, episode: Episode) {
+    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, imageURL: String?, episode: Episode, address: String) {
         self.title = title
         self.subtitle = subtitle
         self.coordinate = coordinate
         self.imageURL = imageURL
         self.episode = episode
+        self.address = address
         super.init()
         if let url = imageURL {
             let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
