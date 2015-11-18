@@ -143,8 +143,16 @@ extension MapViewController: MKMapViewDelegate {
             } else {
                 view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
+                let image = UIImageView(image: annotation.image)
+                image.contentMode = .ScaleAspectFit
                 view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
                 view.calloutOffset = CGPoint(x: -5, y: 5)
+                
+                let button = UIButton(type: .System)
+                button.setTitle("Play", forState: .Normal)
+                button.sizeToFit()
+                
+                view.rightCalloutAccessoryView = button
 
             }
             print("LEFT CALLOUT IS \(view.leftCalloutAccessoryView)")

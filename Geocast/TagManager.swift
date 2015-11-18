@@ -51,22 +51,42 @@ class TagManager : NSObject {
             query.whereKey("mp3Url", equalTo: episode.mp3Url)
             query.findObjectsInBackgroundWithBlock({
                 (objects: [PFObject]?, error: NSError?) -> Void in
+                
+                print("error is \(error)")
+                
                 var pfEpisode: PFObject!
-                if error == nil && objects?.count > 0{
+                print("  0  ")
+                if (error == nil && objects?.count > 0) {
+                    print("  1  ")
                     pfEpisode = objects![0]
                     print("found episode \(pfEpisode)")
                 } else {
+                    print("  2  ")
                     pfEpisode = episode.saveToParse(withPFPodcast: pfPodcast)
                     print("created episode \(pfEpisode)")
                 }
                 
                 // add geotag
-
+                print("about to add geotag")
                 let pfTag = PFObject(className: "Tag")
+                
+                print("pfPodcast is \(pfPodcast)")
+                print("pfEpisode is \(pfEpisode)")
+                
                 pfTag["podcast"] = pfPodcast
                 pfTag["episode"] = pfEpisode
+                
+                
+                
                 pfTag["user"] = PFUser.currentUser()!
                 let point = PFGeoPoint(location: location)
+                
+                print("point is \(point)")
+                
+                print("name is \(name)")
+                print("description is \(description)")
+                print("address is \(address)")
+                
                 pfTag["location"] = point
                 pfTag["locationName"] = name
                 pfTag["tagDescription"] = description

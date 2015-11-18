@@ -63,9 +63,15 @@ class Podcast: NSObject, NSCoding {
         let thumbnailImageURL = aDecoder.decodeObjectForKey(PropertyKey.thumbnailImageURLKey) as! String
         let largeImageURL = aDecoder.decodeObjectForKey(PropertyKey.largeImageURLKey) as! String
         let collectionId = aDecoder.decodeObjectForKey(PropertyKey.collectionIdKey) as! Int
-        let episodeCount = aDecoder.decodeObjectForKey(PropertyKey.episodeCountKey) as? Int
+        var episodeCount = aDecoder.decodeObjectForKey(PropertyKey.episodeCountKey) as? Int
+        if episodeCount == nil {
+            episodeCount = 1
+        }
         let feedUrl = aDecoder.decodeObjectForKey(PropertyKey.feedUrlKey) as! String
-        let lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lastUpdatedKey) as? String
+        var lastUpdated = aDecoder.decodeObjectForKey(PropertyKey.lastUpdatedKey) as? String
+        if lastUpdated == nil {
+            lastUpdated = ""
+        }
         self.init(title: title, thumbnailImageURL: thumbnailImageURL, largeImageURL: largeImageURL, collectionId: collectionId, episodeCount: episodeCount, feedUrl: feedUrl, lastUpdated: lastUpdated!)
     }
     

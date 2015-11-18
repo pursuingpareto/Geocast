@@ -170,21 +170,30 @@ class Episode: NSObject, NSCoding {
     }
     
     func saveToParse(withPFPodcast pfPodcast: PFObject) -> PFObject {
+        print("about to save episode to parse")
+        print("episode is \(self.description)")
+        print("podcast is \(self.podcast)")
         let pfEpisode = PFObject(className: "Episode")
         pfEpisode["title"] = title
         pfEpisode["mp3Url"] = mp3Url
         pfEpisode["duration"] = duration
         pfEpisode["pubDate"] = pubDate
         pfEpisode["summary"] = summary
-        pfEpisode["itunesSummary"] = itunesSummary
+        if itunesSummary != nil {
+            pfEpisode["itunesSummary"] = itunesSummary
+        } else {
+            pfEpisode["itunesSummary"] = summary
+        }
+        
         pfEpisode["itunesSubtitle"] = itunesSubtitle
         pfEpisode["podcast"] = pfPodcast
+        print("about to save episode in background \(pfEpisode)")
         pfEpisode.saveInBackground()
         return pfEpisode
     }
     
     override var description : String {
-        return "title: \(title)\nduration: \(duration)\nmp3Url: \(mp3Url)\npubDate: \(pubDate)\nsummary: \(summary)\nitunesSum: \(itunesSummary)\nitunesSub: \(itunesSubtitle)\n\n"
+        return "title: \(title)\nduration: \(duration)\nmp3Url: \(mp3Url)\npubDate: \(pubDate)\nsummary: \(summary)\nitunesSum: \(itunesSummary)\nitunesSub: \(itunesSubtitle)\n\nprogress: \(progress)\n\npodcast: \(podcast)"
     }
     
     

@@ -237,7 +237,8 @@ extension EpisodesViewController: NSXMLParserDelegate {
         foundCharacters string: String?){
 //            if shouldParseCurrentElement {
                 if string != nil {
-                    entryValue += string!
+                    var newString: String = "\(entryValue)\(string)"
+                    entryValue = newString
                 }
 //            }
     }
@@ -272,8 +273,12 @@ extension EpisodesViewController: NSXMLParserDelegate {
             if self.podcast.lastUpdated == nil {
                 self.podcast.lastUpdated = newEpisodes.first?.pubDate
             }
+            if User.sharedInstance.isSubscribedTo(self.podcast) {
+                self.episodes = User.sharedInstance.updateLocalEpisodes(forPodcast: self.podcast, withEpisodes: newEpisodes)
+            } else {
+                self.episodes = newEpisodes
+            }
             
-            self.episodes = User.sharedInstance.updateLocalEpisodes(forPodcast: self.podcast, withEpisodes: newEpisodes)
 
             self.episodesTableView.reloadData()
 //            self.podcastTitle.text = self.podcast.title
