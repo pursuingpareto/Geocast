@@ -237,8 +237,9 @@ extension EpisodesViewController: NSXMLParserDelegate {
         foundCharacters string: String?){
 //            if shouldParseCurrentElement {
                 if string != nil {
-                    var newString: String = "\(entryValue)\(string)"
+                    var newString: String = "\(entryValue)\(string!)"
                     entryValue = newString
+                    print("entryValue is \(entryValue)")
                 }
 //            }
     }
@@ -248,6 +249,8 @@ extension EpisodesViewController: NSXMLParserDelegate {
         namespaceURI: String?,
         qualifiedName qName: String?){
             if shouldParseCurrentElement {
+                print("currentParsedElement it \(currentParsedElement)")
+                print("entryValue is \(entryValue)")
                 entryDictionary[currentParsedElement] = entryValue
             } else {
                 podcastDictionary[currentParsedElement] = entryValue
