@@ -312,7 +312,8 @@ class PlayerViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
+        super.viewWillDisappear(animated)
+//        audioPlayer.currentItem?.removeObserver(self, forKeyPath: "duration", context: &myContext)
     }
     
     
