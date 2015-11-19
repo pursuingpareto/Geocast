@@ -41,6 +41,8 @@
 		A11FD3461BF10E8C00A83FDB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */; };
 		A11FD3481BF12DF500A83FDB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3471BF12DF500A83FDB /* MapViewController.swift */; };
 		A11FD34A1BF12EF300A83FDB /* MapEpisodeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */; };
+		A13226121BFD3A3000F290C0 /* MapTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13226111BFD3A2F00F290C0 /* MapTagView.swift */; };
+		A13226161BFD3F7000F290C0 /* MapTagCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13226151BFD3F7000F290C0 /* MapTagCalloutView.swift */; };
 		A14786F51BFBE3DD002CD1CE /* AddTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14786F41BFBE3DD002CD1CE /* AddTagCell.swift */; };
 		A18035881BF17363003BC7F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18035871BF17363003BC7F5 /* User.swift */; };
 		A180358C1BF29F22003BC7F5 /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180358B1BF29F22003BC7F5 /* TagManager.swift */; };
@@ -116,6 +118,8 @@
 		A11FD3451BF10E8C00A83FDB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		A11FD3471BF12DF500A83FDB /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapEpisodeAnnotation.swift; sourceTree = "<group>"; };
+		A13226111BFD3A2F00F290C0 /* MapTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTagView.swift; sourceTree = "<group>"; };
+		A13226151BFD3F7000F290C0 /* MapTagCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTagCalloutView.swift; path = ../Pods/MapTagCalloutView.swift; sourceTree = "<group>"; };
 		A14786F41BFBE3DD002CD1CE /* AddTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCell.swift; sourceTree = "<group>"; };
 		A18035871BF17363003BC7F5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A180358B1BF29F22003BC7F5 /* TagManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
@@ -260,10 +264,12 @@
 				33DAD8511BFBAB9E000BB581 /* Reachability.swift */,
 				A11FD3491BF12EF300A83FDB /* MapEpisodeAnnotation.swift */,
 				A1D3D9831BF7D3EE002FE51D /* MapAnnotationView.swift */,
+				A19873621BF80488001A16EA /* MapPopupView.swift */,
+				A13226151BFD3F7000F290C0 /* MapTagCalloutView.swift */,
+				A13226111BFD3A2F00F290C0 /* MapTagView.swift */,
 				A180358D1BF2AE0F003BC7F5 /* PodcastPlayer.swift */,
 				A11FD3471BF12DF500A83FDB /* MapViewController.swift */,
 				33DAD84F1BFAB599000BB581 /* TaggedEpisodeCell.swift */,
-				A19873621BF80488001A16EA /* MapPopupView.swift */,
 				A11FD3411BF0032500A83FDB /* PodcastSearchViewController.swift */,
 				A11FD3431BF0154D00A83FDB /* PodcastCell.swift */,
 				33DAD84D1BF80DFB000BB581 /* NoPodcastsCell.swift */,
@@ -496,6 +502,7 @@
 				A1D4EF351BFBA6DE00C64969 /* TagDescriptionCell.swift in Sources */,
 				A19873631BF80488001A16EA /* MapPopupView.swift in Sources */,
 				A11FD33C1BEC330600A83FDB /* Podcast.swift in Sources */,
+				A13226121BFD3A3000F290C0 /* MapTagView.swift in Sources */,
 				A11FD3401BEFEB9600A83FDB /* Episode.swift in Sources */,
 				A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */,
 				A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */,
@@ -506,6 +513,7 @@
 				A11FD3441BF0154D00A83FDB /* PodcastCell.swift in Sources */,
 				A11FD33E1BEC39EA00A83FDB /* EpisodesViewController.swift in Sources */,
 				A180358C1BF29F22003BC7F5 /* TagManager.swift in Sources */,
+				A13226161BFD3F7000F290C0 /* MapTagCalloutView.swift in Sources */,
 				A11FD3421BF0032500A83FDB /* PodcastSearchViewController.swift in Sources */,
 				A180358E1BF2AE0F003BC7F5 /* PodcastPlayer.swift in Sources */,
 				A11FD3361BEC070800A83FDB /* PlayerViewController.swift in Sources */,

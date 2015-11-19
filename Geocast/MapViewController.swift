@@ -116,6 +116,9 @@ class MapViewController: UIViewController {
             }
         })
     }
+    func playPressed(sender: AnyObject) {
+        print("play butotn pressed")
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -130,32 +133,32 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if let annotation = annotation as? MapEpisodeAnnotation {
             let identifier = "tag"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MKPinAnnotationView { // 2
+            var view: MapTagView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as? MapTagView { // 2
                 dequeuedView.annotation = annotation
                 view = dequeuedView
-                view.canShowCallout = true
+                view.canShowCallout = false
 
 //                view.image = annotation.image
-                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
-                view.calloutOffset = CGPoint(x: -5, y: 5)
+//                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
+//                view.calloutOffset = CGPoint(x: -5, y: 5)
 
             } else {
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
+                view = MapTagView(annotation: annotation, reuseIdentifier: identifier)
+                view.canShowCallout = false
                 let image = UIImageView(image: annotation.image)
-                image.contentMode = .ScaleAspectFit
-                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
-                view.calloutOffset = CGPoint(x: -5, y: 5)
+//                image.contentMode = .ScaleAspectFit
+//                view.leftCalloutAccessoryView = UIImageView(image: annotation.image)
+//                view.calloutOffset = CGPoint(x: -5, y: 5)
                 
-                let button = UIButton(type: .System)
-                button.setTitle("Play", forState: .Normal)
-                button.sizeToFit()
+//                let button = UIButton(type: .System)
+//                button.setTitle("Play", forState: .Normal)
+//                button.sizeToFit()
                 
-                view.rightCalloutAccessoryView = button
+//                view.rightCalloutAccessoryView = button
 
             }
-            print("LEFT CALLOUT IS \(view.leftCalloutAccessoryView)")
+//            print("LEFT CALLOUT IS \(view.leftCalloutAccessoryView)")
             return view
         }
         return nil
@@ -171,6 +174,26 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         print("DID SELECT ANNOTATION VIEW")
         if let ann = view.annotation as? MapEpisodeAnnotation {
+//            let newView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//            newView.backgroundColor = UIColor.redColor()
+//            view.addSubview(newView)
+            let newView = MapTagCallout()
+            newView.annotation = ann
+            newView.prepareForDisplay()
+            newView.playButton.addTarget(self, action: "playPressed:", forControlEvents: .TouchUpInside)
+            
+            let tapRec = UITapGestureRecognizer(target: self, action: "playPressed:")
+            newView.addGestureRecognizer(tapRec)
+            
+            print("newView is \(newView)")
+//            newView.makeConstraints()
+            
+            view.addSubview(newView)
+            newView.setNeedsLayout()
+            newView.layoutSubviews()
+//            newView.makeConstraints()
+//            newView.resizeToFitSubviews()
+            print("newView is \(newView)")
             nextEpisode = ann.episode
         }
     }

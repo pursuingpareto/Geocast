@@ -22,7 +22,8 @@ class TagManager : NSObject {
     }
     
     func addTag(forEpisode episode: Episode, atLocation location: CLLocation, withName name: String, withDescription description: String, withAddress address: String) {
-        let annotation = MapEpisodeAnnotation(episode: episode, coordinate: location.coordinate)
+        let annotation = MapEpisodeAnnotation(title: episode.title, subtitle: description, coordinate: location.coordinate, imageURL: episode.podcast.thumbnailImageURL, episode: episode, address: address, tagDescription: description, locationName: name)
+//        let annotation = MapEpisodeAnnotation(episode: episode, coordinate: location.coordinate)
         
         // try to get Podcast associated with annotation
         var query = PFQuery(className: "Podcast")

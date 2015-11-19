@@ -17,27 +17,29 @@ class MapEpisodeAnnotation: NSObject, MKAnnotation {
     var subtitle: String?
     var episode: Episode?
     var address: String?
+    var tagDescription: String?
+    var locationName: String?
     
-    init(episode: Episode, coordinate: CLLocationCoordinate2D) {
-        self.title = "\(episode.podcast.title): \(episode.title)"
-        self.subtitle = episode.itunesSubtitle
-        self.coordinate = coordinate
-        self.imageURL = episode.podcast.thumbnailImageURL
-        self.episode = episode
-        super.init()
-        if let url = imageURL {
-            let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler:
-                {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
-                    if error == nil {
-                        self.image = UIImage(data: data!)
-                        
-                        // Store the image in to our cache
-                        //                    self.imageCache[url] = image
-                    }
-            })
-        }
-    }
+//    init(episode: Episode, coordinate: CLLocationCoordinate2D) {
+//        self.title = "\(episode.podcast.title): \(episode.title)"
+//        self.subtitle = episode.itunesSubtitle
+//        self.coordinate = coordinate
+//        self.imageURL = episode.podcast.thumbnailImageURL
+//        self.episode = episode
+//        super.init()
+//        if let url = imageURL {
+//            let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
+//            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler:
+//                {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+//                    if error == nil {
+//                        self.image = UIImage(data: data!)
+//                        
+//                        // Store the image in to our cache
+//                        //                    self.imageCache[url] = image
+//                    }
+//            })
+//        }
+//    }
     init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D, imageURL: String?, episode: Episode, address: String, tagDescription: String, locationName: String) {
         self.title = "\(locationName)\n\(episode.podcast.title): \(episode.title))"
         self.subtitle = tagDescription
@@ -45,6 +47,8 @@ class MapEpisodeAnnotation: NSObject, MKAnnotation {
         self.imageURL = imageURL
         self.episode = episode
         self.address = address
+        self.tagDescription = tagDescription
+        self.locationName = locationName
         super.init()
         if let url = imageURL {
             let request: NSURLRequest = NSURLRequest(URL: NSURL(string: url)!)
