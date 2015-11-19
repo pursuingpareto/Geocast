@@ -52,11 +52,15 @@ class PlayerViewController: UIViewController {
             audioPlayer.pause()
             isPlaying = false
             timer.invalidate()
+            print("info \(MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo)")
+
         } else {
             audioPlayer.play()
             btn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "toolbarPlayOrPause:")
             isPlaying = true
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+            print("info \(MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo)")
+
         }
         var items = playbackToolbar.items!
         items[3] = btn
@@ -362,8 +366,10 @@ class PlayerViewController: UIViewController {
             var songInfo = [
                 MPMediaItemPropertyArtist: episode!.podcast.title,
                 MPMediaItemPropertyTitle: episode!.title,
-                MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
-                MPMediaItemPropertyArtwork: podcastArt
+                MPMediaItemPropertyPlaybackDuration: NSNumber(float: totalSeconds),
+                MPMediaItemPropertyArtwork: podcastArt,
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: 0,
+                MPNowPlayingInfoPropertyPlaybackRate: NSNumber(double: 1)
             ]
 
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
@@ -400,17 +406,44 @@ class PlayerViewController: UIViewController {
     }
     
     override func remoteControlReceivedWithEvent(event: UIEvent?) {
+        let podcastArt = MPMediaItemArtwork(image: image!)
         if event!.type == UIEventType.RemoteControl {
             if event?.subtype == UIEventSubtype.RemoteControlPlay {
                 audioPlayer.play()
                 print("remote play")
                 timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+                let newSongInfo = [
+                    MPMediaItemPropertyArtist: episode!.podcast.title,
+                    MPMediaItemPropertyTitle: episode!.title,
+                    MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
+                    MPMediaItemPropertyArtwork: podcastArt,
+                    MPNowPlayingInfoPropertyElapsedPlaybackTime: CMTimeGetSeconds(audioPlayer.currentTime()),
+                    MPNowPlayingInfoPropertyPlaybackRate: NSNumber(double: 1)
+
+                ]
+                
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = newSongInfo as [String : AnyObject]
+                print("info \(MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo)")
+
 
             }
             else if event?.subtype == UIEventSubtype.RemoteControlPause {
                 audioPlayer.pause()
                 print("remote pause")
                 timer.invalidate()
+                let newSongInfo = [
+                    MPMediaItemPropertyArtist: episode!.podcast.title,
+                    MPMediaItemPropertyTitle: episode!.title,
+                    MPMediaItemPropertyPlaybackDuration: String(totalSeconds),
+                    MPMediaItemPropertyArtwork: podcastArt,
+                    MPNowPlayingInfoPropertyElapsedPlaybackTime: CMTimeGetSeconds(audioPlayer.currentTime()),
+                    MPNowPlayingInfoPropertyPlaybackRate: NSNumber(double: 1)
+
+                ]
+                
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = newSongInfo as [String : AnyObject]
+                print("info \(MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo)")
+
             }
             else if event?.subtype == UIEventSubtype.RemoteControlNextTrack {
                 // Put in logic to move to next track
