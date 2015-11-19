@@ -369,16 +369,17 @@ class PlayerViewController: UIViewController {
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = songInfo as [String : AnyObject]
         }
         
-        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: [])
-        try! AVAudioSession.sharedInstance().setActive(true)
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
         
         do {
-            UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            print("block done")
         }
         catch {
             print("Audio session error.")
         }
-        
+
     }
     
     override func viewDidLoad() {
