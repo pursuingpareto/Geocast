@@ -298,10 +298,16 @@ class PlayerViewController: UIViewController {
             remainingTime.text = NSString(format: "%02d:%02d", mins, secs) as String
             totalSeconds = Float(60 * mins + secs)
             
+            trackTitle.numberOfLines = 0
+            trackTitle.lineBreakMode = .ByWordWrapping
             trackTitle.text = episode!.title
+            trackTitle.sizeToFit()
+            
             podcastTitle.text = episode!.podcast.title
             
             episodeSummary.text = episode!.itunesSubtitle
+            episodeSummary.font = episodeSummary.font?.fontWithSize(15)
+            
 //            episodeSummary.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt eu nisl nec venenatis. Nulla blandit nisl quam, sit amet iaculis risus cursus non. Aeneanullamcorper commodo turpis, ac rutrum felis sollicitudin in. Cras eu nibh non justo consectetur facilisis vulputate et magna. Nullam pulvinar auctor hendrerit. Pellentesque aliquam lectus convallis, semper eros sit amet, convallis enim. Cras vel ullamcorper tellus. Donec eu lacus ut ex condimentum efficitur nec a nulla. Curabitur in metus nisl. Integer at dui enim. Nunc et augue sit amet ligula tempus luctus sed a augue. \n\nAliquam lobortis euismod lobortis. Cras pharetra nulla lobortis, bibendum augue ac, luctus risus. In hac habitasse platea dictumst. Vestibulum iaculis mi rutrum tellus condimentum, non feugiat odio congue. Mauris posuere feugiat ex, non varius tortor dignissim at. Sed bibendum commodo ligula, nec euismod ex commodo et. Suspendisse in enim et urna egestas efficitur et eget nibh. Nunc in arcu lectus. Sed ullamcorper sem vel porta pulvinar. Proin malesuada mauris id ligula varius tincidunt. In bibendum ante nec dolor porttitor fermentum. Duis placerat nisl velit, vel aliquet nibh malesuada sit amet. Nullam consectetur metus eget erat posuere bibendum."
             
 //            dispatch_async(dispatch_get_main_queue(), {

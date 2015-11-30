@@ -397,8 +397,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="trackTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V1-jm-Y9i">
-                                <rect key="frame" x="265" y="71" width="72" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="trackTitle" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V1-jm-Y9i">
+                                <rect key="frame" x="265" y="71" width="72" height="55"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -428,14 +428,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="podcastTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSx-Wz-DsD">
                                 <rect key="frame" x="253" y="95" width="95" height="21"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="publicationDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hn-Sm-SYL">
                                 <rect key="frame" x="246" y="119" width="108" height="21"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -455,14 +455,14 @@
                                 <rect key="frame" x="295" y="385" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnl-z5-AKa">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnl-z5-AKa">
                                 <rect key="frame" x="20" y="148" width="560" height="292"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gnl-z5-AKa" secondAttribute="height" multiplier="1:1" id="Td4-Wm-qoe"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ov-Rx-fhx">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Ov-Rx-fhx">
                                 <rect key="frame" x="28" y="155" width="544" height="277"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.74941934121621623" colorSpace="calibratedRGB"/>
@@ -472,7 +472,7 @@
                                     <constraint firstAttribute="width" constant="368" id="phd-g9-F2s"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -522,14 +522,16 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCx-Fm-4Hv">
                                 <rect key="frame" x="517" y="40" width="63" height="30"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="More"/>
                                 <connections>
                                     <action selector="settingsPressed:" destination="yyZ-no-Vza" eventType="touchUpInside" id="g85-Ml-Jkg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWw-F3-eeR">
-                                <rect key="frame" x="10" y="40" width="46" height="30"/>
+                                <rect key="frame" x="10" y="41" width="70" height="29"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Hide"/>
                                 <connections>
                                     <action selector="hidePlayer:" destination="yyZ-no-Vza" eventType="touchUpInside" id="jdQ-Vo-YS9"/>
@@ -558,7 +560,7 @@
                             <constraint firstItem="2Ov-Rx-fhx" firstAttribute="centerY" secondItem="gnl-z5-AKa" secondAttribute="centerY" id="SG1-Vx-OoU"/>
                             <constraint firstItem="NWw-F3-eeR" firstAttribute="leading" secondItem="BY9-e9-Tvg" secondAttribute="leadingMargin" constant="-10" id="Ta6-KG-9RS"/>
                             <constraint firstItem="9hn-Sm-SYL" firstAttribute="top" secondItem="CSx-Wz-DsD" secondAttribute="bottom" constant="3" id="WBB-r8-6qz"/>
-                            <constraint firstItem="wkJ-99-93Q" firstAttribute="top" secondItem="gnl-z5-AKa" secondAttribute="bottom" constant="12" id="bXC-F2-Gho"/>
+                            <constraint firstItem="wkJ-99-93Q" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gnl-z5-AKa" secondAttribute="bottom" constant="12" id="bXC-F2-Gho"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HJ4-H3-Tlz" secondAttribute="trailing" constant="96" id="bhd-ba-H8C"/>
                             <constraint firstItem="2Ov-Rx-fhx" firstAttribute="height" secondItem="gnl-z5-AKa" secondAttribute="height" constant="-8" id="gSj-Zg-1Co"/>
                             <constraint firstItem="HJ4-H3-Tlz" firstAttribute="top" secondItem="P1b-um-7d6" secondAttribute="bottom" constant="3" id="gyd-iN-r6x"/>
