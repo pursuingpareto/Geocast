@@ -268,7 +268,9 @@ extension EpisodesViewController: NSXMLParserDelegate {
             var newEpisodes : [Episode] = []
             print("\n\n\nentries array has \(self.entriesArray.count) entries\n\n\n")
             for entry in self.entriesArray {
-                newEpisodes.append(Episode(parsedFeedData: entry, podcast:self.podcast))
+                if (entry["mp3Url"] != nil && entry["title"] != nil) {
+                    newEpisodes.append(Episode(parsedFeedData: entry, podcast:self.podcast))
+                }
             }
             
             if self.podcast.lastUpdated == nil {
