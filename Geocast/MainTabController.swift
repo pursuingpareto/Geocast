@@ -10,8 +10,8 @@ import UIKit
 
 class MainTabController : UITabBarController {
     enum TabIndex: Int {
-        case mapIndex = 0
-        case podcastIndex = 1
+        case mapIndex = 1
+        case podcastIndex = 0
         case playerIndex = 2
     }
     

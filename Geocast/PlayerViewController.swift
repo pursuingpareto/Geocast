@@ -24,6 +24,7 @@ class PlayerViewController: UIViewController {
     var imageCache = [String : UIImage]()
     var image: UIImage?
 
+    @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -34,8 +35,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var episodeSummary: UITextView!
     @IBOutlet weak var playedTime: UILabel!
     @IBOutlet weak var remainingTime: UILabel!
-    @IBOutlet weak var locationTagButton: UIButton!
-    @IBOutlet weak var subscribeButton: UIButton!
+//    @IBOutlet weak var locationTagButton: UIButton!
+//    @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var noEpisodeLabel: UILabel!
     
     @IBOutlet weak var toolbarPlayButton: UIBarButtonItem!
@@ -67,6 +68,42 @@ class PlayerViewController: UIViewController {
         playbackToolbar.setItems(items, animated: true)
         
         
+    }
+    
+    @IBAction func settingsPressed(sender: AnyObject) {
+        let alertController = UIAlertController()
+        
+        if !User.sharedInstance.isSubscribedTo((episode?.podcast)!) {
+            let subscribeAction = UIAlertAction(title: "Subscribe to Podcast", style: .Default) { (action) in
+                self.subscribePressed()
+                print(action)
+            }
+            alertController.addAction(subscribeAction)
+        } else {
+            let subscribeAction = UIAlertAction(title: "Unsubscribe from Podcast", style: .Destructive) { (action) in
+                self.subscribePressed()
+                print(action)
+            }
+            alertController.addAction(subscribeAction)
+        }
+        
+        
+        let tagAction = UIAlertAction(title: "Tag with Location", style: .Default) { (action) in
+            print(action)
+            self.performSegueWithIdentifier("addTagSegue", sender: self)
+        }
+        alertController.addAction(tagAction)
+        
+
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            print(action)
+        }
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true) {
+        
+        }
     }
     
     func updateTime() {
@@ -103,21 +140,21 @@ class PlayerViewController: UIViewController {
         
     }
     
-    func setTextForSubscribeButton() {
-        if let episode = episode {
-            if User.sharedInstance.isSubscribedTo((episode.podcast)!) {
-
-                subscribeButton.setTitle("Unsubscribe", forState: .Normal)
-            } else {
-
-                subscribeButton.setTitle("Subscribe", forState: .Normal)
-            }
-        } else {
-
-        }
-    }
+//    func setTextForSubscribeButton() {
+//        if let episode = episode {
+//            if User.sharedInstance.isSubscribedTo((episode.podcast)!) {
+//
+//                subscribeButton.setTitle("Unsubscribe", forState: .Normal)
+//            } else {
+//
+//                subscribeButton.setTitle("Subscribe", forState: .Normal)
+//            }
+//        } else {
+//
+//        }
+//    }
     
-    @IBAction func subscribeButtonPressed(sender: UIButton) {
+    func subscribePressed() {
         if User.sharedInstance.isSubscribedTo((episode?.podcast)!) {
             // TODO add confirmation popup?
             
@@ -132,7 +169,7 @@ class PlayerViewController: UIViewController {
                 (alert) in
 
                 User.sharedInstance.unsubscribe((self.episode?.podcast)!)
-                self.setTextForSubscribeButton()
+//                self.setTextForSubscribeButton()
             })
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: {
@@ -142,7 +179,7 @@ class PlayerViewController: UIViewController {
 
             User.sharedInstance.subscribe((episode?.podcast)!)
         }
-        setTextForSubscribeButton()
+//        setTextForSubscribeButton()
     }
     
 //    @IBAction func stop(sender: AnyObject) {
@@ -212,7 +249,7 @@ class PlayerViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
 
         super.viewWillAppear(animated)
-        
+        self.tabBarController?.tabBar.hidden = true
         playbackToolbar.tintColor = UIColor.grayColor()
         
         for item in playbackToolbar.items! {
@@ -228,8 +265,8 @@ class PlayerViewController: UIViewController {
             episodeSummary.hidden = false
             remainingTime.hidden = false
             playedTime.hidden = false
-            locationTagButton.hidden = false
-            subscribeButton.hidden = false
+//            locationTagButton.hidden = false
+//            subscribeButton.hidden = false
             noEpisodeLabel.hidden = true
             publicationDate.hidden = false
             playbackToolbar.hidden = false
@@ -241,7 +278,7 @@ class PlayerViewController: UIViewController {
         } else if PodcastPlayer.sharedInstance.episode != nil {
             episode = PodcastPlayer.sharedInstance.episode
             PodcastPlayer.sharedInstance.pause()
-            setTextForSubscribeButton()
+//            setTextForSubscribeButton()
             
             assignImage(episode!.podcast.largeImageURL)
             
@@ -263,7 +300,27 @@ class PlayerViewController: UIViewController {
             
             trackTitle.text = episode!.title
             podcastTitle.text = episode!.podcast.title
+            
             episodeSummary.text = episode!.itunesSubtitle
+//            episodeSummary.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt eu nisl nec venenatis. Nulla blandit nisl quam, sit amet iaculis risus cursus non. Aeneanullamcorper commodo turpis, ac rutrum felis sollicitudin in. Cras eu nibh non justo consectetur facilisis vulputate et magna. Nullam pulvinar auctor hendrerit. Pellentesque aliquam lectus convallis, semper eros sit amet, convallis enim. Cras vel ullamcorper tellus. Donec eu lacus ut ex condimentum efficitur nec a nulla. Curabitur in metus nisl. Integer at dui enim. Nunc et augue sit amet ligula tempus luctus sed a augue. \n\nAliquam lobortis euismod lobortis. Cras pharetra nulla lobortis, bibendum augue ac, luctus risus. In hac habitasse platea dictumst. Vestibulum iaculis mi rutrum tellus condimentum, non feugiat odio congue. Mauris posuere feugiat ex, non varius tortor dignissim at. Sed bibendum commodo ligula, nec euismod ex commodo et. Suspendisse in enim et urna egestas efficitur et eget nibh. Nunc in arcu lectus. Sed ullamcorper sem vel porta pulvinar. Proin malesuada mauris id ligula varius tincidunt. In bibendum ante nec dolor porttitor fermentum. Duis placerat nisl velit, vel aliquet nibh malesuada sit amet. Nullam consectetur metus eget erat posuere bibendum."
+            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                self.episodeSummary.scrollRangeToVisible(NSMakeRange(0, 0))
+//            })
+            
+            if let imgURL = NSURL(string: episode!.podcast.largeImageURL) {
+                let request: NSURLRequest = NSURLRequest(URL: imgURL)
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response: NSURLResponse?,data: NSData?,error: NSError?) -> Void in
+                    if error == nil {
+                        let image = UIImage(data: data!)
+                        self.imageView.image = image
+                        print("\nGot the image from \(self.episode!.podcast.largeImageURL)\n")
+                    } else {
+                        print("Error: \(error!.localizedDescription)")
+                    }
+                })
+ 
+            }
             
             // TODO - fix this! Will fail eventually!
             let pubDate = episode!.pubDate.substringToIndex(episode!.pubDate.startIndex.advancedBy(16))
@@ -296,8 +353,8 @@ class PlayerViewController: UIViewController {
             episodeSummary.hidden = false
             remainingTime.hidden = false
             playedTime.hidden = false
-            locationTagButton.hidden = false
-            subscribeButton.hidden = false
+//            locationTagButton.hidden = false
+//            subscribeButton.hidden = false
             noEpisodeLabel.hidden = true
             publicationDate.hidden = false
             playbackToolbar.hidden = false
@@ -309,8 +366,8 @@ class PlayerViewController: UIViewController {
             episodeSummary.hidden = true
             remainingTime.hidden = true
             playedTime.hidden = true
-            locationTagButton.hidden = true
-            subscribeButton.hidden = true
+//            locationTagButton.hidden = true
+//            subscribeButton.hidden = true
             noEpisodeLabel.hidden = false
             publicationDate.hidden = true
             playbackToolbar.hidden = true
@@ -393,7 +450,7 @@ class PlayerViewController: UIViewController {
         super.viewDidLoad()
         progressBar.addTarget(self, action: "progressBarChanged:", forControlEvents: .ValueChanged)
         let verticalBar = UIImage(named: "vertical_bar")
-        let size = CGSizeApplyAffineTransform((verticalBar?.size)!, CGAffineTransformMakeScale(0.2, 0.2))
+        let size = CGSizeApplyAffineTransform((verticalBar?.size)!, CGAffineTransformMakeScale(0.15, 0.15))
         let hasAlpha = false
         let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
         
@@ -545,7 +602,7 @@ class PlayerViewController: UIViewController {
 //            super.prepareForSegue(segue, sender: sender)
 //            return
 //        }
-//        
+//
 //        if let episode = episode {
 //            destinationVC.episode = episode
 //            super.prepareForSegue(segue, sender: sender)
@@ -554,6 +611,12 @@ class PlayerViewController: UIViewController {
         
     }
     
+    @IBAction func hidePlayer(sender: AnyObject) {
+        print("hide button pressed")
+        self.tabBarController?.selectedIndex = MainTabController.TabIndex.podcastIndex.rawValue
+        self.tabBarController?.tabBar.hidden = false
+//        self.tabBarController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func cancelPlayerViewController(segue: UIStoryboardSegue) {
         segue.sourceViewController.dismissViewControllerAnimated(true, completion: nil)
     }
