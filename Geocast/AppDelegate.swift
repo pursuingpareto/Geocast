@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        let theme = ThemeManager.currentTheme()
+        ThemeManager.applyTheme(theme)
+        
         // Override point for customization after application launch.
         Parse.enableLocalDatastore()
         
