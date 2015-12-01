@@ -388,7 +388,7 @@
         <!--Player-->
         <scene sceneID="BNv-Zd-9uc">
             <objects>
-                <viewController id="yyZ-no-Vza" customClass="PlayerViewController" customModule="Geocast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="yyZ-no-Vza" customClass="PlayerViewController" customModule="Geocast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1j3-9m-FQb"/>
                         <viewControllerLayoutGuide type="bottom" id="5Cs-HT-aMr"/>
@@ -901,10 +901,10 @@
             </objects>
             <point key="canvasLocation" x="1799" y="161"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Controller-->
         <scene sceneID="eP7-8D-Q2a">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="iRI-QC-XNg" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="iRI-QC-XNg" customClass="MainTabController" customModule="Geocast" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="9dL-4s-CRK">

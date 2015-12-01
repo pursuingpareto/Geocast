@@ -360,6 +360,7 @@ extension EpisodesViewController: UITableViewDelegate {
                 print("EPISODE IS \(ep.title)")
                 PodcastPlayer.sharedInstance.episode = ep
                 self.tabBarController?.selectedIndex = MainTabController.TabIndex.playerIndex.rawValue
+//                self.tabBarController?.presen
             }
     }
 

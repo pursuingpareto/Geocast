@@ -58,6 +58,7 @@
 		A18035A41BF2B6AE003BC7F5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A31BF2B6AE003BC7F5 /* libz.tbd */; };
 		A18035A61BF2B6B6003BC7F5 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */; };
 		A19873631BF80488001A16EA /* MapPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19873621BF80488001A16EA /* MapPopupView.swift */; };
+		A1A69DC21C0D0BEB00CB61C2 /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A69DC11C0D0BEB00CB61C2 /* ColorPalette.swift */; };
 		A1BF69801BF3EF7800DF6B7C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */; };
 		A1D3D9801BF537BA002FE51D /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D97F1BF537BA002FE51D /* Subscription.swift */; };
 		A1D3D9821BF68A6E002FE51D /* PodcastSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */; };
@@ -135,6 +136,7 @@
 		A18035A31BF2B6AE003BC7F5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A18035A51BF2B6B6003BC7F5 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A19873621BF80488001A16EA /* MapPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPopupView.swift; sourceTree = "<group>"; };
+		A1A69DC11C0D0BEB00CB61C2 /* ColorPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		A1D3D97F1BF537BA002FE51D /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		A1D3D9811BF68A6E002FE51D /* PodcastSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastSummaryCell.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				33DAD8341BF805BC000BB581 /* Images */,
 				33DAD85B1BFD1D76000BB581 /* Default-Portrait-736h@3x.png */,
 				A11FD3111BEC05D500A83FDB /* AppDelegate.swift */,
+				A1A69DC11C0D0BEB00CB61C2 /* ColorPalette.swift */,
 				A1BF697F1BF3EF7800DF6B7C /* LocationCell.swift */,
 				A1D4EF321BFBA6A300C64969 /* SearchLocationCell.swift */,
 				A1D4EF341BFBA6DE00C64969 /* TagDescriptionCell.swift */,
@@ -521,6 +524,7 @@
 				A11FD3121BEC05D500A83FDB /* AppDelegate.swift in Sources */,
 				A11FD3381BEC077500A83FDB /* PodcastsViewController.swift in Sources */,
 				A11FD3341BEC068900A83FDB /* MainTabController.swift in Sources */,
+				A1A69DC21C0D0BEB00CB61C2 /* ColorPalette.swift in Sources */,
 				33DAD8321BF42AAE000BB581 /* EpisodeCell.swift in Sources */,
 				A1D4EF311BFB9D2000C64969 /* LocationTagController.swift in Sources */,
 				33DAD8521BFBAB9E000BB581 /* Reachability.swift in Sources */,
